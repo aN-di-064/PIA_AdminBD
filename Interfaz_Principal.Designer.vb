@@ -26,16 +26,16 @@ Partial Class Interfaz_Principal
         ToolStrip1 = New ToolStrip()
         ToolStripButton1 = New ToolStripButton()
         ToolStripSeparator2 = New ToolStripSeparator()
+        ToolStripButton5 = New ToolStripButton()
+        ToolStripSeparator6 = New ToolStripSeparator()
         ToolStripButton4 = New ToolStripButton()
         ToolStripSeparator1 = New ToolStripSeparator()
-        ToolStripButton6 = New ToolStripButton()
-        ToolStripSeparator5 = New ToolStripSeparator()
         ToolStripButton2 = New ToolStripButton()
+        ToolStripSeparator5 = New ToolStripSeparator()
+        ToolStripButton6 = New ToolStripButton()
         ToolStripSeparator3 = New ToolStripSeparator()
         ToolStripButton3 = New ToolStripButton()
         ToolStripSeparator4 = New ToolStripSeparator()
-        ToolStripButton5 = New ToolStripButton()
-        ToolStripSeparator6 = New ToolStripSeparator()
         ToolStripSplitButton1 = New ToolStripSplitButton()
         panelContenido = New Panel()
         ToolStrip1.SuspendLayout()
@@ -45,7 +45,7 @@ Partial Class Interfaz_Principal
         ' 
         ToolStrip1.AutoSize = False
         ToolStrip1.ImageScalingSize = New Size(32, 32)
-        ToolStrip1.Items.AddRange(New ToolStripItem() {ToolStripButton1, ToolStripSeparator2, ToolStripButton5, ToolStripSeparator6, ToolStripButton4, ToolStripSeparator1, ToolStripButton6, ToolStripSeparator5, ToolStripButton2, ToolStripSeparator3, ToolStripButton3, ToolStripSeparator4, ToolStripSplitButton1})
+        ToolStrip1.Items.AddRange(New ToolStripItem() {ToolStripButton1, ToolStripSeparator2, ToolStripButton5, ToolStripSeparator6, ToolStripButton4, ToolStripSeparator1, ToolStripButton2, ToolStripSeparator5, ToolStripButton6, ToolStripSeparator3, ToolStripButton3, ToolStripSeparator4, ToolStripSplitButton1})
         ToolStrip1.Location = New Point(0, 0)
         ToolStrip1.Name = "ToolStrip1"
         ToolStrip1.Size = New Size(800, 65)
@@ -65,6 +65,19 @@ Partial Class Interfaz_Principal
         ToolStripSeparator2.Name = "ToolStripSeparator2"
         ToolStripSeparator2.Size = New Size(6, 65)
         ' 
+        ' ToolStripButton5
+        ' 
+        ToolStripButton5.Image = CType(resources.GetObject("ToolStripButton5.Image"), Image)
+        ToolStripButton5.ImageTransparentColor = Color.Magenta
+        ToolStripButton5.Name = "ToolStripButton5"
+        ToolStripButton5.Size = New Size(86, 62)
+        ToolStripButton5.Text = "Compra"
+        ' 
+        ' ToolStripSeparator6
+        ' 
+        ToolStripSeparator6.Name = "ToolStripSeparator6"
+        ToolStripSeparator6.Size = New Size(6, 65)
+        ' 
         ' ToolStripButton4
         ' 
         ToolStripButton4.Image = CType(resources.GetObject("ToolStripButton4.Image"), Image)
@@ -78,19 +91,6 @@ Partial Class Interfaz_Principal
         ToolStripSeparator1.Name = "ToolStripSeparator1"
         ToolStripSeparator1.Size = New Size(6, 65)
         ' 
-        ' ToolStripButton6
-        ' 
-        ToolStripButton6.Image = CType(resources.GetObject("ToolStripButton6.Image"), Image)
-        ToolStripButton6.ImageTransparentColor = Color.Magenta
-        ToolStripButton6.Name = "ToolStripButton6"
-        ToolStripButton6.Size = New Size(86, 62)
-        ToolStripButton6.Text = "Material"
-        ' 
-        ' ToolStripSeparator5
-        ' 
-        ToolStripSeparator5.Name = "ToolStripSeparator5"
-        ToolStripSeparator5.Size = New Size(6, 65)
-        ' 
         ' ToolStripButton2
         ' 
         ToolStripButton2.Image = CType(resources.GetObject("ToolStripButton2.Image"), Image)
@@ -98,6 +98,19 @@ Partial Class Interfaz_Principal
         ToolStripButton2.Name = "ToolStripButton2"
         ToolStripButton2.Size = New Size(96, 62)
         ToolStripButton2.Text = "Inventario"
+        ' 
+        ' ToolStripSeparator5
+        ' 
+        ToolStripSeparator5.Name = "ToolStripSeparator5"
+        ToolStripSeparator5.Size = New Size(6, 65)
+        ' 
+        ' ToolStripButton6
+        ' 
+        ToolStripButton6.Image = CType(resources.GetObject("ToolStripButton6.Image"), Image)
+        ToolStripButton6.ImageTransparentColor = Color.Magenta
+        ToolStripButton6.Name = "ToolStripButton6"
+        ToolStripButton6.Size = New Size(146, 62)
+        ToolStripButton6.Text = "Consulta inventario"
         ' 
         ' ToolStripSeparator3
         ' 
@@ -117,26 +130,13 @@ Partial Class Interfaz_Principal
         ToolStripSeparator4.Name = "ToolStripSeparator4"
         ToolStripSeparator4.Size = New Size(6, 65)
         ' 
-        ' ToolStripButton5
-        ' 
-        ToolStripButton5.Image = CType(resources.GetObject("ToolStripButton5.Image"), Image)
-        ToolStripButton5.ImageTransparentColor = Color.Magenta
-        ToolStripButton5.Name = "ToolStripButton5"
-        ToolStripButton5.Size = New Size(86, 62)
-        ToolStripButton5.Text = "Compra"
-        ' 
-        ' ToolStripSeparator6
-        ' 
-        ToolStripSeparator6.Name = "ToolStripSeparator6"
-        ToolStripSeparator6.Size = New Size(6, 65)
-        ' 
         ' ToolStripSplitButton1
         ' 
         ToolStripSplitButton1.Image = CType(resources.GetObject("ToolStripSplitButton1.Image"), Image)
         ToolStripSplitButton1.ImageTransparentColor = Color.Magenta
         ToolStripSplitButton1.Name = "ToolStripSplitButton1"
-        ToolStripSplitButton1.Size = New Size(87, 62)
-        ToolStripSplitButton1.Text = "Volver"
+        ToolStripSplitButton1.Size = New Size(77, 62)
+        ToolStripSplitButton1.Text = "Salir"
         ' 
         ' panelContenido
         ' 
@@ -153,6 +153,7 @@ Partial Class Interfaz_Principal
         ClientSize = New Size(800, 450)
         Controls.Add(panelContenido)
         Controls.Add(ToolStrip1)
+        MinimumSize = New Size(816, 489)
         Name = "Interfaz_Principal"
         Text = "Interfaz_Principal"
         WindowState = FormWindowState.Maximized
