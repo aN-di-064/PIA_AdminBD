@@ -46,7 +46,20 @@
     End Sub
 
     Private Sub ToolStripButton4_Click(sender As Object, e As EventArgs) Handles ToolStripButton4.Click
-        MostrarVista(New UC_ReporteDia())
+        ' Se permite el acceso a todos los usuarios sin validar el rol
+
+        ' Instanciar el formulario RangoFechas
+        Using frmRango As New Rango_Fechas()
+            ' Abrir la ventana de manera modal
+            If frmRango.ShowDialog() = DialogResult.OK Then
+                ' Capturar las fechas definidas en la ventana modal
+                Dim fInicio As DateTime = frmRango.FechaInicio
+                Dim fFin As DateTime = frmRango.FechaFin
+
+                ' Cargar la vista pasándole el rango de fechas
+                MostrarVista(New UC_ReporteDia(fInicio, fFin))
+            End If
+        End Using
     End Sub
 
     Private Sub ToolStripButton5_Click(sender As Object, e As EventArgs) Handles ToolStripButton5.Click
