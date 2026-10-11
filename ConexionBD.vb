@@ -1,24 +1,15 @@
-﻿Imports System.Data.OleDb
+﻿Imports Microsoft.Data.Sqlite
 
-Module ConexionBD
+Public Class ConexionDB
+    Private ReadOnly cadenaConexion As String = "Data Source=Centro de reciclaje\Centro de reciclaje.db;"
 
-    Public ReadOnly StringConexion As String = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=D:\FIME\5to Semestre\Laboratorio de programación orientada a objetos\PIA\Dulceria.accdb;"
-
-    Public Function ObtenerConexion() As OleDbConnection
-        Dim con As New OleDbConnection(StringConexion)
-        con.Open()
-        Return con
-    End Function
-
-    Public Function ProbarConexion() As Boolean
+    Public Function ObtenerConexion() As SqliteConnection
+        Dim conexion As New SqliteConnection(cadenaConexion)
         Try
-            Using con As OleDbConnection = ObtenerConexion()
-                Return True
-            End Using
+            conexion.Open()
         Catch ex As Exception
-            MessageBox.Show("Error de conexión: " & ex.Message)
-            Return False
+            MessageBox.Show("Error al conectar con la base de datos: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
+        Return conexion
     End Function
-
-End Module
+End Class

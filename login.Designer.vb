@@ -1,5 +1,5 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
-Partial Class Form1
+Partial Class login
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
@@ -33,18 +33,19 @@ Partial Class Form1
         ' 
         Label1.Anchor = AnchorStyles.None
         Label1.AutoSize = True
-        Label1.Location = New Point(370, 105)
+        Label1.Location = New Point(423, 140)
         Label1.Name = "Label1"
-        Label1.Size = New Size(47, 15)
+        Label1.Size = New Size(59, 20)
         Label1.TabIndex = 0
         Label1.Text = "Usuario"
         ' 
         ' Button1
         ' 
         Button1.Anchor = AnchorStyles.None
-        Button1.Location = New Point(352, 275)
+        Button1.Location = New Point(384, 367)
+        Button1.Margin = New Padding(3, 4, 3, 4)
         Button1.Name = "Button1"
-        Button1.Size = New Size(75, 23)
+        Button1.Size = New Size(129, 39)
         Button1.TabIndex = 1
         Button1.Text = "Ingresar" & vbCrLf
         Button1.UseVisualStyleBackColor = True
@@ -52,40 +53,43 @@ Partial Class Form1
         ' TextBox1
         ' 
         TextBox1.Anchor = AnchorStyles.None
-        TextBox1.Location = New Point(296, 137)
+        TextBox1.Location = New Point(338, 183)
+        TextBox1.Margin = New Padding(3, 4, 3, 4)
         TextBox1.Name = "TextBox1"
-        TextBox1.Size = New Size(203, 23)
+        TextBox1.Size = New Size(231, 27)
         TextBox1.TabIndex = 2
         ' 
         ' TextBox2
         ' 
         TextBox2.Anchor = AnchorStyles.None
-        TextBox2.Location = New Point(296, 214)
+        TextBox2.Location = New Point(338, 285)
+        TextBox2.Margin = New Padding(3, 4, 3, 4)
         TextBox2.Name = "TextBox2"
-        TextBox2.Size = New Size(203, 23)
+        TextBox2.Size = New Size(231, 27)
         TextBox2.TabIndex = 3
         ' 
         ' Label2
         ' 
         Label2.Anchor = AnchorStyles.None
         Label2.AutoSize = True
-        Label2.Location = New Point(360, 184)
+        Label2.Location = New Point(411, 245)
         Label2.Name = "Label2"
-        Label2.Size = New Size(67, 15)
+        Label2.Size = New Size(83, 20)
         Label2.TabIndex = 4
         Label2.Text = "Contraseña"
         ' 
-        ' Form1
+        ' login
         ' 
-        AutoScaleDimensions = New SizeF(7F, 15F)
+        AutoScaleDimensions = New SizeF(8F, 20F)
         AutoScaleMode = AutoScaleMode.Font
-        ClientSize = New Size(800, 450)
+        ClientSize = New Size(914, 600)
         Controls.Add(Label2)
         Controls.Add(TextBox2)
         Controls.Add(TextBox1)
         Controls.Add(Button1)
         Controls.Add(Label1)
-        Name = "Form1"
+        Margin = New Padding(3, 4, 3, 4)
+        Name = "login"
         Text = "Form1"
         ResumeLayout(False)
         PerformLayout()

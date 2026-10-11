@@ -37,7 +37,7 @@
     End Sub
 
     Private Sub ToolStripSplitButton1_ButtonClick(sender As Object, e As EventArgs) Handles ToolStripSplitButton1.ButtonClick
-        Form1.Show()
+        login.Show()
         Me.Hide()
     End Sub
 
