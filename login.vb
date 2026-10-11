@@ -35,7 +35,7 @@ Public Class login
         End If
     End Sub
 
-    ' Función para consultar la base de datos SQLit
+    ' Función para consultar la base de datos SQLite 
     Private Function ValidarUsuario(user As String, pass As String) As Boolean
         Dim accesoValido As Boolean = False
         Dim db As New ConexionDB()
@@ -43,7 +43,6 @@ Public Class login
         Using conexion As SqliteConnection = db.ObtenerConexion()
             If conexion IsNot Nothing AndAlso conexion.State = ConnectionState.Open Then
 
-                ' Actualizado con los nombres reales de las columnas de tu tabla Usuario
                 Dim query As String = "SELECT COUNT(1) FROM Usuario WHERE usuario_us = @user AND contraseña_us = @pass"
 
                 Using comando As New SqliteCommand(query, conexion)
