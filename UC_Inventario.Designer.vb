@@ -23,7 +23,6 @@ Partial Class UC_Inventario
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         PANEL_IZQUIERDO = New Panel()
-        BTN_CAT = New Button()
         BTN_DEL = New Button()
         BTN_MOD = New Button()
         BTN_NEW = New Button()
@@ -34,7 +33,6 @@ Partial Class UC_Inventario
         ' PANEL_IZQUIERDO
         ' 
         PANEL_IZQUIERDO.BorderStyle = BorderStyle.Fixed3D
-        PANEL_IZQUIERDO.Controls.Add(BTN_CAT)
         PANEL_IZQUIERDO.Controls.Add(BTN_DEL)
         PANEL_IZQUIERDO.Controls.Add(BTN_MOD)
         PANEL_IZQUIERDO.Controls.Add(BTN_NEW)
@@ -43,15 +41,6 @@ Partial Class UC_Inventario
         PANEL_IZQUIERDO.Name = "PANEL_IZQUIERDO"
         PANEL_IZQUIERDO.Size = New Size(203, 445)
         PANEL_IZQUIERDO.TabIndex = 1
-        ' 
-        ' BTN_CAT
-        ' 
-        BTN_CAT.Location = New Point(29, 264)
-        BTN_CAT.Name = "BTN_CAT"
-        BTN_CAT.Size = New Size(127, 23)
-        BTN_CAT.TabIndex = 3
-        BTN_CAT.Text = "Categoria"
-        BTN_CAT.UseVisualStyleBackColor = True
         ' 
         ' BTN_DEL
         ' 
@@ -100,7 +89,6 @@ Partial Class UC_Inventario
         ResumeLayout(False)
     End Sub
     Friend WithEvents PANEL_IZQUIERDO As Panel
-    Friend WithEvents BTN_CAT As Button
     Friend WithEvents BTN_DEL As Button
     Friend WithEvents BTN_MOD As Button
     Friend WithEvents BTN_NEW As Button

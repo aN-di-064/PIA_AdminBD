@@ -33,12 +33,16 @@
         MostrarSubVista(New UC_I_Eliminar(), BTN_DEL)
     End Sub
 
-    Private Sub BTN_CAT_Click(sender As Object, e As EventArgs) Handles BTN_CAT.Click
+    Private Sub BTN_CAT_Click(sender As Object, e As EventArgs)
         ' Recuerda cambiar UC_I_Nuevo por UC_I_Categoria cuando crees esa vista
-        MostrarSubVista(New UC_I_Nuevo(), BTN_CAT)
+        MostrarSubVista(New UC_I_Nuevo, BTN_CAT)
     End Sub
 
     Private Sub PANEL_IZQUIERDO_Paint(sender As Object, e As PaintEventArgs) Handles PANEL_IZQUIERDO.Paint
+
+    End Sub
+
+    Private Sub PANEL_DERECHO_Paint(sender As Object, e As PaintEventArgs) Handles PANEL_DERECHO.Paint
 
     End Sub
 End Class

@@ -23,6 +23,8 @@ Partial Class UC_I_Nuevo
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Panel_Form = New Panel()
+        MTB_Pventa = New MaskedTextBox()
+        Label7 = New Label()
         Label1 = New Label()
         Button1 = New Button()
         MTB_Pcompra = New MaskedTextBox()
@@ -35,8 +37,6 @@ Partial Class UC_I_Nuevo
         Label4 = New Label()
         Label6 = New Label()
         Label5 = New Label()
-        MTB_Pventa = New MaskedTextBox()
-        Label7 = New Label()
         Panel_Form.SuspendLayout()
         SuspendLayout()
         ' 
@@ -61,6 +61,22 @@ Partial Class UC_I_Nuevo
         Panel_Form.Name = "Panel_Form"
         Panel_Form.Size = New Size(678, 403)
         Panel_Form.TabIndex = 0
+        ' 
+        ' MTB_Pventa
+        ' 
+        MTB_Pventa.Location = New Point(252, 339)
+        MTB_Pventa.Name = "MTB_Pventa"
+        MTB_Pventa.Size = New Size(201, 23)
+        MTB_Pventa.TabIndex = 37
+        ' 
+        ' Label7
+        ' 
+        Label7.AutoSize = True
+        Label7.Location = New Point(129, 347)
+        Label7.Name = "Label7"
+        Label7.Size = New Size(88, 15)
+        Label7.TabIndex = 36
+        Label7.Text = "Precio de venta"
         ' 
         ' Label1
         ' 
@@ -160,22 +176,6 @@ Partial Class UC_I_Nuevo
         Label5.Size = New Size(45, 15)
         Label5.TabIndex = 30
         Label5.Text = "Unidad"
-        ' 
-        ' MTB_Pventa
-        ' 
-        MTB_Pventa.Location = New Point(252, 339)
-        MTB_Pventa.Name = "MTB_Pventa"
-        MTB_Pventa.Size = New Size(201, 23)
-        MTB_Pventa.TabIndex = 37
-        ' 
-        ' Label7
-        ' 
-        Label7.AutoSize = True
-        Label7.Location = New Point(129, 347)
-        Label7.Name = "Label7"
-        Label7.Size = New Size(88, 15)
-        Label7.TabIndex = 36
-        Label7.Text = "Precio de venta"
         ' 
         ' UC_I_Nuevo
         ' 

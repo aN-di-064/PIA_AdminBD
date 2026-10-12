@@ -23,9 +23,11 @@ Partial Class UC_I_Modificar
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Panel_Form = New Panel()
+        MTB_Pventa = New MaskedTextBox()
+        Label7 = New Label()
         Label1 = New Label()
         Button1 = New Button()
-        MTB_Precio = New MaskedTextBox()
+        MTB_Pcompra = New MaskedTextBox()
         Label2 = New Label()
         MTB_Unidad = New MaskedTextBox()
         MTB_Codigo = New MaskedTextBox()
@@ -42,9 +44,11 @@ Partial Class UC_I_Modificar
         ' Panel_Form
         ' 
         Panel_Form.Controls.Add(Button2)
+        Panel_Form.Controls.Add(MTB_Pventa)
+        Panel_Form.Controls.Add(Label7)
         Panel_Form.Controls.Add(Label1)
         Panel_Form.Controls.Add(Button1)
-        Panel_Form.Controls.Add(MTB_Precio)
+        Panel_Form.Controls.Add(MTB_Pcompra)
         Panel_Form.Controls.Add(Label2)
         Panel_Form.Controls.Add(MTB_Unidad)
         Panel_Form.Controls.Add(MTB_Codigo)
@@ -60,117 +64,133 @@ Partial Class UC_I_Modificar
         Panel_Form.Size = New Size(750, 440)
         Panel_Form.TabIndex = 1
         ' 
+        ' MTB_Pventa
+        ' 
+        MTB_Pventa.Location = New Point(321, 363)
+        MTB_Pventa.Name = "MTB_Pventa"
+        MTB_Pventa.Size = New Size(201, 23)
+        MTB_Pventa.TabIndex = 51
+        ' 
+        ' Label7
+        ' 
+        Label7.AutoSize = True
+        Label7.Location = New Point(198, 371)
+        Label7.Name = "Label7"
+        Label7.Size = New Size(88, 15)
+        Label7.TabIndex = 50
+        Label7.Text = "Precio de venta"
+        ' 
         ' Label1
         ' 
         Label1.AutoSize = True
-        Label1.Font = New Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        Label1.Location = New Point(96, 55)
+        Label1.Font = New Font("Segoe UI", 18.0F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        Label1.Location = New Point(119, 37)
         Label1.Name = "Label1"
-        Label1.Size = New Size(350, 32)
-        Label1.TabIndex = 36
-        Label1.Text = "Modificar datos del producto"
+        Label1.Size = New Size(302, 32)
+        Label1.TabIndex = 38
+        Label1.Text = "Agregar Nuevo Producto"
         ' 
         ' Button1
         ' 
         Button1.Location = New Point(579, 363)
         Button1.Name = "Button1"
         Button1.Size = New Size(75, 23)
-        Button1.TabIndex = 39
-        Button1.Text = "Actualizar"
+        Button1.TabIndex = 41
+        Button1.Text = "Agregar"
         Button1.UseVisualStyleBackColor = True
         ' 
-        ' MTB_Precio
+        ' MTB_Pcompra
         ' 
-        MTB_Precio.Location = New Point(245, 319)
-        MTB_Precio.Name = "MTB_Precio"
-        MTB_Precio.Size = New Size(201, 23)
-        MTB_Precio.TabIndex = 47
+        MTB_Pcompra.Location = New Point(321, 318)
+        MTB_Pcompra.Name = "MTB_Pcompra"
+        MTB_Pcompra.Size = New Size(201, 23)
+        MTB_Pcompra.TabIndex = 49
         ' 
         ' Label2
         ' 
         Label2.AutoSize = True
-        Label2.Location = New Point(155, 132)
+        Label2.Location = New Point(198, 131)
         Label2.Name = "Label2"
         Label2.Size = New Size(46, 15)
-        Label2.TabIndex = 37
+        Label2.TabIndex = 39
         Label2.Text = "Código"
         ' 
         ' MTB_Unidad
         ' 
-        MTB_Unidad.Location = New Point(245, 274)
+        MTB_Unidad.Location = New Point(321, 273)
         MTB_Unidad.Name = "MTB_Unidad"
         MTB_Unidad.Size = New Size(201, 23)
-        MTB_Unidad.TabIndex = 46
+        MTB_Unidad.TabIndex = 48
         ' 
         ' MTB_Codigo
         ' 
-        MTB_Codigo.Location = New Point(245, 129)
+        MTB_Codigo.Location = New Point(321, 128)
         MTB_Codigo.Name = "MTB_Codigo"
         MTB_Codigo.Size = New Size(201, 23)
-        MTB_Codigo.TabIndex = 38
+        MTB_Codigo.TabIndex = 40
         ' 
         ' MTB_Tipo
         ' 
-        MTB_Tipo.Location = New Point(245, 223)
+        MTB_Tipo.Location = New Point(321, 222)
         MTB_Tipo.Name = "MTB_Tipo"
         MTB_Tipo.Size = New Size(201, 23)
-        MTB_Tipo.TabIndex = 45
+        MTB_Tipo.TabIndex = 47
         ' 
         ' Label3
         ' 
         Label3.AutoSize = True
-        Label3.Location = New Point(155, 231)
+        Label3.Location = New Point(198, 230)
         Label3.Name = "Label3"
         Label3.Size = New Size(30, 15)
-        Label3.TabIndex = 40
+        Label3.TabIndex = 42
         Label3.Text = "Tipo"
         ' 
         ' MTB_Nombre
         ' 
-        MTB_Nombre.Location = New Point(245, 181)
+        MTB_Nombre.Location = New Point(321, 180)
         MTB_Nombre.Name = "MTB_Nombre"
         MTB_Nombre.Size = New Size(201, 23)
-        MTB_Nombre.TabIndex = 44
+        MTB_Nombre.TabIndex = 46
         ' 
         ' Label4
         ' 
         Label4.AutoSize = True
-        Label4.Location = New Point(155, 181)
+        Label4.Location = New Point(198, 180)
         Label4.Name = "Label4"
         Label4.Size = New Size(51, 15)
-        Label4.TabIndex = 41
+        Label4.TabIndex = 43
         Label4.Text = "Nombre"
         ' 
         ' Label6
         ' 
         Label6.AutoSize = True
-        Label6.Location = New Point(155, 327)
+        Label6.Location = New Point(198, 326)
         Label6.Name = "Label6"
-        Label6.Size = New Size(40, 15)
-        Label6.TabIndex = 43
-        Label6.Text = "Precio"
+        Label6.Size = New Size(100, 15)
+        Label6.TabIndex = 45
+        Label6.Text = "Precio de compra"
         ' 
         ' Label5
         ' 
         Label5.AutoSize = True
-        Label5.Location = New Point(155, 277)
+        Label5.Location = New Point(198, 276)
         Label5.Name = "Label5"
         Label5.Size = New Size(45, 15)
-        Label5.TabIndex = 42
+        Label5.TabIndex = 44
         Label5.Text = "Unidad"
         ' 
         ' Button2
         ' 
-        Button2.Location = New Point(207, 378)
+        Button2.Location = New Point(198, 83)
         Button2.Name = "Button2"
-        Button2.Size = New Size(261, 23)
-        Button2.TabIndex = 48
-        Button2.Text = "Buscar producto a modificar"
+        Button2.Size = New Size(324, 23)
+        Button2.TabIndex = 52
+        Button2.Text = "Buscar Producto"
         Button2.UseVisualStyleBackColor = True
         ' 
         ' UC_I_Modificar
         ' 
-        AutoScaleDimensions = New SizeF(7F, 15F)
+        AutoScaleDimensions = New SizeF(7.0F, 15.0F)
         AutoScaleMode = AutoScaleMode.Font
         Controls.Add(Panel_Form)
         Name = "UC_I_Modificar"
@@ -181,9 +201,11 @@ Partial Class UC_I_Modificar
     End Sub
 
     Friend WithEvents Panel_Form As Panel
+    Friend WithEvents MTB_Pventa As MaskedTextBox
+    Friend WithEvents Label7 As Label
     Friend WithEvents Label1 As Label
     Friend WithEvents Button1 As Button
-    Friend WithEvents MTB_Precio As MaskedTextBox
+    Friend WithEvents MTB_Pcompra As MaskedTextBox
     Friend WithEvents Label2 As Label
     Friend WithEvents MTB_Unidad As MaskedTextBox
     Friend WithEvents MTB_Codigo As MaskedTextBox
