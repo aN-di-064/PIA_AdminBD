@@ -21,7 +21,25 @@
     End Sub
 
     Private Sub ToolStrip1_ItemClicked(sender As Object, e As ToolStripItemClickedEventArgs) Handles ToolStrip1.ItemClicked
+        ' 1. Obtener el botón exacto que fue presionado usando e.ClickedItem
+        Dim botonActual As ToolStripButton = TryCast(e.ClickedItem, ToolStripButton)
 
+        If botonActual IsNot Nothing Then
+            ' 2. Recorrer todos los elementos de la barra (ToolStrip)
+            For Each item As ToolStripItem In ToolStrip1.Items
+                Dim btn As ToolStripButton = TryCast(item, ToolStripButton)
+
+                If btn IsNot Nothing Then
+                    If btn Is botonActual Then
+                        ' Si es el botón al que se le dio clic, se queda marcado
+                        btn.Checked = True
+                    Else
+                        ' A todos los demás se les quita la marca
+                        btn.Checked = False
+                    End If
+                End If
+            Next
+        End If
     End Sub
 
     Private Sub ToolStripLabel1_Click(sender As Object, e As EventArgs)

@@ -38,6 +38,8 @@ Partial Class Interfaz_Principal
         ToolStripSeparator4 = New ToolStripSeparator()
         ToolStripSplitButton1 = New ToolStripSplitButton()
         panelContenido = New Panel()
+        ToolStripButton7 = New ToolStripButton()
+        ToolStripSeparator7 = New ToolStripSeparator()
         ToolStrip1.SuspendLayout()
         SuspendLayout()
         ' 
@@ -45,10 +47,10 @@ Partial Class Interfaz_Principal
         ' 
         ToolStrip1.AutoSize = False
         ToolStrip1.ImageScalingSize = New Size(32, 32)
-        ToolStrip1.Items.AddRange(New ToolStripItem() {ToolStripButton1, ToolStripSeparator2, ToolStripButton5, ToolStripSeparator6, ToolStripButton4, ToolStripSeparator1, ToolStripButton2, ToolStripSeparator5, ToolStripButton6, ToolStripSeparator3, ToolStripButton3, ToolStripSeparator4, ToolStripSplitButton1})
+        ToolStrip1.Items.AddRange(New ToolStripItem() {ToolStripButton1, ToolStripSeparator2, ToolStripButton5, ToolStripSeparator6, ToolStripButton4, ToolStripSeparator1, ToolStripButton2, ToolStripSeparator5, ToolStripButton6, ToolStripSeparator3, ToolStripButton7, ToolStripSeparator7, ToolStripButton3, ToolStripSeparator4, ToolStripSplitButton1})
         ToolStrip1.Location = New Point(0, 0)
         ToolStrip1.Name = "ToolStrip1"
-        ToolStrip1.Size = New Size(800, 65)
+        ToolStrip1.Size = New Size(858, 65)
         ToolStrip1.TabIndex = 0
         ToolStrip1.Text = "ToolStrip1"
         ' 
@@ -143,14 +145,27 @@ Partial Class Interfaz_Principal
         panelContenido.Dock = DockStyle.Fill
         panelContenido.Location = New Point(0, 65)
         panelContenido.Name = "panelContenido"
-        panelContenido.Size = New Size(800, 385)
+        panelContenido.Size = New Size(858, 385)
         panelContenido.TabIndex = 1
+        ' 
+        ' ToolStripButton7
+        ' 
+        ToolStripButton7.Image = CType(resources.GetObject("ToolStripButton7.Image"), Image)
+        ToolStripButton7.ImageTransparentColor = Color.Magenta
+        ToolStripButton7.Name = "ToolStripButton7"
+        ToolStripButton7.Size = New Size(85, 62)
+        ToolStripButton7.Text = "Clientes"
+        ' 
+        ' ToolStripSeparator7
+        ' 
+        ToolStripSeparator7.Name = "ToolStripSeparator7"
+        ToolStripSeparator7.Size = New Size(6, 65)
         ' 
         ' Interfaz_Principal
         ' 
         AutoScaleDimensions = New SizeF(7F, 15F)
         AutoScaleMode = AutoScaleMode.Font
-        ClientSize = New Size(800, 450)
+        ClientSize = New Size(858, 450)
         Controls.Add(panelContenido)
         Controls.Add(ToolStrip1)
         MinimumSize = New Size(816, 489)
@@ -177,4 +192,6 @@ Partial Class Interfaz_Principal
     Friend WithEvents ToolStripSeparator5 As ToolStripSeparator
     Friend WithEvents ToolStripButton6 As ToolStripButton
     Friend WithEvents ToolStripSeparator6 As ToolStripSeparator
+    Friend WithEvents ToolStripButton7 As ToolStripButton
+    Friend WithEvents ToolStripSeparator7 As ToolStripSeparator
 End Class

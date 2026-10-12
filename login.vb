@@ -38,7 +38,7 @@ Public Class login
     ' Función para consultar la base de datos SQLite 
     Private Function ValidarUsuario(user As String, pass As String) As Boolean
         Dim accesoValido As Boolean = False
-        Dim db As New ConexionDB()
+        Dim db As New ConexionBD()
 
         Using conexion As SqliteConnection = db.ObtenerConexion()
             If conexion IsNot Nothing AndAlso conexion.State = ConnectionState.Open Then

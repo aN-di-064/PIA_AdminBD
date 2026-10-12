@@ -33,6 +33,7 @@ Partial Class UC_Inventario
         ' 
         ' PANEL_IZQUIERDO
         ' 
+        PANEL_IZQUIERDO.BorderStyle = BorderStyle.Fixed3D
         PANEL_IZQUIERDO.Controls.Add(BTN_CAT)
         PANEL_IZQUIERDO.Controls.Add(BTN_DEL)
         PANEL_IZQUIERDO.Controls.Add(BTN_MOD)

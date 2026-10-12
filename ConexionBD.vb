@@ -1,7 +1,9 @@
 ﻿Imports Microsoft.Data.Sqlite
+Imports System.Data
 
-Public Class ConexionDB
-    Private ReadOnly cadenaConexion As String = "Data Source=Centro de reciclaje\Centro de reciclaje.db;"
+Public Class ConexionBD
+
+    Private ReadOnly cadenaConexion As String = "Data Source=C:\SQLite\Proyectos\Centro de reciclaje\Centro de reciclaje.db;"
 
     Public Function ObtenerConexion() As SqliteConnection
         Dim conexion As New SqliteConnection(cadenaConexion)
@@ -12,4 +14,53 @@ Public Class ConexionDB
         End Try
         Return conexion
     End Function
+
+    ' Método para consultas SELECT usando SqliteDataReader (compatible con SQLite)
+    Public Shared Function ObtenerDatos(query As String) As DataTable
+        Dim dt As New DataTable()
+        Dim db As New ConexionBD()
+        Using conexion As SqliteConnection = db.ObtenerConexion()
+            If conexion IsNot Nothing AndAlso conexion.State = ConnectionState.Open Then
+                Using comando As New SqliteCommand(query, conexion)
+                    Using lector As SqliteDataReader = comando.ExecuteReader()
+                        dt.Load(lector)
+                    End Using
+                End Using
+            End If
+        End Using
+        Return dt
+    End Function
+    Public Shared Function EjecutarComando(query As String, parametros As List(Of SqliteParameter)) As Integer
+        Dim filasAfectadas As Integer = 0
+        Dim db As New ConexionBD()
+
+        Using conexion As SqliteConnection = db.ObtenerConexion()
+            If conexion IsNot Nothing AndAlso conexion.State = ConnectionState.Open Then
+                ' Abrimos una transacción explícita para asegurar que los datos se escriban en el disco duro
+                Using transaccion As SqliteTransaction = conexion.BeginTransaction()
+                    Using comando As New SqliteCommand(query, conexion, transaccion)
+                        Try
+                            If parametros IsNot Nothing Then
+                                comando.Parameters.AddRange(parametros)
+                            End If
+
+                            filasAfectadas = comando.ExecuteNonQuery()
+
+                            ' Confirmar los cambios permanentemente en la base de datos
+                            transaccion.Commit()
+
+                        Catch ex As Exception
+                            ' Si algo falla, revertir cualquier cambio temporal
+                            transaccion.Rollback()
+                            MessageBox.Show("Error en EjecutarComando: " & ex.Message, "Error de SQL", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                            filasAfectadas = 0
+                        End Try
+                    End Using
+                End Using
+            End If
+        End Using
+
+        Return filasAfectadas
+    End Function
+
 End Class
