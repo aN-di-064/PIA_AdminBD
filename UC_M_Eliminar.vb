@@ -1,12 +1,12 @@
 ﻿Imports Microsoft.Data.Sqlite
 
-Public Class UC_I_Eliminar
+Public Class UC_M_Eliminar
 
-    Private Sub UC_I_Eliminar_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+    Private Sub UC_M_Eliminar_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         CentrarFormulario()
     End Sub
 
-    Private Sub UC_I_Eliminar_Resize(sender As Object, e As EventArgs) Handles MyBase.Resize
+    Private Sub UC_M_Eliminar_Resize(sender As Object, e As EventArgs) Handles MyBase.Resize
         CentrarFormulario()
     End Sub
 
@@ -25,17 +25,17 @@ Public Class UC_I_Eliminar
     ' Evento del botón superior "Buscar Producto" 
     ' (Si tu botón superior tiene otro nombre en las Propiedades, asegúrate de cambiar "Button2" por el nombre correcto)
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
-        Dim ventanaBusqueda As New Busqueda_Inventario()
+        Dim ventanaBusqueda As New Busqueda_Materiales()
         ventanaBusqueda.ShowDialog() ' Abre la ventana en modo modal
 
         ' Al cerrarse, recuperamos los datos del producto seleccionado mediante doble clic
-        If Busqueda_Inventario.ProductoSeleccionado Then
-            MTB_Codigo.Text = Busqueda_Inventario.IdSeleccionado
-            MTB_Nombre.Text = Busqueda_Inventario.NombreSeleccionado
-            MTB_Tipo.Text = Busqueda_Inventario.TipoSeleccionado
-            MTB_Unidad.Text = Busqueda_Inventario.UnidadSeleccionada
-            MTB_Pcompra.Text = Busqueda_Inventario.PCompraSeleccionado
-            MTB_Pventa.Text = Busqueda_Inventario.PVentaSeleccionado
+        If Busqueda_Materiales.ProductoSeleccionado Then
+            MTB_Codigo.Text = Busqueda_Materiales.IdSeleccionado
+            MTB_Nombre.Text = Busqueda_Materiales.NombreSeleccionado
+            MTB_Tipo.Text = Busqueda_Materiales.TipoSeleccionado
+            MTB_Unidad.Text = Busqueda_Materiales.UnidadSeleccionada
+            MTB_Pcompra.Text = Busqueda_Materiales.PCompraSeleccionado
+            MTB_Pventa.Text = Busqueda_Materiales.PVentaSeleccionado
         End If
     End Sub
 

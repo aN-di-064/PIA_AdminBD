@@ -1,13 +1,13 @@
 ﻿Imports Microsoft.Data.Sqlite
 
-Public Class UC_I_Nuevo
+Public Class UC_M_Nuevo
 
-    Private Sub UC_I_Nuevo_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+    Private Sub UC_M_Nuevo_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         CentrarFormulario()
         CargarSiguienteId()
     End Sub
 
-    Private Sub UC_I_Nuevo_Resize(sender As Object, e As EventArgs) Handles MyBase.Resize
+    Private Sub UC_M_Nuevo_Resize(sender As Object, e As EventArgs) Handles MyBase.Resize
         CentrarFormulario()
     End Sub
 

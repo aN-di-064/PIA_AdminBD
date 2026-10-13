@@ -1,7 +1,7 @@
 ﻿Imports Microsoft.Data.Sqlite
 Imports System.Data
 
-Public Class Busqueda_Inventario
+Public Class Busqueda_Materiales
 
     ' Propiedades públicas para almacenar los datos del material seleccionado momentáneamente
     Public Shared Property IdSeleccionado As String = ""
@@ -12,12 +12,12 @@ Public Class Busqueda_Inventario
     Public Shared Property PVentaSeleccionado As String = ""
     Public Shared Property ProductoSeleccionado As Boolean = False
 
-    Private Sub Busqueda_Inventario_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+    Private Sub Busqueda_Materiales_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         ProductoSeleccionado = False
-        CargarInventario()
+        CargarMateriales()
     End Sub
 
-    Private Sub CargarInventario(Optional filtro As String = "")
+    Private Sub CargarMateriales(Optional filtro As String = "")
         Try
             Dim query As String = "SELECT Id_mat AS 'Código', nom_mat AS 'Nombre', tipo AS 'Tipo', unidad_medida AS 'Unidad', Precio_compra AS 'Precio Compra', Precio_Venta AS 'Precio Venta' FROM Materiales"
 
@@ -43,7 +43,7 @@ Public Class Busqueda_Inventario
                 End If
             End Using
 
-            dgvProductos.DataSource = dt
+            dgvMateriales.DataSource = dt
 
         Catch ex As Exception
             MessageBox.Show("Error al cargar el inventario: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
@@ -51,13 +51,13 @@ Public Class Busqueda_Inventario
     End Sub
 
     Private Sub txtBuscar_TextChanged(sender As Object, e As EventArgs) Handles txtBuscar.TextChanged
-        CargarInventario(txtBuscar.Text.Trim())
+        CargarMateriales(txtBuscar.Text.Trim())
     End Sub
 
     ' Evento de doble clic para capturar la fila seleccionada
-    Private Sub dgvProductos_CellDoubleClick(sender As Object, e As DataGridViewCellEventArgs) Handles dgvProductos.CellDoubleClick
+    Private Sub dgvMateriales_CellDoubleClick(sender As Object, e As DataGridViewCellEventArgs) Handles dgvMateriales.CellDoubleClick
         If e.RowIndex >= 0 Then
-            Dim fila As DataGridViewRow = dgvProductos.Rows(e.RowIndex)
+            Dim fila As DataGridViewRow = dgvMateriales.Rows(e.RowIndex)
 
             IdSeleccionado = fila.Cells("Código").Value.ToString()
             NombreSeleccionado = fila.Cells("Nombre").Value.ToString()
@@ -71,7 +71,7 @@ Public Class Busqueda_Inventario
         End If
     End Sub
 
-    Private Sub dgvProductos_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles dgvProductos.CellContentClick
+    Private Sub dgvProductos_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles dgvMateriales.CellContentClick
     End Sub
 
 End Class

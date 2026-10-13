@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
-Partial Class UC_I_Nuevo
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
+Partial Class UC_M_Modificar
     Inherits System.Windows.Forms.UserControl
 
     'UserControl reemplaza a Dispose para limpiar la lista de componentes.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         Try
             If disposing AndAlso components IsNot Nothing Then
@@ -20,9 +20,10 @@ Partial Class UC_I_Nuevo
     'NOTA: el Diseñador de Windows Forms necesita el siguiente procedimiento
     'Se puede modificar usando el Diseñador de Windows Forms.  
     'No lo modifique con el editor de código.
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Panel_Form = New Panel()
+        Button2 = New Button()
         MTB_Pventa = New MaskedTextBox()
         Label7 = New Label()
         Label1 = New Label()
@@ -42,6 +43,7 @@ Partial Class UC_I_Nuevo
         ' 
         ' Panel_Form
         ' 
+        Panel_Form.Controls.Add(Button2)
         Panel_Form.Controls.Add(MTB_Pventa)
         Panel_Form.Controls.Add(Label7)
         Panel_Form.Controls.Add(Label1)
@@ -58,138 +60,159 @@ Partial Class UC_I_Nuevo
         Panel_Form.Controls.Add(Label5)
         Panel_Form.Dock = DockStyle.Fill
         Panel_Form.Location = New Point(0, 0)
+        Panel_Form.Margin = New Padding(3, 4, 3, 4)
         Panel_Form.Name = "Panel_Form"
-        Panel_Form.Size = New Size(678, 403)
-        Panel_Form.TabIndex = 0
+        Panel_Form.Size = New Size(857, 587)
+        Panel_Form.TabIndex = 1
+        ' 
+        ' Button2
+        ' 
+        Button2.Location = New Point(120, 102)
+        Button2.Margin = New Padding(3, 4, 3, 4)
+        Button2.Name = "Button2"
+        Button2.Size = New Size(370, 31)
+        Button2.TabIndex = 52
+        Button2.Text = "Buscar Material"
+        Button2.UseVisualStyleBackColor = True
         ' 
         ' MTB_Pventa
         ' 
-        MTB_Pventa.Location = New Point(252, 339)
+        MTB_Pventa.Location = New Point(261, 475)
+        MTB_Pventa.Margin = New Padding(3, 4, 3, 4)
         MTB_Pventa.Name = "MTB_Pventa"
-        MTB_Pventa.Size = New Size(201, 23)
-        MTB_Pventa.TabIndex = 37
+        MTB_Pventa.Size = New Size(229, 27)
+        MTB_Pventa.TabIndex = 51
         ' 
         ' Label7
         ' 
         Label7.AutoSize = True
-        Label7.Location = New Point(129, 347)
+        Label7.Location = New Point(120, 486)
         Label7.Name = "Label7"
-        Label7.Size = New Size(88, 15)
-        Label7.TabIndex = 36
+        Label7.Size = New Size(111, 20)
+        Label7.TabIndex = 50
         Label7.Text = "Precio de venta"
         ' 
         ' Label1
         ' 
         Label1.AutoSize = True
         Label1.Font = New Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        Label1.Location = New Point(27, 31)
+        Label1.Location = New Point(30, 40)
         Label1.Name = "Label1"
-        Label1.Size = New Size(302, 32)
-        Label1.TabIndex = 24
-        Label1.Text = "Agregar Nuevo Producto"
+        Label1.Size = New Size(360, 41)
+        Label1.TabIndex = 38
+        Label1.Text = "Agregar Nuevo Material"
         ' 
         ' Button1
         ' 
-        Button1.Location = New Point(510, 339)
+        Button1.Location = New Point(556, 475)
+        Button1.Margin = New Padding(3, 4, 3, 4)
         Button1.Name = "Button1"
-        Button1.Size = New Size(75, 23)
-        Button1.TabIndex = 27
+        Button1.Size = New Size(86, 31)
+        Button1.TabIndex = 41
         Button1.Text = "Agregar"
         Button1.UseVisualStyleBackColor = True
         ' 
         ' MTB_Pcompra
         ' 
-        MTB_Pcompra.Location = New Point(252, 294)
+        MTB_Pcompra.Location = New Point(261, 415)
+        MTB_Pcompra.Margin = New Padding(3, 4, 3, 4)
         MTB_Pcompra.Name = "MTB_Pcompra"
-        MTB_Pcompra.Size = New Size(201, 23)
-        MTB_Pcompra.TabIndex = 35
+        MTB_Pcompra.Size = New Size(229, 27)
+        MTB_Pcompra.TabIndex = 49
         ' 
         ' Label2
         ' 
         Label2.AutoSize = True
-        Label2.Location = New Point(129, 107)
+        Label2.Location = New Point(120, 166)
         Label2.Name = "Label2"
-        Label2.Size = New Size(46, 15)
-        Label2.TabIndex = 25
+        Label2.Size = New Size(58, 20)
+        Label2.TabIndex = 39
         Label2.Text = "Código"
         ' 
         ' MTB_Unidad
         ' 
-        MTB_Unidad.Location = New Point(252, 249)
+        MTB_Unidad.Location = New Point(261, 355)
+        MTB_Unidad.Margin = New Padding(3, 4, 3, 4)
         MTB_Unidad.Name = "MTB_Unidad"
-        MTB_Unidad.Size = New Size(201, 23)
-        MTB_Unidad.TabIndex = 34
+        MTB_Unidad.Size = New Size(229, 27)
+        MTB_Unidad.TabIndex = 48
         ' 
         ' MTB_Codigo
         ' 
-        MTB_Codigo.Location = New Point(252, 104)
+        MTB_Codigo.Location = New Point(261, 162)
+        MTB_Codigo.Margin = New Padding(3, 4, 3, 4)
         MTB_Codigo.Name = "MTB_Codigo"
-        MTB_Codigo.Size = New Size(201, 23)
-        MTB_Codigo.TabIndex = 26
+        MTB_Codigo.Size = New Size(229, 27)
+        MTB_Codigo.TabIndex = 40
         ' 
         ' MTB_Tipo
         ' 
-        MTB_Tipo.Location = New Point(252, 198)
+        MTB_Tipo.Location = New Point(261, 287)
+        MTB_Tipo.Margin = New Padding(3, 4, 3, 4)
         MTB_Tipo.Name = "MTB_Tipo"
-        MTB_Tipo.Size = New Size(201, 23)
-        MTB_Tipo.TabIndex = 33
+        MTB_Tipo.Size = New Size(229, 27)
+        MTB_Tipo.TabIndex = 47
         ' 
         ' Label3
         ' 
         Label3.AutoSize = True
-        Label3.Location = New Point(129, 206)
+        Label3.Location = New Point(120, 298)
         Label3.Name = "Label3"
-        Label3.Size = New Size(30, 15)
-        Label3.TabIndex = 28
+        Label3.Size = New Size(39, 20)
+        Label3.TabIndex = 42
         Label3.Text = "Tipo"
         ' 
         ' MTB_Nombre
         ' 
-        MTB_Nombre.Location = New Point(252, 156)
+        MTB_Nombre.Location = New Point(261, 231)
+        MTB_Nombre.Margin = New Padding(3, 4, 3, 4)
         MTB_Nombre.Name = "MTB_Nombre"
-        MTB_Nombre.Size = New Size(201, 23)
-        MTB_Nombre.TabIndex = 32
+        MTB_Nombre.Size = New Size(229, 27)
+        MTB_Nombre.TabIndex = 46
         ' 
         ' Label4
         ' 
         Label4.AutoSize = True
-        Label4.Location = New Point(129, 156)
+        Label4.Location = New Point(120, 231)
         Label4.Name = "Label4"
-        Label4.Size = New Size(51, 15)
-        Label4.TabIndex = 29
+        Label4.Size = New Size(64, 20)
+        Label4.TabIndex = 43
         Label4.Text = "Nombre"
         ' 
         ' Label6
         ' 
         Label6.AutoSize = True
-        Label6.Location = New Point(129, 302)
+        Label6.Location = New Point(120, 426)
         Label6.Name = "Label6"
-        Label6.Size = New Size(100, 15)
-        Label6.TabIndex = 31
+        Label6.Size = New Size(126, 20)
+        Label6.TabIndex = 45
         Label6.Text = "Precio de compra"
         ' 
         ' Label5
         ' 
         Label5.AutoSize = True
-        Label5.Location = New Point(129, 252)
+        Label5.Location = New Point(120, 359)
         Label5.Name = "Label5"
-        Label5.Size = New Size(45, 15)
-        Label5.TabIndex = 30
+        Label5.Size = New Size(57, 20)
+        Label5.TabIndex = 44
         Label5.Text = "Unidad"
         ' 
-        ' UC_I_Nuevo
+        ' UC_M_Modificar
         ' 
-        AutoScaleDimensions = New SizeF(7F, 15F)
+        AutoScaleDimensions = New SizeF(8F, 20F)
         AutoScaleMode = AutoScaleMode.Font
         Controls.Add(Panel_Form)
-        Name = "UC_I_Nuevo"
-        Size = New Size(678, 403)
+        Margin = New Padding(3, 4, 3, 4)
+        Name = "UC_M_Modificar"
+        Size = New Size(857, 587)
         Panel_Form.ResumeLayout(False)
         Panel_Form.PerformLayout()
         ResumeLayout(False)
     End Sub
 
     Friend WithEvents Panel_Form As Panel
+    Friend WithEvents MTB_Pventa As MaskedTextBox
+    Friend WithEvents Label7 As Label
     Friend WithEvents Label1 As Label
     Friend WithEvents Button1 As Button
     Friend WithEvents MTB_Pcompra As MaskedTextBox
@@ -202,7 +225,6 @@ Partial Class UC_I_Nuevo
     Friend WithEvents Label4 As Label
     Friend WithEvents Label6 As Label
     Friend WithEvents Label5 As Label
-    Friend WithEvents MTB_Pventa As MaskedTextBox
-    Friend WithEvents Label7 As Label
+    Friend WithEvents Button2 As Button
 
 End Class

@@ -1,9 +1,11 @@
-﻿Imports Microsoft.Data.Sqlite
-Imports System.Data
+﻿Imports System.Data
+Imports System.IO
+Imports Microsoft.Data.Sqlite
 
 Public Class ConexionBD
 
-    Private ReadOnly cadenaConexion As String = "Data Source=C:\SQLite\Proyectos\Centro de reciclaje\Centro de reciclaje.db;"
+    Private Shared ReadOnly rutaArchivoDb As String = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Centro de reciclaje", "Centro de reciclaje.db")
+    Private ReadOnly cadenaConexion As String = "Data Source=" & rutaArchivoDb & ";"
 
     Public Function ObtenerConexion() As SqliteConnection
         Dim conexion As New SqliteConnection(cadenaConexion)

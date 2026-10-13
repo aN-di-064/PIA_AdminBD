@@ -47,7 +47,7 @@
     End Sub
 
     Private Sub ToolStripButton2_Click(sender As Object, e As EventArgs) Handles ToolStripButton2.Click
-        MostrarVista(New UC_Inventario())
+        MostrarVista(New UC_Materiales())
     End Sub
 
     Private Sub panelContenido_Paint(sender As Object, e As PaintEventArgs) Handles panelContenido.Paint
