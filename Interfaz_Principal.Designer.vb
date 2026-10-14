@@ -34,12 +34,12 @@ Partial Class Interfaz_Principal
         ToolStripSeparator5 = New ToolStripSeparator()
         ToolStripButton6 = New ToolStripButton()
         ToolStripSeparator3 = New ToolStripSeparator()
+        ToolStripButton7 = New ToolStripButton()
+        ToolStripSeparator7 = New ToolStripSeparator()
         ToolStripButton3 = New ToolStripButton()
         ToolStripSeparator4 = New ToolStripSeparator()
         ToolStripSplitButton1 = New ToolStripSplitButton()
         panelContenido = New Panel()
-        ToolStripButton7 = New ToolStripButton()
-        ToolStripSeparator7 = New ToolStripSeparator()
         ToolStrip1.SuspendLayout()
         SuspendLayout()
         ' 
@@ -111,13 +111,26 @@ Partial Class Interfaz_Principal
         ToolStripButton6.Image = CType(resources.GetObject("ToolStripButton6.Image"), Image)
         ToolStripButton6.ImageTransparentColor = Color.Magenta
         ToolStripButton6.Name = "ToolStripButton6"
-        ToolStripButton6.Size = New Size(146, 62)
-        ToolStripButton6.Text = "Consulta inventario"
+        ToolStripButton6.Size = New Size(95, 62)
+        ToolStripButton6.Text = "Consultas"
         ' 
         ' ToolStripSeparator3
         ' 
         ToolStripSeparator3.Name = "ToolStripSeparator3"
         ToolStripSeparator3.Size = New Size(6, 65)
+        ' 
+        ' ToolStripButton7
+        ' 
+        ToolStripButton7.Image = CType(resources.GetObject("ToolStripButton7.Image"), Image)
+        ToolStripButton7.ImageTransparentColor = Color.Magenta
+        ToolStripButton7.Name = "ToolStripButton7"
+        ToolStripButton7.Size = New Size(85, 62)
+        ToolStripButton7.Text = "Clientes"
+        ' 
+        ' ToolStripSeparator7
+        ' 
+        ToolStripSeparator7.Name = "ToolStripSeparator7"
+        ToolStripSeparator7.Size = New Size(6, 65)
         ' 
         ' ToolStripButton3
         ' 
@@ -147,19 +160,6 @@ Partial Class Interfaz_Principal
         panelContenido.Name = "panelContenido"
         panelContenido.Size = New Size(858, 385)
         panelContenido.TabIndex = 1
-        ' 
-        ' ToolStripButton7
-        ' 
-        ToolStripButton7.Image = CType(resources.GetObject("ToolStripButton7.Image"), Image)
-        ToolStripButton7.ImageTransparentColor = Color.Magenta
-        ToolStripButton7.Name = "ToolStripButton7"
-        ToolStripButton7.Size = New Size(85, 62)
-        ToolStripButton7.Text = "Clientes"
-        ' 
-        ' ToolStripSeparator7
-        ' 
-        ToolStripSeparator7.Name = "ToolStripSeparator7"
-        ToolStripSeparator7.Size = New Size(6, 65)
         ' 
         ' Interfaz_Principal
         ' 

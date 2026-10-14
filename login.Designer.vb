@@ -34,10 +34,9 @@ Partial Class login
         ' Button1
         ' 
         Button1.Anchor = AnchorStyles.None
-        Button1.Location = New Point(137, 371)
-        Button1.Margin = New Padding(3, 4, 3, 4)
+        Button1.Location = New Point(120, 278)
         Button1.Name = "Button1"
-        Button1.Size = New Size(129, 39)
+        Button1.Size = New Size(113, 29)
         Button1.TabIndex = 1
         Button1.Text = "Ingresar" & vbCrLf
         Button1.UseVisualStyleBackColor = True
@@ -47,10 +46,9 @@ Partial Class login
         TextBox1.Anchor = AnchorStyles.None
         TextBox1.BackColor = SystemColors.Window
         TextBox1.Font = New Font("Segoe UI", 12F)
-        TextBox1.Location = New Point(86, 200)
-        TextBox1.Margin = New Padding(3, 4, 3, 4)
+        TextBox1.Location = New Point(75, 150)
         TextBox1.Name = "TextBox1"
-        TextBox1.Size = New Size(231, 34)
+        TextBox1.Size = New Size(203, 29)
         TextBox1.TabIndex = 2
         ' 
         ' TextBox2
@@ -58,10 +56,9 @@ Partial Class login
         TextBox2.Anchor = AnchorStyles.None
         TextBox2.BackColor = Color.White
         TextBox2.Font = New Font("Segoe UI", 12F)
-        TextBox2.Location = New Point(86, 287)
-        TextBox2.Margin = New Padding(3, 4, 3, 4)
+        TextBox2.Location = New Point(75, 215)
         TextBox2.Name = "TextBox2"
-        TextBox2.Size = New Size(231, 34)
+        TextBox2.Size = New Size(203, 29)
         TextBox2.TabIndex = 3
         ' 
         ' Panel1
@@ -74,17 +71,18 @@ Partial Class login
         Panel1.Controls.Add(Button1)
         Panel1.Controls.Add(TextBox2)
         Panel1.Controls.Add(TextBox1)
-        Panel1.Location = New Point(275, 59)
+        Panel1.Location = New Point(241, 44)
+        Panel1.Margin = New Padding(3, 2, 3, 2)
         Panel1.Name = "Panel1"
-        Panel1.Size = New Size(400, 500)
+        Panel1.Size = New Size(350, 375)
         Panel1.TabIndex = 5
         ' 
         ' Label4
         ' 
         Label4.AutoSize = True
-        Label4.Location = New Point(33, 113)
+        Label4.Location = New Point(29, 85)
         Label4.Name = "Label4"
-        Label4.Size = New Size(187, 20)
+        Label4.Size = New Size(150, 15)
         Label4.TabIndex = 6
         Label4.Text = "Por favor, ingresa tus datos"
         ' 
@@ -93,21 +91,24 @@ Partial Class login
         Label3.AutoSize = True
         Label3.FlatStyle = FlatStyle.Flat
         Label3.Font = New Font("Segoe UI", 16.8000011F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        Label3.Location = New Point(23, 61)
+        Label3.Location = New Point(20, 46)
         Label3.Name = "Label3"
-        Label3.Size = New Size(313, 40)
+        Label3.Size = New Size(243, 31)
         Label3.TabIndex = 5
         Label3.Text = "Bienvenido de Nuevo"
         ' 
         ' login
         ' 
-        AutoScaleDimensions = New SizeF(8F, 20F)
+        AutoScaleDimensions = New SizeF(7F, 15F)
         AutoScaleMode = AutoScaleMode.Font
         BackColor = Color.WhiteSmoke
         BackgroundImageLayout = ImageLayout.Center
-        ClientSize = New Size(920, 612)
+        ClientSize = New Size(805, 459)
         Controls.Add(Panel1)
-        Margin = New Padding(3, 4, 3, 4)
+        MaximizeBox = False
+        MaximumSize = New Size(821, 498)
+        MinimizeBox = False
+        MinimumSize = New Size(494, 498)
         Name = "login"
         StartPosition = FormStartPosition.CenterScreen
         Text = "Sistema de Centro de Reciclaje"
