@@ -3,26 +3,26 @@
 Public Class UC_M_Nuevo
 
     Private Sub UC_M_Nuevo_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        CentrarFormulario()
         CargarSiguienteId()
-    End Sub
+        Botones.CentrarTotal(Panel1)
 
+        Botones.Redondear(MTB_Codigo, 10)
+        Botones.Redondear(MTB_Nombre, 10)
+        Botones.Redondear(MTB_Tipo, 10)
+        Botones.Redondear(MTB_Unidad, 10)
+        Botones.Redondear(MTB_Pcompra, 10)
+        Botones.Redondear(MTB_Pventa, 10)
+        Botones.Redondear(Button1, 10)
+
+        Botones.ConfigurarPlaceholder(MTB_Nombre, "Nombre del material", False)
+        Botones.ConfigurarPlaceholder(MTB_Tipo, "Tipo de material", False)
+        Botones.ConfigurarPlaceholder(MTB_Unidad, "Unidad de medida", False)
+        Botones.ConfigurarPlaceholder(MTB_Pcompra, "Precio de compra", False)
+        Botones.ConfigurarPlaceholder(MTB_Pventa, "Precio de venta", False)
+    End Sub
     Private Sub UC_M_Nuevo_Resize(sender As Object, e As EventArgs) Handles MyBase.Resize
-        CentrarFormulario()
+        Botones.CentrarTotal(Panel1)
     End Sub
-
-    Private Sub CentrarFormulario()
-        If Panel_Form IsNot Nothing Then
-            Dim x As Integer = (Me.ClientSize.Width - Panel_Form.Width) \ 2
-            Dim y As Integer = (Me.ClientSize.Height - Panel_Form.Height) \ 2
-
-            If x < 0 Then x = 0
-            If y < 0 Then y = 0
-
-            Panel_Form.Location = New Point(x, y)
-        End If
-    End Sub
-
     Private Sub CargarSiguienteId()
         Try
             Dim query As String = "SELECT MIN(t1.Id_mat + 1) " &
@@ -51,7 +51,7 @@ Public Class UC_M_Nuevo
         End Try
     End Sub
 
-    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+    Private Sub Button1_Click(sender As Object, e As EventArgs)
         ' 1. Validar que los campos obligatorios no estén vacíos (incluyendo compra y venta)
         If String.IsNullOrEmpty(MTB_Nombre.Text) OrElse
            String.IsNullOrEmpty(MTB_Pcompra.Text) OrElse
@@ -62,21 +62,21 @@ Public Class UC_M_Nuevo
 
         Try
             ' 2. Definir la instrucción INSERT con los dos precios actualizados
-            Dim query As String = "INSERT INTO Materiales (Id_mat, nom_mat, tipo, unidad_medida, Precio_compra, Precio_Venta) " &
+            Dim query = "INSERT INTO Materiales (Id_mat, nom_mat, tipo, unidad_medida, Precio_compra, Precio_Venta) " &
                                   "VALUES (@id, @nombre, @tipo, @unidad, @pcompra, @pventa);"
 
             ' 3. Preparar los parámetros enlazados a los controles correspondientes
             Dim parametros As New List(Of SqliteParameter) From {
-                New SqliteParameter("@id", Convert.ToInt32(MTB_Codigo.Text.Trim())),
-                New SqliteParameter("@nombre", MTB_Nombre.Text.Trim()),
-                New SqliteParameter("@tipo", MTB_Tipo.Text.Trim()),
-                New SqliteParameter("@unidad", MTB_Unidad.Text.Trim()),
-                New SqliteParameter("@pcompra", Convert.ToDecimal(MTB_Pcompra.Text.Trim())),
-                New SqliteParameter("@pventa", Convert.ToDecimal(MTB_Pventa.Text.Trim()))
+                New SqliteParameter("@id", Convert.ToInt32(MTB_Codigo.Text.Trim)),
+                New SqliteParameter("@nombre", MTB_Nombre.Text.Trim),
+                New SqliteParameter("@tipo", MTB_Tipo.Text.Trim),
+                New SqliteParameter("@unidad", MTB_Unidad.Text.Trim),
+                New SqliteParameter("@pcompra", Convert.ToDecimal(MTB_Pcompra.Text.Trim)),
+                New SqliteParameter("@pventa", Convert.ToDecimal(MTB_Pventa.Text.Trim))
             }
 
             ' 4. Ejecutar el comando utilizando tu clase helper con control transaccional
-            Dim filasAfectadas As Integer = ConexionBD.EjecutarComando(query, parametros)
+            Dim filasAfectadas = ConexionBD.EjecutarComando(query, parametros)
 
             If filasAfectadas > 0 Then
                 MessageBox.Show("Material registrado exitosamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information)
@@ -95,4 +95,7 @@ Public Class UC_M_Nuevo
         End Try
     End Sub
 
+    Private Sub Button1_Click_1(sender As Object, e As EventArgs)
+
+    End Sub
 End Class

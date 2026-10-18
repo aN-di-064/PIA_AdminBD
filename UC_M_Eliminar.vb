@@ -3,39 +3,42 @@
 Public Class UC_M_Eliminar
 
     Private Sub UC_M_Eliminar_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        CentrarFormulario()
+        Botones.CentrarTotal(Panel_Form)
+
+        Botones.Redondear(MTB_Codigo, 10)
+        Botones.Redondear(MTB_Nombre, 10)
+        Botones.Redondear(MTB_Tipo, 10)
+        Botones.Redondear(MTB_Unidad, 10)
+        Botones.Redondear(MTB_Pcompra, 10)
+        Botones.Redondear(MTB_Pventa, 10)
+        Botones.Redondear(Button1, 10)
+        Botones.Redondear(Button2, 10)
+
+        Botones.ConfigurarPlaceholder(MTB_Codigo, "Código del material", False)
+        Botones.ConfigurarPlaceholder(MTB_Nombre, "Nombre del material", False)
+        Botones.ConfigurarPlaceholder(MTB_Tipo, "Tipo de material", False)
+        Botones.ConfigurarPlaceholder(MTB_Unidad, "Unidad de medida", False)
+        Botones.ConfigurarPlaceholder(MTB_Pcompra, "Precio de compra", False)
+        Botones.ConfigurarPlaceholder(MTB_Pventa, "Precio de venta", False)
     End Sub
 
     Private Sub UC_M_Eliminar_Resize(sender As Object, e As EventArgs) Handles MyBase.Resize
-        CentrarFormulario()
-    End Sub
-
-    Private Sub CentrarFormulario()
-        If Panel_Form IsNot Nothing Then
-            Dim x As Integer = (Me.ClientSize.Width - Panel_Form.Width) \ 2
-            Dim y As Integer = (Me.ClientSize.Height - Panel_Form.Height) \ 2
-
-            If x < 0 Then x = 0
-            If y < 0 Then y = 0
-
-            Panel_Form.Location = New Point(x, y)
-        End If
+        Botones.CentrarTotal(Panel_Form)
     End Sub
 
     ' Evento del botón superior "Buscar Producto" 
-    ' (Si tu botón superior tiene otro nombre en las Propiedades, asegúrate de cambiar "Button2" por el nombre correcto)
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
         Dim ventanaBusqueda As New Busqueda_Materiales()
         ventanaBusqueda.ShowDialog() ' Abre la ventana en modo modal
 
         ' Al cerrarse, recuperamos los datos del producto seleccionado mediante doble clic
         If Busqueda_Materiales.ProductoSeleccionado Then
-            MTB_Codigo.Text = Busqueda_Materiales.IdSeleccionado
-            MTB_Nombre.Text = Busqueda_Materiales.NombreSeleccionado
-            MTB_Tipo.Text = Busqueda_Materiales.TipoSeleccionado
-            MTB_Unidad.Text = Busqueda_Materiales.UnidadSeleccionada
-            MTB_Pcompra.Text = Busqueda_Materiales.PCompraSeleccionado
-            MTB_Pventa.Text = Busqueda_Materiales.PVentaSeleccionado
+            Botones.AsignarTexto(MTB_Codigo, Busqueda_Materiales.IdSeleccionado)
+            Botones.AsignarTexto(MTB_Nombre, Busqueda_Materiales.NombreSeleccionado)
+            Botones.AsignarTexto(MTB_Tipo, Busqueda_Materiales.TipoSeleccionado)
+            Botones.AsignarTexto(MTB_Unidad, Busqueda_Materiales.UnidadSeleccionada)
+            Botones.AsignarTexto(MTB_Pcompra, Busqueda_Materiales.PCompraSeleccionado)
+            Botones.AsignarTexto(MTB_Pventa, Busqueda_Materiales.PVentaSeleccionado)
         End If
     End Sub
 

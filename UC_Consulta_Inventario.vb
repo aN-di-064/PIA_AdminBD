@@ -81,14 +81,21 @@ Public Class UC_Consulta_Inventario
             Return
         End If
 
-        If ComboBox1.SelectedIndex = 1 Then
-            Dim ucModificar As New UC_M_Modificar()
-            ucModificar.IdVendedorAEditar = idSeleccionado
-            ucModificar.Dock = DockStyle.Fill
-            Me.Controls.Add(ucModificar)
-            ucModificar.BringToFront()
-        Else
-            MessageBox.Show("Selecciona la vista de Vendedores para modificar.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information)
+        If ComboBox1.SelectedIndex = 0 Then
+            ' --- OPCIÓN 0: MATERIALES ---
+            Dim ucModifMaterial As New UC_M_Modificar()
+            ucModifMaterial.IdMaterialAEditar = idSeleccionado
+            ucModifMaterial.Dock = DockStyle.Fill
+            Me.Controls.Add(ucModifMaterial)
+            ucModifMaterial.BringToFront()
+
+        ElseIf ComboBox1.SelectedIndex = 1 Then
+            ' --- OPCIÓN 1: VENDEDORES / CLIENTES ---
+            Dim ucModifCliente As New UC_C_Modificar()
+            ucModifCliente.IdVendedorAEditar = idSeleccionado
+            ucModifCliente.Dock = DockStyle.Fill
+            Me.Controls.Add(ucModifCliente)
+            ucModifCliente.BringToFront()
         End If
     End Sub
 

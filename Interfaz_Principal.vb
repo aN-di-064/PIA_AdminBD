@@ -1,16 +1,45 @@
 ﻿Public Class Interfaz_Principal
-    'Cambiar la ventana
+    ' ---> AQUÍ ES EL LUGAR CORRECTO PARA PONER LAS DECLARACIONES <---
+    <System.Runtime.InteropServices.DllImport("user32.dll")>
+    Private Shared Function SendMessage(hWnd As IntPtr, wMsg As Integer, wParam As IntPtr, lParam As IntPtr) As IntPtr
+    End Function
+    Private Const WM_SETREDRAW As Integer = &HB
+
+
+    ' Cambiar la ventana
     Private Sub MostrarVista(ByVal vista As UserControl)
+        ' Congelamos el redibujado gráfico del panel a nivel de Windows
+        SendMessage(panelContenido.Handle, WM_SETREDRAW, IntPtr.Zero, IntPtr.Zero)
+        panelContenido.SuspendLayout()
+
         panelContenido.Controls.Clear()
 
         vista.Dock = DockStyle.Fill
-
         panelContenido.Controls.Add(vista)
         vista.BringToFront()
+
+        If TypeOf vista Is UC_Materiales Then
+            DirectCast(vista, UC_Materiales).CentrarFormulario()
+        End If
+
+        ' Reactivamos el redibujado y forzamos a que pinte ya centrado
+        SendMessage(panelContenido.Handle, WM_SETREDRAW, New IntPtr(1), IntPtr.Zero)
+        panelContenido.ResumeLayout(True)
+        panelContenido.Refresh()
     End Sub
+    Public Sub New()
+        InitializeComponent()
+
+        ' Activar doble búfer para evitar el parpadeo al cambiar de pantallas
+        Me.SetStyle(ControlStyles.OptimizedDoubleBuffer Or ControlStyles.AllPaintingInWmPaint Or ControlStyles.UserPaint, True)
+        Me.UpdateStyles()
+    End Sub
+
     Private Sub Interfaz_Principal_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
     End Sub
+
+
 
     Private Sub VentasToolStripMenuItem_Click(sender As Object, e As EventArgs)
 

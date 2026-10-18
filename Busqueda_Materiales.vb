@@ -15,6 +15,7 @@ Public Class Busqueda_Materiales
     Private Sub Busqueda_Materiales_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         ProductoSeleccionado = False
         CargarMateriales()
+        dgvMateriales.AllowUserToAddRows = False
     End Sub
 
     Private Sub CargarMateriales(Optional filtro As String = "")
