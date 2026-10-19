@@ -31,42 +31,40 @@ Partial Class Busqueda_Materiales
         ' Label1
         ' 
         Label1.AutoSize = True
-        Label1.Location = New Point(42, 171)
+        Label1.Location = New Point(37, 128)
         Label1.Name = "Label1"
-        Label1.Size = New Size(151, 20)
+        Label1.Size = New Size(119, 15)
         Label1.TabIndex = 6
         Label1.Text = "Nombre del Material:"
         ' 
         ' txtBuscar
         ' 
-        txtBuscar.Location = New Point(215, 171)
-        txtBuscar.Margin = New Padding(3, 4, 3, 4)
+        txtBuscar.Location = New Point(188, 128)
         txtBuscar.Name = "txtBuscar"
-        txtBuscar.Size = New Size(327, 27)
+        txtBuscar.Size = New Size(287, 23)
         txtBuscar.TabIndex = 5
         ' 
         ' dgvMateriales
         ' 
+        dgvMateriales.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill
         dgvMateriales.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        dgvMateriales.Location = New Point(42, 231)
-        dgvMateriales.Margin = New Padding(3, 4, 3, 4)
+        dgvMateriales.Location = New Point(37, 173)
         dgvMateriales.MultiSelect = False
         dgvMateriales.Name = "dgvMateriales"
         dgvMateriales.RowHeadersWidth = 51
         dgvMateriales.SelectionMode = DataGridViewSelectionMode.FullRowSelect
-        dgvMateriales.Size = New Size(830, 200)
+        dgvMateriales.Size = New Size(726, 150)
         dgvMateriales.TabIndex = 4
         ' 
-        ' Busqueda_Inventario
+        ' Busqueda_Materiales
         ' 
-        AutoScaleDimensions = New SizeF(8F, 20F)
+        AutoScaleDimensions = New SizeF(7F, 15F)
         AutoScaleMode = AutoScaleMode.Font
-        ClientSize = New Size(914, 600)
+        ClientSize = New Size(800, 450)
         Controls.Add(Label1)
         Controls.Add(txtBuscar)
         Controls.Add(dgvMateriales)
-        Margin = New Padding(3, 4, 3, 4)
-        Name = "Busqueda_Inventario"
+        Name = "Busqueda_Materiales"
         Text = "Busqueda_Materiales"
         CType(dgvMateriales, ComponentModel.ISupportInitialize).EndInit()
         ResumeLayout(False)

@@ -6,6 +6,7 @@ Public Class ConexionBD
 
     Private Shared ReadOnly rutaArchivoDb As String = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Centro de reciclaje", "Centro de reciclaje.db")
     Private ReadOnly cadenaConexion As String = "Data Source=" & rutaArchivoDb & ";"
+
     Public Function ObtenerConexion() As SqliteConnection
         Dim conexion As New SqliteConnection(cadenaConexion)
         Try
@@ -16,22 +17,33 @@ Public Class ConexionBD
         Return conexion
     End Function
 
-    ' Método para consultas SELECT usando SqliteDataReader (compatible con SQLite)
-    Public Shared Function ObtenerDatos(query As String) As DataTable
+    ' Método para consultas SELECT con parámetros usando SqliteDataReader
+    Public Shared Function ObtenerDatos(query As String, Optional parametros As List(Of SqliteParameter) = Nothing) As DataTable
         Dim dt As New DataTable()
         Dim db As New ConexionBD()
+
         Using conexion As SqliteConnection = db.ObtenerConexion()
             If conexion IsNot Nothing AndAlso conexion.State = ConnectionState.Open Then
                 Using comando As New SqliteCommand(query, conexion)
+
+                    ' Agregar parámetros uno por uno si existen
+                    If parametros IsNot Nothing Then
+                        For Each p As SqliteParameter In parametros
+                            comando.Parameters.Add(p)
+                        Next
+                    End If
+
                     Using lector As SqliteDataReader = comando.ExecuteReader()
                         dt.Load(lector)
                     End Using
                 End Using
             End If
         End Using
+
         Return dt
     End Function
-    Public Shared Function EjecutarComando(query As String, parametros As List(Of SqliteParameter)) As Integer
+
+    Public Shared Function EjecutarComando(query As String, Optional parametros As List(Of SqliteParameter) = Nothing) As Integer
         Dim filasAfectadas As Integer = 0
         Dim db As New ConexionBD()
 
@@ -42,9 +54,12 @@ Public Class ConexionBD
                     Using comando As New SqliteCommand(query, conexion, transaccion)
                         Try
                             If parametros IsNot Nothing Then
-                                comando.Parameters.AddRange(parametros)
+                                For Each p As SqliteParameter In parametros
+                                    comando.Parameters.Add(p)
+                                Next
                             End If
 
+                            ' Ejecutar el comando una sola vez de forma correcta
                             filasAfectadas = comando.ExecuteNonQuery()
 
                             ' Confirmar los cambios permanentemente en la base de datos

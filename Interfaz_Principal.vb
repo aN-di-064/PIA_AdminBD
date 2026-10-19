@@ -117,7 +117,7 @@
         MostrarVista(New UC_Consulta_Inventario())
     End Sub
 
-    Private Sub ToolStripButton3_Click(sender As Object, e As EventArgs) Handles ToolStripButton3.Click
+    Private Sub ToolStripButton3_Click(sender As Object, e As EventArgs)
 
     End Sub
 

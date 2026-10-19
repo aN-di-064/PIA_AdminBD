@@ -1,80 +1,350 @@
 ﻿Imports Microsoft.Data.Sqlite
+Imports System.Globalization
 
 Public Class UC_Compras
 
-    Private Sub UC_Compras_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        ' Configurar las columnas de la tabla (DataGridView) si está vacía
-        ConfigurarTablaDetalle()
-    End Sub
-
-    Private Sub ConfigurarTablaDetalle()
-        If DataGridView1.Columns.Count = 0 Then
-            DataGridView1.Columns.Add("id_mat", "ID Material")
-            DataGridView1.Columns.Add("nom_mat", "Descripción")
-            DataGridView1.Columns.Add("cantidad", "Cantidad (kg)")
-            DataGridView1.Columns.Add("precio", "Precio por kilo")
-            DataGridView1.Columns.Add("subtotal", "Subtotal")
-        End If
-    End Sub
-
-    ' Botón Buscar producto (agrega fila de prueba)
-    Private Sub btnBuscarProducto_Click(sender As Object, e As EventArgs) Handles Button2.Click
+    ' Método para poblar el ComboBox de Vendedores / Proveedores, activar sugerencias al escribir y seleccionar "General" (Id_v = 1)
+    Private Sub CargarVendedores()
         Try
-            Dim idMat As String = "1"
-            Dim descripcion As String = "Material Reciclaje"
-            Dim cantidad As Decimal = 10D
-            Dim precio As Decimal = 15.5D
-            Dim subtotal As Decimal = cantidad * precio
+            Dim dt As DataTable = ConexionBD.ObtenerDatos("SELECT Id_v, nom_v FROM Vendedores")
+            If dt IsNot Nothing AndAlso dt.Rows.Count > 0 Then
+                CB_Vendedor.DataSource = dt
+                CB_Vendedor.DisplayMember = "nom_v"
+                CB_Vendedor.ValueMember = "Id_v"
 
-            DataGridView1.Rows.Add(idMat, descripcion, cantidad, precio, subtotal.ToString("N2"))
+                ' Habilitar sugerencias dinámicas e inicio/coincidencia al escribir
+                CB_Vendedor.AutoCompleteMode = AutoCompleteMode.SuggestAppend
+                CB_Vendedor.AutoCompleteSource = AutoCompleteSource.ListItems
+
+                ' Seleccionar por defecto el ID 1 ("General") si existe en la lista
+                CB_Vendedor.SelectedValue = 1
+                If CB_Vendedor.SelectedIndex = -1 AndAlso CB_Vendedor.Items.Count > 0 Then
+                    CB_Vendedor.SelectedIndex = 0
+                End If
+            End If
         Catch ex As Exception
-            MessageBox.Show("Error al agregar producto: " & ex.Message)
+            ' Manejo silencioso o registro de excepción si la tabla está vacía
         End Try
     End Sub
 
-    ' Botón Cobrar (Guarda en la base de datos SQLite)
+    ' Método para obtener y mostrar el siguiente ID consecutivo de la tabla Compra
+    Public Sub ObtenerSiguienteIdCompra()
+        Try
+            Dim dt As DataTable = ConexionBD.ObtenerDatos("SELECT IFNULL(MAX(Id_com), 0) + 1 FROM Compra")
+            If dt IsNot Nothing AndAlso dt.Rows.Count > 0 Then
+                LBL_IDCOMPRA.Text = dt.Rows(0)(0).ToString()
+            Else
+                LBL_IDCOMPRA.Text = "1"
+            End If
+        Catch ex As Exception
+            LBL_IDCOMPRA.Text = "1"
+        End Try
+    End Sub
+
+    Private Sub UC_Compras_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        ' Permitir edición en el DataGridView
+        DataGridView1.ReadOnly = False
+
+        ' Proteger todas las columnas excepto la que contenga "Cantidad" en su encabezado
+        For Each col As DataGridViewColumn In DataGridView1.Columns
+            If col.HeaderText.IndexOf("Cantidad", StringComparison.OrdinalIgnoreCase) >= 0 Then
+                col.ReadOnly = False
+            Else
+                col.ReadOnly = True
+            End If
+        Next
+
+        ' Cargar catálogo de vendedores, consecutivo de compra y total inicial
+        CargarVendedores()
+        ObtenerSiguienteIdCompra()
+        CalcularTotalCompra()
+    End Sub
+
+    ' Función auxiliar flexible para obtener el valor de una celda buscando por coincidencia parcial de encabezado
+    Private Function ObtenerValorCelda(fila As DataGridViewRow, textoEncabezado As String) As Object
+        For Each cell As DataGridViewCell In fila.Cells
+            Dim header As String = DataGridView1.Columns(cell.ColumnIndex).HeaderText.Trim()
+            If header.IndexOf(textoEncabezado, StringComparison.OrdinalIgnoreCase) >= 0 Then
+                Return cell.Value
+            End If
+        Next
+        Return Nothing
+    End Function
+
+    ' Función auxiliar flexible para asignar valor a una celda buscando por coincidencia parcial de encabezado
+    Private Sub AsignarValorCelda(fila As DataGridViewRow, textoEncabezado As String, valor As Object)
+        For Each cell As DataGridViewCell In fila.Cells
+            Dim header As String = DataGridView1.Columns(cell.ColumnIndex).HeaderText.Trim()
+            If header.IndexOf(textoEncabezado, StringComparison.OrdinalIgnoreCase) >= 0 Then
+                cell.Value = valor
+                Exit Sub
+            End If
+        Next
+    End Sub
+
+    ' Botón Cobrar (Abre la ventana secundaria Cobro_Compra e inserta la compra al confirmar)
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
-        If DataGridView1.Rows.Count = 0 Then
-            MessageBox.Show("No hay productos en la lista para cobrar.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+        ' Validar que la tabla tenga productos agregados antes de proceder
+        Dim tieneProductos As Boolean = False
+        For Each row As DataGridViewRow In DataGridView1.Rows
+            If Not row.IsNewRow Then
+                tieneProductos = True
+                Exit For
+            End If
+        Next
+
+        If Not tieneProductos Then
+            MessageBox.Show("No hay productos agregados en la lista de compra actual.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning)
             Return
         End If
 
-        Try
-            ' 1. Calcular el peso total y el precio total sumando los renglones de la tabla
-            Dim pesoTotal As Decimal = 0
-            Dim precioTotal As Decimal = 0
+        ' Obtener el total actual formateado desde la etiqueta LBL_TOTAL
+        Dim totalCompra As Decimal = 0
+        Dim textoTotal = LBL_TOTAL.Text.Replace("$", "").Trim()
+        Decimal.TryParse(textoTotal, NumberStyles.Any, CultureInfo.InvariantCulture, totalCompra)
+        If totalCompra = 0 Then
+            Decimal.TryParse(textoTotal, totalCompra) ' Respaldo con formato regional
+        End If
 
+        ' Instanciar y abrir la ventana de pago correcta: Cobro_Compra
+        Dim formPago As New Cobro_Compra()
+        formPago.TotalPagar = totalCompra
+
+        If formPago.ShowDialog() = DialogResult.OK Then
+            Dim dineroRecibido As Decimal = formPago.DineroRecibido
+            Dim cambio As Decimal = formPago.Cambio
+            Dim metodoPago As String = formPago.MetodoPago
+
+            ' Recolectar los elementos del DataGridView para guardar
+            Dim listaDetalle As New List(Of Dictionary(Of String, Object))()
             For Each row As DataGridViewRow In DataGridView1.Rows
-                If row.Cells(2).Value IsNot Nothing AndAlso row.Cells(4).Value IsNot Nothing Then
-                    pesoTotal += Convert.ToDecimal(row.Cells(2).Value)
-                    precioTotal += Convert.ToDecimal(row.Cells(4).Value)
+                If Not row.IsNewRow Then
+                    Dim item As New Dictionary(Of String, Object)
+                    item("Codigo") = ObtenerValorCelda(row, "Código")
+                    item("Cantidad") = Convert.ToDecimal(ObtenerValorCelda(row, "Cantidad"))
+                    item("Precio") = Convert.ToDecimal(ObtenerValorCelda(row, "Precio"))
+                    item("Subtotal") = Convert.ToDecimal(ObtenerValorCelda(row, "Subtotal"))
+                    listaDetalle.Add(item)
                 End If
             Next
 
-            ' 2. Insertar la cabecera en la tabla Compra
-            Dim queryCompra As String = "INSERT INTO Compra (fecha_com, id_u, id_v, total_peso_com, total_precio, Metodo_pago_com) VALUES (@fecha, @id_u, @id_v, @peso, @total, @metodo);"
+            Try
+                Dim pesoTotal As Decimal = 0
+                Dim precioTotal As Decimal = totalCompra
 
-            Dim parametrosCompra As New List(Of Microsoft.Data.Sqlite.SqliteParameter) From {
-                New Microsoft.Data.Sqlite.SqliteParameter("@fecha", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")),
-                New Microsoft.Data.Sqlite.SqliteParameter("@id_u", 1),
-                New Microsoft.Data.Sqlite.SqliteParameter("@id_v", 1),
-                New Microsoft.Data.Sqlite.SqliteParameter("@peso", pesoTotal),
-                New Microsoft.Data.Sqlite.SqliteParameter("@total", precioTotal),
-                New Microsoft.Data.Sqlite.SqliteParameter("@metodo", "Efectivo")
-            }
+                For Each item In listaDetalle
+                    pesoTotal += Convert.ToDecimal(item("Cantidad"))
+                Next
 
-            Dim resultado As Integer = ConexionBD.EjecutarComando(queryCompra, parametrosCompra)
+                ' 1. Obtener ID de usuario válido desde la tabla Usuario
+                Dim dtUsuario As DataTable = ConexionBD.ObtenerDatos("SELECT MIN(Id_us) FROM Usuario")
+                Dim idUsuarioValido As Integer = 1
+                If dtUsuario IsNot Nothing AndAlso dtUsuario.Rows.Count > 0 AndAlso Not IsDBNull(dtUsuario.Rows(0)(0)) Then
+                    idUsuarioValido = Convert.ToInt32(dtUsuario.Rows(0)(0))
+                End If
 
-            If resultado > 0 Then
-                MessageBox.Show("¡Cobro registrado y guardado en la Base de Datos con éxito!", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information)
-                DataGridView1.Rows.Clear()
-            Else
-                MessageBox.Show("No se pudo completar el registro de la compra.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                ' 2. Obtener el ID del vendedor seleccionado en el ComboBox
+                Dim idVendedorValido As Integer = 1
+                If CB_Vendedor.SelectedValue IsNot Nothing Then
+                    Integer.TryParse(CB_Vendedor.SelectedValue.ToString(), idVendedorValido)
+                End If
+
+                ' 3. Insertar la cabecera de la tabla Compra
+                Dim fechaActual As String = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")
+                Dim queryCompra As String = "INSERT INTO Compra (fecha_com, id_us, Id_v, total_peso_com, total_precio, Metodo_pago_com) " &
+                                             "VALUES (@fecha, @id_us, @id_v, @peso, @total, @metodo);"
+
+                Dim parametrosCompra As New List(Of SqliteParameter) From {
+                    New SqliteParameter("@fecha", fechaActual),
+                    New SqliteParameter("@id_us", idUsuarioValido),
+                    New SqliteParameter("@id_v", idVendedorValido),
+                    New SqliteParameter("@peso", pesoTotal),
+                    New SqliteParameter("@total", precioTotal),
+                    New SqliteParameter("@metodo", If(String.IsNullOrEmpty(metodoPago), "Efectivo", metodoPago))
+                }
+
+                Dim resultado As Integer = ConexionBD.EjecutarComando(queryCompra, parametrosCompra)
+
+                If resultado > 0 Then
+                    ' 4. Recuperar el ID de compra recién generado
+                    Dim dtIdReciente As DataTable = ConexionBD.ObtenerDatos("SELECT MAX(Id_com) FROM Compra")
+                    Dim nuevoIdCom As Integer = Convert.ToInt32(dtIdReciente.Rows(0)(0))
+
+                    ' 5. Guardar cada detalle en la tabla Detalle_compra
+                    For Each item In listaDetalle
+                        Dim codigoMat As String = item("Codigo").ToString().Trim()
+                        Dim cantidad As Decimal = Convert.ToDecimal(item("Cantidad"))
+                        Dim precioKg As Decimal = Convert.ToDecimal(item("Precio"))
+                        Dim subtotal As Decimal = Convert.ToDecimal(item("Subtotal"))
+
+                        Dim queryMat As String = "SELECT Id_mat FROM Materiales WHERE Id_mat = @cod OR nom_mat = @cod LIMIT 1"
+                        Dim paramMat As New List(Of SqliteParameter) From {
+                            New SqliteParameter("@cod", codigoMat)
+                        }
+                        Dim dtMat As DataTable = ConexionBD.ObtenerDatos(queryMat, paramMat)
+
+                        If dtMat IsNot Nothing AndAlso dtMat.Rows.Count > 0 Then
+                            Dim idMatReal As Integer = Convert.ToInt32(dtMat.Rows(0)("Id_mat"))
+
+                            Dim queryDetalle As String = "INSERT INTO Detalle_compra (Id_com, Id_mat, Cantidad_kg_DC, Precio_kg_DC, Subtotal_DC) " &
+                                                         "VALUES (@idCom, @idMat, @cant, @precio, @sub);"
+
+                            Dim parametrosDetalle As New List(Of SqliteParameter) From {
+                                New SqliteParameter("@idCom", nuevoIdCom),
+                                New SqliteParameter("@idMat", idMatReal),
+                                New SqliteParameter("@cant", cantidad),
+                                New SqliteParameter("@precio", precioKg),
+                                New SqliteParameter("@sub", subtotal)
+                            }
+
+                            ConexionBD.EjecutarComando(queryDetalle, parametrosDetalle)
+                        End If
+                    Next
+
+                    MessageBox.Show("¡Compra de material registrada con éxito!", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information)
+
+                    ' Limpiar la tabla, restablecer vendedor a "General" y actualizar ID consecutivo
+                    DataGridView1.Rows.Clear()
+                    CargarVendedores()
+                    ObtenerSiguienteIdCompra()
+                    CalcularTotalCompra()
+                Else
+                    MessageBox.Show("No se pudo completar el registro de la compra.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                End If
+
+            Catch ex As Exception
+                MessageBox.Show("Error al procesar la compra: " & ex.Message, "Error crítico", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            End Try
+        End If
+    End Sub
+
+    ' Botón Buscar producto (Abre modal de búsqueda de material)
+    Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
+        Dim buscador As New Busqueda_Venta()
+        buscador.EsParaCompra = True
+
+        If buscador.ShowDialog() = DialogResult.OK Then
+            Dim codigo As String = buscador.CodigoSeleccionado
+            Dim descripcion As String = buscador.DescripcionSeleccionada
+            Dim precio As Decimal = buscador.PrecioSeleccionado
+            Dim cantidadAgregada As Decimal = 1.0
+            Dim existe As Boolean = False
+
+            For Each row As DataGridViewRow In DataGridView1.Rows
+                If Not row.IsNewRow Then
+                    Dim valCodigo = ObtenerValorCelda(row, "Código")
+                    If valCodigo IsNot Nothing AndAlso valCodigo.ToString().Trim() = codigo.Trim() Then
+                        Dim valCantidad = ObtenerValorCelda(row, "Cantidad")
+                        Dim cantidadActual As Decimal = 0
+                        If valCantidad IsNot Nothing Then Decimal.TryParse(valCantidad.ToString(), cantidadActual)
+
+                        Dim nuevaCantidad As Decimal = cantidadActual + cantidadAgregada
+                        AsignarValorCelda(row, "Cantidad", nuevaCantidad)
+                        AsignarValorCelda(row, "Subtotal", nuevaCantidad * precio)
+
+                        existe = True
+                        Exit For
+                    End If
+                End If
+            Next
+
+            If Not existe Then
+                Dim subtotal As Decimal = cantidadAgregada * precio
+                Dim idx As Integer = DataGridView1.Rows.Add()
+                Dim fila As DataGridViewRow = DataGridView1.Rows(idx)
+
+                If DataGridView1.Columns.Count >= 5 Then
+                    fila.Cells(0).Value = cantidadAgregada
+                    fila.Cells(1).Value = codigo
+                    fila.Cells(2).Value = descripcion
+                    fila.Cells(3).Value = precio
+                    fila.Cells(4).Value = subtotal
+                Else
+                    AsignarValorCelda(fila, "Cantidad", cantidadAgregada)
+                    AsignarValorCelda(fila, "Código", codigo)
+                    AsignarValorCelda(fila, "Descripción", descripcion)
+                    AsignarValorCelda(fila, "Precio", precio)
+                    AsignarValorCelda(fila, "Subtotal", subtotal)
+                End If
             End If
 
-        Catch ex As Exception
-            MessageBox.Show("Error al procesar el cobro: " & ex.Message, "Error crítico", MessageBoxButtons.OK, MessageBoxIcon.Error)
-        End Try
+            CalcularTotalCompra()
+        End If
+    End Sub
+
+    ' Edición de la celda de Cantidad en el DataGridView
+    Private Sub DataGridView1_CellEndEdit(sender As Object, e As DataGridViewCellEventArgs) Handles DataGridView1.CellEndEdit
+        If e.RowIndex >= 0 Then
+            Dim fila As DataGridViewRow = DataGridView1.Rows(e.RowIndex)
+            Dim columnaEditadaHeader As String = DataGridView1.Columns(e.ColumnIndex).HeaderText
+
+            If columnaEditadaHeader.IndexOf("Cantidad", StringComparison.OrdinalIgnoreCase) >= 0 Then
+                Dim cantidad As Decimal = 0
+                Dim precio As Decimal = 0
+
+                Dim valCantidad = ObtenerValorCelda(fila, "Cantidad")
+                Dim valPrecio = ObtenerValorCelda(fila, "Precio")
+
+                If valCantidad IsNot Nothing AndAlso Decimal.TryParse(valCantidad.ToString(), cantidad) AndAlso
+                   valPrecio IsNot Nothing AndAlso Decimal.TryParse(valPrecio.ToString(), precio) Then
+
+                    Dim subtotal As Decimal = cantidad * precio
+                    AsignarValorCelda(fila, "Subtotal", subtotal)
+                Else
+                    MessageBox.Show("Por favor, ingresa una cantidad numérica válida.", "Valor incorrecto", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                    AsignarValorCelda(fila, "Cantidad", 1.0)
+                    Dim valPrecioActual = ObtenerValorCelda(fila, "Precio")
+                    If valPrecioActual IsNot Nothing AndAlso Decimal.TryParse(valPrecioActual.ToString(), precio) Then
+                        AsignarValorCelda(fila, "Subtotal", 1.0 * precio)
+                    End If
+                End If
+
+                CalcularTotalCompra()
+            End If
+        End If
+    End Sub
+
+    ' Botón Borrar producto seleccionado
+    Private Sub BTN_BORRAR_Click(sender As Object, e As EventArgs) Handles BTN_BORRAR.Click
+        If DataGridView1.SelectedRows.Count > 0 Then
+            Dim filaSeleccionada As DataGridViewRow = DataGridView1.SelectedRows(0)
+
+            If Not filaSeleccionada.IsNewRow Then
+                Dim respuesta As DialogResult = MessageBox.Show("¿Estás seguro de eliminar este producto de la lista de compra?", "Confirmar eliminación", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+
+                If respuesta = DialogResult.Yes Then
+                    DataGridView1.Rows.Remove(filaSeleccionada)
+                    CalcularTotalCompra()
+                End If
+            End If
+        Else
+            MessageBox.Show("Por favor, selecciona la fila completa del producto que deseas eliminar.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+        End If
+    End Sub
+
+    Private Sub DataGridView1_KeyDown(sender As Object, e As KeyEventArgs) Handles DataGridView1.KeyDown
+        If e.KeyCode = Keys.Delete Then
+            BTN_BORRAR.PerformClick()
+        End If
+    End Sub
+
+    ' Calcular sumatoria de subtotales
+    Private Sub CalcularTotalCompra()
+        Dim total As Decimal = 0
+
+        For Each row As DataGridViewRow In DataGridView1.Rows
+            If Not row.IsNewRow Then
+                Dim valSubtotal = ObtenerValorCelda(row, "Subtotal")
+                If valSubtotal IsNot Nothing Then
+                    Dim subtotalFila As Decimal = 0
+                    If Decimal.TryParse(valSubtotal.ToString(), subtotalFila) Then
+                        total += subtotalFila
+                    End If
+                End If
+            End If
+        Next
+
+        LBL_TOTAL.Text = "$ " & total.ToString("N2")
     End Sub
 
 End Class

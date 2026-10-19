@@ -56,6 +56,7 @@ Partial Class UC_C_Nuevo
         ' 
         ' Label1
         ' 
+        Label1.Anchor = AnchorStyles.Top Or AnchorStyles.Left Or AnchorStyles.Right
         Label1.AutoSize = True
         Label1.Font = New Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
         Label1.Location = New Point(96, 55)

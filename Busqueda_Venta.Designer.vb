@@ -30,6 +30,7 @@ Partial Class Busqueda_Venta
         ' 
         ' dgvProductos
         ' 
+        dgvProductos.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill
         dgvProductos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize
         dgvProductos.Location = New Point(31, 153)
         dgvProductos.MultiSelect = False
@@ -62,6 +63,8 @@ Partial Class Busqueda_Venta
         Controls.Add(Label1)
         Controls.Add(txtBuscar)
         Controls.Add(dgvProductos)
+        MaximizeBox = False
+        MinimizeBox = False
         Name = "Busqueda_Venta"
         Text = "Busqueda_Venta"
         CType(dgvProductos, ComponentModel.ISupportInitialize).EndInit()
