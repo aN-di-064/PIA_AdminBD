@@ -1,5 +1,5 @@
 Imports System.Drawing.Drawing2D
-
+Imports System.Windows.Forms
 Public Class Botones
 
     ' Método compartido para aplicar bordes redondeados a cualquier botón o panel
@@ -75,4 +75,57 @@ Public Class Botones
         txt.ForeColor = Color.Black
     End Sub
 
+    ' Funcion para aplicar estilo al toolstrip
+    Public Shared Sub AplicarEstiloToolStrip(ts As ToolStrip)
+        ts.Renderer = New CustomToolStripRenderer()
+        ts.BackColor = Color.White
+        ts.GripStyle = ToolStripGripStyle.Hidden
+        ts.Font = New Font("Segoe UI", 12.0F, FontStyle.Regular)
+    End Sub
+
+    ' clase anidada para renderizar los elementos del toolstrip
+    Private Class CustomToolStripRenderer
+        Inherits ToolStripProfessionalRenderer
+
+        Public Sub New()
+            MyBase.New(New ProfessionalColorTable() With {.UseSystemColors = False})
+        End Sub
+
+        Protected Overrides Sub OnRenderButtonBackground(e As ToolStripItemRenderEventArgs)
+            Dim btn = TryCast(e.Item, ToolStripButton)
+            If btn Is Nothing Then
+                MyBase.OnRenderButtonBackground(e)
+                Return
+            End If
+
+            Dim g = e.Graphics
+            g.SmoothingMode = SmoothingMode.AntiAlias
+            Dim rect As New Rectangle(2, 2, btn.Width - 4, btn.Height - 4)
+
+            ' Dibujo de esquinas redondeadas según el estado del botón
+            Dim path As New GraphicsPath()
+            Dim r As Integer = 6
+            path.AddArc(rect.X, rect.Y, r, r, 180, 90)
+            path.AddArc(rect.Right - r, rect.Y, r, r, 270, 90)
+            path.AddArc(rect.Right - r, rect.Bottom - r, r, r, 0, 90)
+            path.AddArc(rect.X, rect.Bottom - r, r, r, 90, 90)
+            path.CloseFigure()
+
+            If btn.Checked OrElse btn.Pressed Then
+                g.FillPath(New SolidBrush(Color.FromArgb(232, 240, 254)), path)
+                g.DrawPath(New Pen(Color.FromArgb(180, 205, 240)), path)
+            ElseIf btn.Selected Then
+                g.FillPath(New SolidBrush(Color.FromArgb(245, 247, 250)), path)
+                g.DrawPath(New Pen(Color.FromArgb(220, 225, 230)), path)
+            End If
+        End Sub
+
+        Protected Overrides Sub OnRenderToolStripBorder(e As ToolStripRenderEventArgs)
+            ' Oculta la línea gris por defecto
+        End Sub
+        Protected Overrides Sub OnRenderSeparator(e As ToolStripSeparatorRenderEventArgs)
+            ' No dibujar líneas separadoras
+        End Sub
+
+    End Class
 End Class

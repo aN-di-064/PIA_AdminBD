@@ -1,37 +1,36 @@
 ﻿Public Class UC_Clientes
-
+    Public Sub CentrarFormulario()
+        If Panel_principal IsNot Nothing Then
+            Botones.CentrarTotal(Panel_principal)
+        End If
+    End Sub
     Private Sub UC_Clientes_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        ' Simula un clic en el botón Nuevo al abrir la vista por primera vez
+        CentrarFormulario()
+
+        Botones.Redondear(Panel_principal, 16)
+        Botones.Redondear(Panel_de_botones, 8)
+        Botones.Redondear(BTN_NEW, 10)
+        Botones.Redondear(BTN_MOD, 10)
+        Botones.Redondear(BTN_DEL, 10)
+
         BTN_NEW.PerformClick()
     End Sub
-
-    Private Sub MostrarSubVista(uc As UserControl, botonActivo As Button)
-        PANEL_DERECHO.Controls.Clear()
+    Private Sub UC_Clientes_Resize(sender As Object, e As EventArgs) Handles MyBase.Resize
+        CentrarFormulario()
+    End Sub
+    Private Sub MostrarSubVista(uc As UserControl, botonActivo As System.Windows.Forms.Button)
+        Panel_de_contenido.Controls.Clear()
         uc.Dock = DockStyle.Fill
-        PANEL_DERECHO.Controls.Add(uc)
+        Panel_de_contenido.Controls.Add(uc)
         uc.BringToFront()
-
-        ' 1. Restablecer el color de todos los botones a su estado normal (Gris por defecto)
-        BTN_NEW.BackColor = SystemColors.Control
-        BTN_MOD.BackColor = SystemColors.Control
-        BTN_DEL.BackColor = SystemColors.Control
-
-        ' 2. Cambiar el color únicamente al botón que fue presionado (ej. un tono celeste o azul claro)
-        botonActivo.BackColor = Color.LightSkyBlue
     End Sub
     Private Sub BTN_NEW_Click(sender As Object, e As EventArgs) Handles BTN_NEW.Click
         MostrarSubVista(New UC_C_Nuevo(), BTN_NEW)
     End Sub
-
     Private Sub BTN_MOD_Click(sender As Object, e As EventArgs) Handles BTN_MOD.Click
         MostrarSubVista(New UC_C_Modificar(), BTN_MOD)
     End Sub
-
     Private Sub BTN_DEL_Click(sender As Object, e As EventArgs) Handles BTN_DEL.Click
         MostrarSubVista(New UC_C_Eliminar(), BTN_DEL)
-    End Sub
-
-    Private Sub PANEL_DERECHO_Paint(sender As Object, e As PaintEventArgs) Handles PANEL_DERECHO.Paint
-
     End Sub
 End Class

@@ -24,7 +24,6 @@ Partial Class UC_C_Nuevo
     Private Sub InitializeComponent()
         MTB_RFC = New MaskedTextBox()
         Label7 = New Label()
-        Label1 = New Label()
         Button1 = New Button()
         MTB_Correo = New MaskedTextBox()
         Label2 = New Label()
@@ -36,151 +35,190 @@ Partial Class UC_C_Nuevo
         Label4 = New Label()
         Label6 = New Label()
         Label5 = New Label()
+        Panel1 = New Panel()
+        TableLayoutPanel1 = New TableLayoutPanel()
+        Panel1.SuspendLayout()
+        TableLayoutPanel1.SuspendLayout()
         SuspendLayout()
         ' 
         ' MTB_RFC
         ' 
-        MTB_RFC.Location = New Point(321, 363)
+        MTB_RFC.Font = New Font("Segoe UI", 12F)
+        MTB_RFC.Location = New Point(300, 400)
+        MTB_RFC.Margin = New Padding(3, 4, 3, 4)
         MTB_RFC.Name = "MTB_RFC"
-        MTB_RFC.Size = New Size(201, 23)
+        MTB_RFC.Size = New Size(230, 34)
         MTB_RFC.TabIndex = 51
         ' 
         ' Label7
         ' 
         Label7.AutoSize = True
-        Label7.Location = New Point(198, 371)
+        Label7.Font = New Font("Segoe UI", 12F)
+        Label7.Location = New Point(100, 400)
         Label7.Name = "Label7"
-        Label7.Size = New Size(28, 15)
+        Label7.Size = New Size(46, 28)
         Label7.TabIndex = 50
         Label7.Text = "RFC"
         ' 
-        ' Label1
-        ' 
-        Label1.Anchor = AnchorStyles.Top Or AnchorStyles.Left Or AnchorStyles.Right
-        Label1.AutoSize = True
-        Label1.Font = New Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        Label1.Location = New Point(96, 55)
-        Label1.Name = "Label1"
-        Label1.Size = New Size(275, 32)
-        Label1.TabIndex = 38
-        Label1.Text = "Agregar Nuevo Cliente"
-        ' 
         ' Button1
         ' 
-        Button1.Location = New Point(579, 363)
+        Button1.Location = New Point(350, 470)
+        Button1.Margin = New Padding(3, 4, 3, 4)
         Button1.Name = "Button1"
-        Button1.Size = New Size(75, 23)
+        Button1.Size = New Size(140, 40)
         Button1.TabIndex = 41
         Button1.Text = "Agregar"
         Button1.UseVisualStyleBackColor = True
         ' 
         ' MTB_Correo
         ' 
-        MTB_Correo.Location = New Point(321, 318)
+        MTB_Correo.Font = New Font("Segoe UI", 12F)
+        MTB_Correo.Location = New Point(300, 330)
+        MTB_Correo.Margin = New Padding(3, 4, 3, 4)
         MTB_Correo.Name = "MTB_Correo"
-        MTB_Correo.Size = New Size(201, 23)
+        MTB_Correo.Size = New Size(230, 34)
         MTB_Correo.TabIndex = 49
         ' 
         ' Label2
         ' 
         Label2.AutoSize = True
-        Label2.Location = New Point(198, 131)
+        Label2.Font = New Font("Segoe UI", 12F)
+        Label2.Location = New Point(100, 50)
         Label2.Name = "Label2"
-        Label2.Size = New Size(46, 15)
+        Label2.Size = New Size(77, 28)
         Label2.TabIndex = 39
         Label2.Text = "Código"
         ' 
         ' MTB_Dirección
         ' 
-        MTB_Dirección.Location = New Point(321, 273)
+        MTB_Dirección.Font = New Font("Segoe UI", 12F)
+        MTB_Dirección.Location = New Point(300, 260)
+        MTB_Dirección.Margin = New Padding(3, 4, 3, 4)
         MTB_Dirección.Name = "MTB_Dirección"
-        MTB_Dirección.Size = New Size(201, 23)
+        MTB_Dirección.Size = New Size(230, 34)
         MTB_Dirección.TabIndex = 48
         ' 
         ' MTB_Codigo
         ' 
-        MTB_Codigo.Location = New Point(321, 128)
+        MTB_Codigo.Font = New Font("Segoe UI", 12F)
+        MTB_Codigo.Location = New Point(300, 50)
+        MTB_Codigo.Margin = New Padding(3, 4, 3, 4)
         MTB_Codigo.Name = "MTB_Codigo"
-        MTB_Codigo.Size = New Size(201, 23)
+        MTB_Codigo.Size = New Size(230, 34)
         MTB_Codigo.TabIndex = 40
         ' 
         ' MTB_Telefono
         ' 
-        MTB_Telefono.Location = New Point(321, 222)
+        MTB_Telefono.Font = New Font("Segoe UI", 12F)
+        MTB_Telefono.Location = New Point(300, 190)
+        MTB_Telefono.Margin = New Padding(3, 4, 3, 4)
         MTB_Telefono.Name = "MTB_Telefono"
-        MTB_Telefono.Size = New Size(201, 23)
+        MTB_Telefono.Size = New Size(230, 34)
         MTB_Telefono.TabIndex = 47
         ' 
         ' Label3
         ' 
         Label3.AutoSize = True
-        Label3.Location = New Point(198, 230)
+        Label3.Font = New Font("Segoe UI", 12F)
+        Label3.Location = New Point(100, 190)
         Label3.Name = "Label3"
-        Label3.Size = New Size(52, 15)
+        Label3.Size = New Size(86, 28)
         Label3.TabIndex = 42
         Label3.Text = "Telefono"
         ' 
         ' MTB_Nombre
         ' 
-        MTB_Nombre.Location = New Point(321, 180)
+        MTB_Nombre.Font = New Font("Segoe UI", 12F)
+        MTB_Nombre.Location = New Point(300, 120)
+        MTB_Nombre.Margin = New Padding(3, 4, 3, 4)
         MTB_Nombre.Name = "MTB_Nombre"
-        MTB_Nombre.Size = New Size(201, 23)
+        MTB_Nombre.Size = New Size(230, 34)
         MTB_Nombre.TabIndex = 46
         ' 
         ' Label4
         ' 
         Label4.AutoSize = True
-        Label4.Location = New Point(198, 180)
+        Label4.Font = New Font("Segoe UI", 12F)
+        Label4.Location = New Point(100, 120)
         Label4.Name = "Label4"
-        Label4.Size = New Size(51, 15)
+        Label4.Size = New Size(85, 28)
         Label4.TabIndex = 43
         Label4.Text = "Nombre"
         ' 
         ' Label6
         ' 
         Label6.AutoSize = True
-        Label6.Location = New Point(198, 326)
+        Label6.Font = New Font("Segoe UI", 12F)
+        Label6.Location = New Point(100, 330)
         Label6.Name = "Label6"
-        Label6.Size = New Size(43, 15)
+        Label6.Size = New Size(72, 28)
         Label6.TabIndex = 45
         Label6.Text = "Correo"
         ' 
         ' Label5
         ' 
         Label5.AutoSize = True
-        Label5.Location = New Point(198, 276)
+        Label5.Font = New Font("Segoe UI", 12F)
+        Label5.Location = New Point(100, 260)
         Label5.Name = "Label5"
-        Label5.Size = New Size(57, 15)
+        Label5.Size = New Size(94, 28)
         Label5.TabIndex = 44
         Label5.Text = "Dirección"
         ' 
+        ' Panel1
+        ' 
+        Panel1.BackColor = Color.Transparent
+        Panel1.Controls.Add(Label2)
+        Panel1.Controls.Add(Button1)
+        Panel1.Controls.Add(MTB_RFC)
+        Panel1.Controls.Add(Label4)
+        Panel1.Controls.Add(Label7)
+        Panel1.Controls.Add(MTB_Correo)
+        Panel1.Controls.Add(Label3)
+        Panel1.Controls.Add(MTB_Dirección)
+        Panel1.Controls.Add(Label5)
+        Panel1.Controls.Add(MTB_Telefono)
+        Panel1.Controls.Add(MTB_Codigo)
+        Panel1.Controls.Add(MTB_Nombre)
+        Panel1.Controls.Add(Label6)
+        Panel1.Dock = DockStyle.Fill
+        Panel1.Font = New Font("Segoe UI", 12F)
+        Panel1.Location = New Point(3, 3)
+        Panel1.Name = "Panel1"
+        Panel1.Size = New Size(794, 594)
+        Panel1.TabIndex = 52
+        ' 
+        ' TableLayoutPanel1
+        ' 
+        TableLayoutPanel1.ColumnCount = 1
+        TableLayoutPanel1.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 50F))
+        TableLayoutPanel1.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 50F))
+        TableLayoutPanel1.Controls.Add(Panel1, 0, 0)
+        TableLayoutPanel1.Dock = DockStyle.Fill
+        TableLayoutPanel1.Location = New Point(0, 0)
+        TableLayoutPanel1.Name = "TableLayoutPanel1"
+        TableLayoutPanel1.RowCount = 1
+        TableLayoutPanel1.RowStyles.Add(New RowStyle(SizeType.Percent, 50F))
+        TableLayoutPanel1.RowStyles.Add(New RowStyle(SizeType.Percent, 50F))
+        TableLayoutPanel1.Size = New Size(800, 600)
+        TableLayoutPanel1.TabIndex = 53
+        ' 
         ' UC_C_Nuevo
         ' 
-        AutoScaleDimensions = New SizeF(7F, 15F)
+        AutoScaleDimensions = New SizeF(8F, 20F)
         AutoScaleMode = AutoScaleMode.Font
-        Controls.Add(MTB_RFC)
-        Controls.Add(Label7)
-        Controls.Add(Label1)
-        Controls.Add(Button1)
-        Controls.Add(MTB_Correo)
-        Controls.Add(Label2)
-        Controls.Add(MTB_Dirección)
-        Controls.Add(MTB_Codigo)
-        Controls.Add(MTB_Telefono)
-        Controls.Add(Label3)
-        Controls.Add(MTB_Nombre)
-        Controls.Add(Label4)
-        Controls.Add(Label6)
-        Controls.Add(Label5)
+        Controls.Add(TableLayoutPanel1)
+        Margin = New Padding(3, 4, 3, 4)
         Name = "UC_C_Nuevo"
-        Size = New Size(750, 440)
+        Size = New Size(800, 600)
+        Panel1.ResumeLayout(False)
+        Panel1.PerformLayout()
+        TableLayoutPanel1.ResumeLayout(False)
         ResumeLayout(False)
-        PerformLayout()
     End Sub
 
     Friend WithEvents MTB_RFC As MaskedTextBox
     Friend WithEvents Label7 As Label
-    Friend WithEvents Label1 As Label
     Friend WithEvents Button1 As Button
     Friend WithEvents MTB_Correo As MaskedTextBox
     Friend WithEvents Label2 As Label
@@ -192,5 +230,7 @@ Partial Class UC_C_Nuevo
     Friend WithEvents Label4 As Label
     Friend WithEvents Label6 As Label
     Friend WithEvents Label5 As Label
+    Friend WithEvents Panel1 As Panel
+    Friend WithEvents TableLayoutPanel1 As TableLayoutPanel
 
 End Class

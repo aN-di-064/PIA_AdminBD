@@ -22,6 +22,7 @@ Partial Class login
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(login))
         Button1 = New Button()
         TextBox1 = New TextBox()
         TextBox2 = New TextBox()
@@ -108,6 +109,7 @@ Partial Class login
         BackgroundImageLayout = ImageLayout.Center
         ClientSize = New Size(918, 601)
         Controls.Add(Panel1)
+        Icon = CType(resources.GetObject("$this.Icon"), Icon)
         Margin = New Padding(3, 4, 3, 4)
         MaximizeBox = False
         MaximumSize = New Size(936, 648)

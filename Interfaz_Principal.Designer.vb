@@ -24,19 +24,16 @@ Partial Class Interfaz_Principal
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Interfaz_Principal))
         ToolStrip1 = New ToolStrip()
-        ToolStripButton1 = New ToolStripButton()
-        ToolStripSeparator2 = New ToolStripSeparator()
-        ToolStripButton5 = New ToolStripButton()
-        ToolStripSeparator6 = New ToolStripSeparator()
-        ToolStripButton4 = New ToolStripButton()
+        ToolStripLabel1 = New ToolStripLabel()
         ToolStripSeparator1 = New ToolStripSeparator()
+        ToolStripButton1 = New ToolStripButton()
+        ToolStripButton5 = New ToolStripButton()
+        ToolStripButton4 = New ToolStripButton()
         ToolStripButton2 = New ToolStripButton()
-        ToolStripSeparator5 = New ToolStripSeparator()
         ToolStripButton6 = New ToolStripButton()
-        ToolStripSeparator3 = New ToolStripSeparator()
+        ToolStripButton3 = New ToolStripButton()
         ToolStripButton7 = New ToolStripButton()
-        ToolStripSeparator7 = New ToolStripSeparator()
-        ToolStripSplitButton1 = New ToolStripSplitButton()
+        ToolStripSeparator3 = New ToolStripSeparator()
         panelContenido = New Panel()
         ToolStrip1.SuspendLayout()
         SuspendLayout()
@@ -44,116 +41,130 @@ Partial Class Interfaz_Principal
         ' ToolStrip1
         ' 
         ToolStrip1.AutoSize = False
+        ToolStrip1.Font = New Font("Segoe UI", 12F)
+        ToolStrip1.GripStyle = ToolStripGripStyle.Hidden
         ToolStrip1.ImageScalingSize = New Size(32, 32)
-        ToolStrip1.Items.AddRange(New ToolStripItem() {ToolStripButton1, ToolStripSeparator2, ToolStripButton5, ToolStripSeparator6, ToolStripButton4, ToolStripSeparator1, ToolStripButton2, ToolStripSeparator5, ToolStripButton6, ToolStripSeparator3, ToolStripButton7, ToolStripSeparator7, ToolStripSplitButton1})
+        ToolStrip1.Items.AddRange(New ToolStripItem() {ToolStripLabel1, ToolStripSeparator1, ToolStripButton1, ToolStripButton5, ToolStripButton4, ToolStripButton2, ToolStripButton6, ToolStripButton3, ToolStripButton7, ToolStripSeparator3})
         ToolStrip1.Location = New Point(0, 0)
         ToolStrip1.Name = "ToolStrip1"
-        ToolStrip1.Size = New Size(858, 65)
+        ToolStrip1.Size = New Size(1208, 87)
         ToolStrip1.TabIndex = 0
         ToolStrip1.Text = "ToolStrip1"
+        ' 
+        ' ToolStripLabel1
+        ' 
+        ToolStripLabel1.Image = My.Resources.Resources.Camion
+        ToolStripLabel1.Name = "ToolStripLabel1"
+        ToolStripLabel1.Size = New Size(198, 84)
+        ToolStripLabel1.Text = "Centro de Acopio"
+        ' 
+        ' ToolStripSeparator1
+        ' 
+        ToolStripSeparator1.Name = "ToolStripSeparator1"
+        ToolStripSeparator1.Size = New Size(6, 87)
         ' 
         ' ToolStripButton1
         ' 
         ToolStripButton1.Image = CType(resources.GetObject("ToolStripButton1.Image"), Image)
         ToolStripButton1.ImageTransparentColor = Color.Magenta
+        ToolStripButton1.Margin = New Padding(6, 2, 6, 2)
         ToolStripButton1.Name = "ToolStripButton1"
-        ToolStripButton1.Size = New Size(77, 62)
+        ToolStripButton1.Padding = New Padding(4)
+        ToolStripButton1.Size = New Size(81, 83)
         ToolStripButton1.Text = "Ventas"
-        ' 
-        ' ToolStripSeparator2
-        ' 
-        ToolStripSeparator2.Name = "ToolStripSeparator2"
-        ToolStripSeparator2.Size = New Size(6, 65)
+        ToolStripButton1.TextImageRelation = TextImageRelation.ImageAboveText
         ' 
         ' ToolStripButton5
         ' 
         ToolStripButton5.Image = CType(resources.GetObject("ToolStripButton5.Image"), Image)
         ToolStripButton5.ImageTransparentColor = Color.Magenta
+        ToolStripButton5.Margin = New Padding(6, 2, 6, 2)
         ToolStripButton5.Name = "ToolStripButton5"
-        ToolStripButton5.Size = New Size(86, 62)
+        ToolStripButton5.Padding = New Padding(4)
+        ToolStripButton5.Size = New Size(94, 83)
         ToolStripButton5.Text = "Compra"
-        ' 
-        ' ToolStripSeparator6
-        ' 
-        ToolStripSeparator6.Name = "ToolStripSeparator6"
-        ToolStripSeparator6.Size = New Size(6, 65)
+        ToolStripButton5.TextImageRelation = TextImageRelation.ImageAboveText
         ' 
         ' ToolStripButton4
         ' 
         ToolStripButton4.Image = CType(resources.GetObject("ToolStripButton4.Image"), Image)
         ToolStripButton4.ImageTransparentColor = Color.Magenta
+        ToolStripButton4.Margin = New Padding(6, 2, 6, 2)
         ToolStripButton4.Name = "ToolStripButton4"
-        ToolStripButton4.Size = New Size(89, 62)
+        ToolStripButton4.Padding = New Padding(4)
+        ToolStripButton4.Size = New Size(101, 83)
         ToolStripButton4.Text = "Reportes"
-        ' 
-        ' ToolStripSeparator1
-        ' 
-        ToolStripSeparator1.Name = "ToolStripSeparator1"
-        ToolStripSeparator1.Size = New Size(6, 65)
+        ToolStripButton4.TextImageRelation = TextImageRelation.ImageAboveText
         ' 
         ' ToolStripButton2
         ' 
         ToolStripButton2.Image = CType(resources.GetObject("ToolStripButton2.Image"), Image)
         ToolStripButton2.ImageTransparentColor = Color.Magenta
+        ToolStripButton2.Margin = New Padding(6, 2, 6, 2)
         ToolStripButton2.Name = "ToolStripButton2"
-        ToolStripButton2.Size = New Size(97, 62)
+        ToolStripButton2.Padding = New Padding(4)
+        ToolStripButton2.Size = New Size(114, 83)
         ToolStripButton2.Text = "Materiales"
-        ' 
-        ' ToolStripSeparator5
-        ' 
-        ToolStripSeparator5.Name = "ToolStripSeparator5"
-        ToolStripSeparator5.Size = New Size(6, 65)
+        ToolStripButton2.TextImageRelation = TextImageRelation.ImageAboveText
         ' 
         ' ToolStripButton6
         ' 
         ToolStripButton6.Image = CType(resources.GetObject("ToolStripButton6.Image"), Image)
         ToolStripButton6.ImageTransparentColor = Color.Magenta
+        ToolStripButton6.Margin = New Padding(6, 2, 6, 2)
         ToolStripButton6.Name = "ToolStripButton6"
-        ToolStripButton6.Size = New Size(95, 62)
+        ToolStripButton6.Padding = New Padding(4)
+        ToolStripButton6.Size = New Size(108, 83)
         ToolStripButton6.Text = "Consultas"
+        ToolStripButton6.TextImageRelation = TextImageRelation.ImageAboveText
         ' 
-        ' ToolStripSeparator3
+        ' ToolStripButton3
         ' 
-        ToolStripSeparator3.Name = "ToolStripSeparator3"
-        ToolStripSeparator3.Size = New Size(6, 65)
+        ToolStripButton3.Image = CType(resources.GetObject("ToolStripButton3.Image"), Image)
+        ToolStripButton3.ImageTransparentColor = Color.Magenta
+        ToolStripButton3.Margin = New Padding(6, 2, 6, 2)
+        ToolStripButton3.Name = "ToolStripButton3"
+        ToolStripButton3.Padding = New Padding(4)
+        ToolStripButton3.Size = New Size(92, 83)
+        ToolStripButton3.Text = "Clientes"
+        ToolStripButton3.TextImageRelation = TextImageRelation.ImageAboveText
         ' 
         ' ToolStripButton7
         ' 
+        ToolStripButton7.Alignment = ToolStripItemAlignment.Right
         ToolStripButton7.Image = CType(resources.GetObject("ToolStripButton7.Image"), Image)
         ToolStripButton7.ImageTransparentColor = Color.Magenta
+        ToolStripButton7.Margin = New Padding(6, 2, 6, 2)
         ToolStripButton7.Name = "ToolStripButton7"
-        ToolStripButton7.Size = New Size(85, 62)
-        ToolStripButton7.Text = "Clientes"
+        ToolStripButton7.Padding = New Padding(4)
+        ToolStripButton7.Size = New Size(94, 83)
+        ToolStripButton7.Text = "Salir"
         ' 
-        ' ToolStripSeparator7
+        ' ToolStripSeparator3
         ' 
-        ToolStripSeparator7.Name = "ToolStripSeparator7"
-        ToolStripSeparator7.Size = New Size(6, 65)
-        ' 
-        ' ToolStripSplitButton1
-        ' 
-        ToolStripSplitButton1.Image = CType(resources.GetObject("ToolStripSplitButton1.Image"), Image)
-        ToolStripSplitButton1.ImageTransparentColor = Color.Magenta
-        ToolStripSplitButton1.Name = "ToolStripSplitButton1"
-        ToolStripSplitButton1.Size = New Size(77, 62)
-        ToolStripSplitButton1.Text = "Salir"
+        ToolStripSeparator3.Alignment = ToolStripItemAlignment.Right
+        ToolStripSeparator3.Name = "ToolStripSeparator3"
+        ToolStripSeparator3.Size = New Size(6, 87)
         ' 
         ' panelContenido
         ' 
         panelContenido.Dock = DockStyle.Fill
-        panelContenido.Location = New Point(0, 65)
+        panelContenido.Location = New Point(0, 87)
+        panelContenido.Margin = New Padding(3, 4, 3, 4)
         panelContenido.Name = "panelContenido"
-        panelContenido.Size = New Size(858, 385)
+        panelContenido.Size = New Size(1208, 524)
         panelContenido.TabIndex = 1
         ' 
         ' Interfaz_Principal
         ' 
-        AutoScaleDimensions = New SizeF(7F, 15F)
+        AutoScaleDimensions = New SizeF(8F, 20F)
         AutoScaleMode = AutoScaleMode.Font
-        ClientSize = New Size(858, 450)
+        ClientSize = New Size(1208, 611)
         Controls.Add(panelContenido)
         Controls.Add(ToolStrip1)
-        MinimumSize = New Size(816, 487)
+        Icon = CType(resources.GetObject("$this.Icon"), Icon)
+        Margin = New Padding(3, 4, 3, 4)
+        MinimumSize = New Size(930, 634)
         Name = "Interfaz_Principal"
         Text = "Interfaz_Principal"
         WindowState = FormWindowState.Maximized
@@ -166,15 +177,12 @@ Partial Class Interfaz_Principal
     Friend WithEvents ToolStripButton1 As ToolStripButton
     Friend WithEvents panelContenido As Panel
     Friend WithEvents ToolStripButton2 As ToolStripButton
-    Friend WithEvents ToolStripSplitButton1 As ToolStripSplitButton
-    Friend WithEvents ToolStripSeparator2 As ToolStripSeparator
-    Friend WithEvents ToolStripSeparator3 As ToolStripSeparator
     Friend WithEvents ToolStripButton4 As ToolStripButton
     Friend WithEvents ToolStripSeparator1 As ToolStripSeparator
     Friend WithEvents ToolStripButton5 As ToolStripButton
-    Friend WithEvents ToolStripSeparator5 As ToolStripSeparator
     Friend WithEvents ToolStripButton6 As ToolStripButton
-    Friend WithEvents ToolStripSeparator6 As ToolStripSeparator
+    Friend WithEvents ToolStripLabel1 As ToolStripLabel
+    Friend WithEvents ToolStripButton3 As ToolStripButton
     Friend WithEvents ToolStripButton7 As ToolStripButton
-    Friend WithEvents ToolStripSeparator7 As ToolStripSeparator
+    Friend WithEvents ToolStripSeparator3 As ToolStripSeparator
 End Class
