@@ -31,8 +31,8 @@ Partial Class UC_ReporteDia
         Label1 = New Label()
         Label2 = New Label()
         Label3 = New Label()
-        Label4 = New Label()
-        Label5 = New Label()
+        LBL_ETIQUETA_TOTAL = New Label()
+        LBL_TOTAL = New Label()
         CType(DataGridView1, ComponentModel.ISupportInitialize).BeginInit()
         SuspendLayout()
         ' 
@@ -87,7 +87,7 @@ Partial Class UC_ReporteDia
         ' Label2
         ' 
         Label2.AutoSize = True
-        Label2.Location = New Point(181, 29)
+        Label2.Location = New Point(212, 29)
         Label2.Name = "Label2"
         Label2.Size = New Size(41, 15)
         Label2.TabIndex = 7
@@ -102,32 +102,32 @@ Partial Class UC_ReporteDia
         Label3.TabIndex = 8
         Label3.Text = "Resumen:"
         ' 
-        ' Label4
+        ' LBL_ETIQUETA_TOTAL
         ' 
-        Label4.Anchor = AnchorStyles.Bottom Or AnchorStyles.Left
-        Label4.AutoSize = True
-        Label4.Location = New Point(72, 342)
-        Label4.Name = "Label4"
-        Label4.Size = New Size(88, 15)
-        Label4.TabIndex = 9
-        Label4.Text = "Total de ventas:"
+        LBL_ETIQUETA_TOTAL.Anchor = AnchorStyles.Bottom Or AnchorStyles.Left
+        LBL_ETIQUETA_TOTAL.AutoSize = True
+        LBL_ETIQUETA_TOTAL.Location = New Point(72, 342)
+        LBL_ETIQUETA_TOTAL.Name = "LBL_ETIQUETA_TOTAL"
+        LBL_ETIQUETA_TOTAL.Size = New Size(88, 15)
+        LBL_ETIQUETA_TOTAL.TabIndex = 9
+        LBL_ETIQUETA_TOTAL.Text = "Total de ventas:"
         ' 
-        ' Label5
+        ' LBL_TOTAL
         ' 
-        Label5.Anchor = AnchorStyles.Bottom Or AnchorStyles.Left
-        Label5.AutoSize = True
-        Label5.Location = New Point(197, 342)
-        Label5.Name = "Label5"
-        Label5.Size = New Size(88, 15)
-        Label5.TabIndex = 10
-        Label5.Text = "Total de ventas:"
+        LBL_TOTAL.Anchor = AnchorStyles.Bottom Or AnchorStyles.Left
+        LBL_TOTAL.AutoSize = True
+        LBL_TOTAL.Location = New Point(197, 342)
+        LBL_TOTAL.Name = "LBL_TOTAL"
+        LBL_TOTAL.Size = New Size(88, 15)
+        LBL_TOTAL.TabIndex = 10
+        LBL_TOTAL.Text = "Total de ventas:"
         ' 
         ' UC_ReporteDia
         ' 
         AutoScaleDimensions = New SizeF(7F, 15F)
         AutoScaleMode = AutoScaleMode.Font
-        Controls.Add(Label5)
-        Controls.Add(Label4)
+        Controls.Add(LBL_TOTAL)
+        Controls.Add(LBL_ETIQUETA_TOTAL)
         Controls.Add(Label3)
         Controls.Add(Label2)
         Controls.Add(Label1)
@@ -148,7 +148,7 @@ Partial Class UC_ReporteDia
     Friend WithEvents Label1 As Label
     Friend WithEvents Label2 As Label
     Friend WithEvents Label3 As Label
-    Friend WithEvents Label4 As Label
-    Friend WithEvents Label5 As Label
+    Friend WithEvents LBL_ETIQUETA_TOTAL As Label
+    Friend WithEvents LBL_TOTAL As Label
 
 End Class

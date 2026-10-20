@@ -26,8 +26,6 @@ Partial Class UC_Consulta_Inventario
         txtBuscar = New TextBox()
         dgvProductos = New DataGridView()
         ComboBox1 = New ComboBox()
-        btnModificar = New Button()
-        btnEliminar = New Button()
         CType(dgvProductos, ComponentModel.ISupportInitialize).BeginInit()
         SuspendLayout()
         ' 
@@ -63,37 +61,15 @@ Partial Class UC_Consulta_Inventario
         ' 
         ComboBox1.FormattingEnabled = True
         ComboBox1.Location = New Point(547, 80)
-        ComboBox1.Margin = New Padding(2, 2, 2, 2)
+        ComboBox1.Margin = New Padding(2)
         ComboBox1.Name = "ComboBox1"
         ComboBox1.Size = New Size(129, 23)
         ComboBox1.TabIndex = 7
-        ' 
-        ' btnModificar
-        ' 
-        btnModificar.Location = New Point(463, 135)
-        btnModificar.Margin = New Padding(2, 2, 2, 2)
-        btnModificar.Name = "btnModificar"
-        btnModificar.Size = New Size(78, 20)
-        btnModificar.TabIndex = 8
-        btnModificar.Text = "Modificar"
-        btnModificar.UseVisualStyleBackColor = True
-        ' 
-        ' btnEliminar
-        ' 
-        btnEliminar.Location = New Point(570, 135)
-        btnEliminar.Margin = New Padding(2, 2, 2, 2)
-        btnEliminar.Name = "btnEliminar"
-        btnEliminar.Size = New Size(78, 20)
-        btnEliminar.TabIndex = 9
-        btnEliminar.Text = "Eliminar"
-        btnEliminar.UseVisualStyleBackColor = True
         ' 
         ' UC_Consulta_Inventario
         ' 
         AutoScaleDimensions = New SizeF(7F, 15F)
         AutoScaleMode = AutoScaleMode.Font
-        Controls.Add(btnEliminar)
-        Controls.Add(btnModificar)
         Controls.Add(ComboBox1)
         Controls.Add(Label1)
         Controls.Add(txtBuscar)
@@ -109,7 +85,5 @@ Partial Class UC_Consulta_Inventario
     Friend WithEvents txtBuscar As TextBox
     Friend WithEvents dgvProductos As DataGridView
     Friend WithEvents ComboBox1 As ComboBox
-    Friend WithEvents btnModificar As Button
-    Friend WithEvents btnEliminar As Button
 
 End Class

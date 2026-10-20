@@ -27,6 +27,8 @@ Partial Class Rango_Fechas
         Label1 = New Label()
         DateTimePicker2 = New DateTimePicker()
         DateTimePicker1 = New DateTimePicker()
+        CB_TIPOCONSULTA = New ComboBox()
+        Label3 = New Label()
         SuspendLayout()
         ' 
         ' Button1
@@ -71,16 +73,40 @@ Partial Class Rango_Fechas
         DateTimePicker1.Size = New Size(200, 23)
         DateTimePicker1.TabIndex = 5
         ' 
+        ' CB_TIPOCONSULTA
+        ' 
+        CB_TIPOCONSULTA.AutoCompleteMode = AutoCompleteMode.SuggestAppend
+        CB_TIPOCONSULTA.AutoCompleteSource = AutoCompleteSource.ListItems
+        CB_TIPOCONSULTA.FormattingEnabled = True
+        CB_TIPOCONSULTA.Items.AddRange(New Object() {"Compras", "Ventas"})
+        CB_TIPOCONSULTA.Location = New Point(255, 209)
+        CB_TIPOCONSULTA.Name = "CB_TIPOCONSULTA"
+        CB_TIPOCONSULTA.Size = New Size(121, 23)
+        CB_TIPOCONSULTA.TabIndex = 26
+        ' 
+        ' Label3
+        ' 
+        Label3.AutoSize = True
+        Label3.Location = New Point(16, 217)
+        Label3.Name = "Label3"
+        Label3.Size = New Size(226, 15)
+        Label3.TabIndex = 27
+        Label3.Text = "Seleccione la opción que desea consultar:"
+        ' 
         ' Rango_Fechas
         ' 
         AutoScaleDimensions = New SizeF(7F, 15F)
         AutoScaleMode = AutoScaleMode.Font
         ClientSize = New Size(478, 346)
+        Controls.Add(Label3)
+        Controls.Add(CB_TIPOCONSULTA)
         Controls.Add(Button1)
         Controls.Add(Label2)
         Controls.Add(Label1)
         Controls.Add(DateTimePicker2)
         Controls.Add(DateTimePicker1)
+        MaximizeBox = False
+        MinimizeBox = False
         Name = "Rango_Fechas"
         Text = "Rango_Fechas"
         ResumeLayout(False)
@@ -92,4 +118,6 @@ Partial Class Rango_Fechas
     Friend WithEvents Label1 As Label
     Friend WithEvents DateTimePicker2 As DateTimePicker
     Friend WithEvents DateTimePicker1 As DateTimePicker
+    Friend WithEvents CB_TIPOCONSULTA As ComboBox
+    Friend WithEvents Label3 As Label
 End Class

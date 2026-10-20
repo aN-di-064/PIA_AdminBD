@@ -110,13 +110,14 @@
         ' Instanciar el formulario RangoFechas
         Using frmRango As New Rango_Fechas
             ' Abrir la ventana de manera modal
-            If frmRango.ShowDialog = DialogResult.OK Then
-                ' Capturar las fechas definidas en la ventana modal
-                Dim fInicio = frmRango.FechaInicio
-                Dim fFin = frmRango.FechaFin
+            If frmRango.ShowDialog() = DialogResult.OK Then
+                ' Capturar las fechas y el tipo de consulta (Ventas o Compras) definidos en la ventana modal
+                Dim fInicio As DateTime = frmRango.FechaInicio
+                Dim fFin As DateTime = frmRango.FechaFin
+                Dim tipoConsulta As String = frmRango.TipoConsulta
 
-                ' Cargar la vista pasándole el rango de fechas
-                MostrarVista(New UC_ReporteDia(fInicio, fFin))
+                ' Cargar la vista pasándole el rango de fechas y el tipo de consulta seleccionado
+                MostrarVista(New UC_ReporteDia(fInicio, fFin, tipoConsulta))
             End If
         End Using
     End Sub

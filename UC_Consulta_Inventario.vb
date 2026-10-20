@@ -75,7 +75,7 @@ Public Class UC_Consulta_Inventario
         End If
     End Sub
 
-    Private Sub btnModificar_Click(sender As Object, e As EventArgs) Handles btnModificar.Click
+    Private Sub btnModificar_Click(sender As Object, e As EventArgs)
         If idSeleccionado = 0 Then
             MessageBox.Show("Por favor selecciona un registro de la tabla.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning)
             Return
@@ -83,32 +83,32 @@ Public Class UC_Consulta_Inventario
 
         If ComboBox1.SelectedIndex = 0 Then
             ' --- OPCIÓN 0: MATERIALES ---
-            Dim ucModifMaterial As New UC_M_Modificar()
+            Dim ucModifMaterial As New UC_M_Modificar
             ucModifMaterial.IdMaterialAEditar = idSeleccionado
             ucModifMaterial.Dock = DockStyle.Fill
-            Me.Controls.Add(ucModifMaterial)
-            ucModifMaterial.BringToFront()
+            Controls.Add(ucModifMaterial)
+            ucModifMaterial.BringToFront
 
         ElseIf ComboBox1.SelectedIndex = 1 Then
             ' --- OPCIÓN 1: VENDEDORES / CLIENTES ---
-            Dim ucModifCliente As New UC_C_Modificar()
+            Dim ucModifCliente As New UC_C_Modificar
             ucModifCliente.IdVendedorAEditar = idSeleccionado
             ucModifCliente.Dock = DockStyle.Fill
-            Me.Controls.Add(ucModifCliente)
-            ucModifCliente.BringToFront()
+            Controls.Add(ucModifCliente)
+            ucModifCliente.BringToFront
         End If
     End Sub
 
-    Private Sub btnEliminar_Click(sender As Object, e As EventArgs) Handles btnEliminar.Click
+    Private Sub btnEliminar_Click(sender As Object, e As EventArgs)
         If idSeleccionado = 0 Then
             MessageBox.Show("Por favor selecciona un registro de la tabla.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning)
             Return
         End If
 
-        Dim confirmacion As DialogResult = MessageBox.Show("¿Estás seguro de eliminar este registro?", "Confirmar eliminación", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+        Dim confirmacion = MessageBox.Show("¿Estás seguro de eliminar este registro?", "Confirmar eliminación", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
 
         If confirmacion = DialogResult.Yes Then
-            Dim query As String = ""
+            Dim query = ""
             If ComboBox1.SelectedIndex = 0 Then
                 query = "DELETE FROM Materiales WHERE Id_mat = @id"
             Else
@@ -119,11 +119,11 @@ Public Class UC_Consulta_Inventario
                 New SqliteParameter("@id", idSeleccionado)
             }
 
-            Dim filasAfectadas As Integer = ConexionBD.EjecutarComando(query, parametros)
+            Dim filasAfectadas = ConexionBD.EjecutarComando(query, parametros)
 
             If filasAfectadas > 0 Then
                 MessageBox.Show("Registro eliminado correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information)
-                CargarDatosTabla(txtBuscar.Text.Trim())
+                CargarDatosTabla(txtBuscar.Text.Trim)
             End If
         End If
     End Sub
