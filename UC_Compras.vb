@@ -84,7 +84,14 @@ Public Class UC_Compras
 
     ' Botón Cobrar (Abre la ventana secundaria Cobro_Compra e inserta la compra al confirmar)
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
-        ' Validar que la tabla tenga productos agregados antes de proceder
+        ' 1. VALIDAR QUE HAYA UN CLIENTE / VENDEDOR SELECCIONADO
+        If CB_Vendedor.SelectedIndex = -1 OrElse CB_Vendedor.SelectedValue Is Nothing OrElse String.IsNullOrWhiteSpace(CB_Vendedor.Text) Then
+            MessageBox.Show("Por favor, seleccione un vendedor o cliente válido antes de continuar con la compra.", "Cliente requerido", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            CB_Vendedor.Focus()
+            Return
+        End If
+
+        ' 2. Validar que la tabla tenga productos agregados antes de proceder
         Dim tieneProductos As Boolean = False
         For Each row As DataGridViewRow In DataGridView1.Rows
             If Not row.IsNewRow Then
@@ -136,23 +143,21 @@ Public Class UC_Compras
                     pesoTotal += Convert.ToDecimal(item("Cantidad"))
                 Next
 
-                ' 1. Obtener ID de usuario válido desde la tabla Usuario
+                ' Obtener ID de usuario válido desde la tabla Usuario
                 Dim dtUsuario As DataTable = ConexionBD.ObtenerDatos("SELECT MIN(Id_us) FROM Usuario")
                 Dim idUsuarioValido As Integer = 1
                 If dtUsuario IsNot Nothing AndAlso dtUsuario.Rows.Count > 0 AndAlso Not IsDBNull(dtUsuario.Rows(0)(0)) Then
                     idUsuarioValido = Convert.ToInt32(dtUsuario.Rows(0)(0))
                 End If
 
-                ' 2. Obtener el ID del vendedor seleccionado en el ComboBox
+                ' Obtener el ID del vendedor seleccionado en el ComboBox de forma segura
                 Dim idVendedorValido As Integer = 1
-                If CB_Vendedor.SelectedValue IsNot Nothing Then
-                    Integer.TryParse(CB_Vendedor.SelectedValue.ToString(), idVendedorValido)
-                End If
+                Integer.TryParse(CB_Vendedor.SelectedValue.ToString(), idVendedorValido)
 
-                ' 3. Insertar la cabecera de la tabla Compra
+                ' Insertar la cabecera de la tabla Compra
                 Dim fechaActual As String = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")
                 Dim queryCompra As String = "INSERT INTO Compra (fecha_com, id_us, Id_v, total_peso_com, total_precio, Metodo_pago_com) " &
-                                             "VALUES (@fecha, @id_us, @id_v, @peso, @total, @metodo);"
+                                            "VALUES (@fecha, @id_us, @id_v, @peso, @total, @metodo);"
 
                 Dim parametrosCompra As New List(Of SqliteParameter) From {
                     New SqliteParameter("@fecha", fechaActual),
@@ -166,11 +171,11 @@ Public Class UC_Compras
                 Dim resultado As Integer = ConexionBD.EjecutarComando(queryCompra, parametrosCompra)
 
                 If resultado > 0 Then
-                    ' 4. Recuperar el ID de compra recién generado
+                    ' Recuperar el ID de compra recién generado
                     Dim dtIdReciente As DataTable = ConexionBD.ObtenerDatos("SELECT MAX(Id_com) FROM Compra")
                     Dim nuevoIdCom As Integer = Convert.ToInt32(dtIdReciente.Rows(0)(0))
 
-                    ' 5. Guardar cada detalle en la tabla Detalle_compra
+                    ' Guardar cada detalle en la tabla Detalle_compra
                     For Each item In listaDetalle
                         Dim codigoMat As String = item("Codigo").ToString().Trim()
                         Dim cantidad As Decimal = Convert.ToDecimal(item("Cantidad"))
@@ -203,7 +208,7 @@ Public Class UC_Compras
 
                     MessageBox.Show("¡Compra de material registrada con éxito!", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information)
 
-                    ' Limpiar la tabla, restablecer vendedor a "General" y actualizar ID consecutivo
+                    ' Limpiar la tabla, restablecer vendedor y actualizar ID consecutivo
                     DataGridView1.Rows.Clear()
                     CargarVendedores()
                     ObtenerSiguienteIdCompra()
@@ -324,6 +329,11 @@ Public Class UC_Compras
 
     Private Sub DataGridView1_KeyDown(sender As Object, e As KeyEventArgs) Handles DataGridView1.KeyDown
         If e.KeyCode = Keys.Delete Then
+            ' Cancelar el comportamiento predeterminado del DataGridView para evitar que borre la fila automáticamente
+            e.Handled = True
+            e.SuppressKeyPress = True
+
+            ' Ejecutar únicamente la lógica controlada de tu botón de borrar con confirmación
             BTN_BORRAR.PerformClick()
         End If
     End Sub

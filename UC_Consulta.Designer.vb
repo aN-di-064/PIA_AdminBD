@@ -47,11 +47,14 @@ Partial Class UC_Consulta
         ' 
         ' dgvProductos
         ' 
+        dgvProductos.AllowUserToAddRows = False
+        dgvProductos.AllowUserToDeleteRows = False
         dgvProductos.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill
         dgvProductos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize
         dgvProductos.Location = New Point(30, 163)
         dgvProductos.MultiSelect = False
         dgvProductos.Name = "dgvProductos"
+        dgvProductos.ReadOnly = True
         dgvProductos.RowHeadersWidth = 62
         dgvProductos.SelectionMode = DataGridViewSelectionMode.FullRowSelect
         dgvProductos.Size = New Size(726, 150)
@@ -66,7 +69,7 @@ Partial Class UC_Consulta
         ComboBox1.Size = New Size(129, 23)
         ComboBox1.TabIndex = 7
         ' 
-        ' UC_Consulta_Inventario
+        ' UC_Consulta
         ' 
         AutoScaleDimensions = New SizeF(7F, 15F)
         AutoScaleMode = AutoScaleMode.Font
@@ -74,7 +77,7 @@ Partial Class UC_Consulta
         Controls.Add(Label1)
         Controls.Add(txtBuscar)
         Controls.Add(dgvProductos)
-        Name = "UC_Consulta_Inventario"
+        Name = "UC_Consulta"
         Size = New Size(787, 431)
         CType(dgvProductos, ComponentModel.ISupportInitialize).EndInit()
         ResumeLayout(False)

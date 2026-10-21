@@ -22,6 +22,8 @@ Partial Class Busqueda_Venta
     'No lo modifique con el editor de código.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Dim DataGridViewCellStyle1 As DataGridViewCellStyle = New DataGridViewCellStyle()
+        Dim DataGridViewCellStyle2 As DataGridViewCellStyle = New DataGridViewCellStyle()
         dgvProductos = New DataGridView()
         txtBuscar = New TextBox()
         Label1 = New Label()
@@ -31,45 +33,58 @@ Partial Class Busqueda_Venta
         ' dgvProductos
         ' 
         dgvProductos.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill
+        DataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle1.BackColor = SystemColors.Control
+        DataGridViewCellStyle1.Font = New Font("Segoe UI", 9F)
+        DataGridViewCellStyle1.ForeColor = SystemColors.WindowText
+        DataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight
+        DataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText
+        DataGridViewCellStyle1.WrapMode = DataGridViewTriState.True
+        dgvProductos.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle1
         dgvProductos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        dgvProductos.Location = New Point(40, 170)
-        dgvProductos.Margin = New Padding(3, 4, 3, 4)
+        DataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle2.BackColor = SystemColors.Window
+        DataGridViewCellStyle2.Font = New Font("Segoe UI", 9F)
+        DataGridViewCellStyle2.ForeColor = SystemColors.ControlText
+        DataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight
+        DataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText
+        DataGridViewCellStyle2.WrapMode = DataGridViewTriState.False
+        dgvProductos.DefaultCellStyle = DataGridViewCellStyle2
+        dgvProductos.Location = New Point(35, 128)
         dgvProductos.MultiSelect = False
         dgvProductos.Name = "dgvProductos"
         dgvProductos.RowHeadersWidth = 51
         dgvProductos.SelectionMode = DataGridViewSelectionMode.FullRowSelect
-        dgvProductos.Size = New Size(700, 200)
+        dgvProductos.Size = New Size(612, 150)
         dgvProductos.TabIndex = 1
         ' 
         ' txtBuscar
         ' 
         txtBuscar.Font = New Font("Segoe UI", 12F)
-        txtBuscar.Location = New Point(230, 70)
-        txtBuscar.Margin = New Padding(3, 4, 3, 4)
+        txtBuscar.Location = New Point(201, 52)
         txtBuscar.Name = "txtBuscar"
-        txtBuscar.Size = New Size(327, 34)
+        txtBuscar.Size = New Size(287, 29)
         txtBuscar.TabIndex = 2
         ' 
         ' Label1
         ' 
         Label1.AutoSize = True
         Label1.Font = New Font("Segoe UI", 12F)
-        Label1.Location = New Point(40, 70)
+        Label1.Location = New Point(35, 52)
         Label1.Name = "Label1"
-        Label1.Size = New Size(181, 28)
+        Label1.Size = New Size(157, 21)
         Label1.TabIndex = 3
-        Label1.Text = "Codigo de la venta:"
+        Label1.Text = "Nombre del material:"
         ' 
         ' Busqueda_Venta
         ' 
-        AutoScaleDimensions = New SizeF(8F, 20F)
+        AutoScaleDimensions = New SizeF(7F, 15F)
         AutoScaleMode = AutoScaleMode.Font
-        ClientSize = New Size(782, 553)
+        ClientSize = New Size(684, 415)
         Controls.Add(Label1)
         Controls.Add(txtBuscar)
         Controls.Add(dgvProductos)
         Font = New Font("Segoe UI", 9F)
-        Margin = New Padding(3, 4, 3, 4)
         MaximizeBox = False
         MinimizeBox = False
         Name = "Busqueda_Venta"

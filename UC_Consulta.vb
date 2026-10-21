@@ -74,4 +74,8 @@ Public Class UC_Consulta
             End If
         End If
     End Sub
+
+    Private Sub dgvProductos_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles dgvProductos.CellContentClick
+
+    End Sub
 End Class

@@ -106,22 +106,13 @@
     End Sub
 
     Private Sub DataGridView1_KeyDown(sender As Object, e As KeyEventArgs) Handles DataGridView1.KeyDown
-        ' Si el usuario presiona la tecla Delete (Supr)
         If e.KeyCode = Keys.Delete Then
-            If DataGridView1.SelectedRows.Count > 0 Then
-                Dim filaSeleccionada As DataGridViewRow = DataGridView1.SelectedRows(0)
+            ' Cancelar el comportamiento predeterminado del DataGridView para evitar que borre la fila automáticamente
+            e.Handled = True
+            e.SuppressKeyPress = True
 
-                If Not filaSeleccionada.IsNewRow Then
-                    Dim respuesta As DialogResult = MessageBox.Show("¿Estás seguro de eliminar este producto de la venta?", "Confirmar eliminación", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
-
-                    If respuesta = DialogResult.Yes Then
-                        DataGridView1.Rows.Remove(filaSeleccionada)
-                        CalcularTotalVenta()
-                    End If
-                End If
-            Else
-                MessageBox.Show("Por favor, selecciona la fila completa del producto que deseas eliminar.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning)
-            End If
+            ' Ejecutar únicamente la lógica controlada de tu botón de borrar con confirmación
+            BTN_BORRAR.PerformClick()
         End If
     End Sub
 

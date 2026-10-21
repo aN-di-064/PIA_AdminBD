@@ -1,4 +1,5 @@
 ﻿Imports System.ComponentModel
+Imports System.Windows.Forms.VisualStyles.VisualStyleElement
 Imports Microsoft.Data.Sqlite
 
 Public Class Busqueda_Venta
@@ -19,6 +20,19 @@ Public Class Busqueda_Venta
     Private Sub Busqueda_Venta_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         ' Cargar todos los materiales registrados al abrir el formulario
         CargarProductos("")
+
+        ' Hacer que todo el DataGridView sea de solo lectura
+        dgvProductos.ReadOnly = True
+
+        ' Evitar que el usuario pueda agregar nuevas filas vacías al final de la tabla
+        dgvProductos.AllowUserToAddRows = False
+
+        ' Evitar que el usuario pueda eliminar filas presionando la tecla Supr/Delete
+        dgvProductos.AllowUserToDeleteRows = False
+
+        ' Opcional: Hacer que se seleccione la fila completa al hacer clic
+        dgvProductos.SelectionMode = DataGridViewSelectionMode.FullRowSelect
+        dgvProductos.MultiSelect = False
     End Sub
 
     ' Método para consultar la base de datos y llenar el DataGridView
@@ -43,9 +57,9 @@ Public Class Busqueda_Venta
         End Try
     End Sub
 
-    ' Evento para filtrar en tiempo real (si agregas un TextBox llamado txtBuscar)
-    Private Sub txtBuscar_TextChanged(sender As Object, e As EventArgs)
-        ' CargarProductos(txtBuscar.Text.Trim())
+    ' EVENTO ACTIVADO: Filtra en tiempo real cada vez que escribes en el TextBox
+    Private Sub TextBox1_TextChanged(sender As Object, e As EventArgs) Handles txtBuscar.TextChanged
+        CargarProductos(txtBuscar.Text.Trim())
     End Sub
 
     Private Sub DgvProductos_CellDoubleClick(sender As Object, e As DataGridViewCellEventArgs) Handles dgvProductos.CellDoubleClick
@@ -62,6 +76,9 @@ Public Class Busqueda_Venta
     End Sub
 
     Private Sub Label1_Click(sender As Object, e As EventArgs) Handles Label1.Click
-
     End Sub
+
+    Private Sub dgvProductos_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles dgvProductos.CellContentClick
+    End Sub
+
 End Class
