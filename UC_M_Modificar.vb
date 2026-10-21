@@ -101,7 +101,12 @@ Namespaces:
 
                 If filas > 0 Then
                     MessageBox.Show("Material modificado exitosamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information)
-                    Me.Dispose() ' Cierra la vista al terminar de modificar con éxito
+                    Botones.LimpiarConPlaceholder(MTB_Codigo)
+                    Botones.LimpiarConPlaceholder(MTB_Nombre)
+                    Botones.LimpiarConPlaceholder(MTB_Tipo)
+                    Botones.LimpiarConPlaceholder(MTB_Unidad)
+                    Botones.LimpiarConPlaceholder(MTB_Pcompra)
+                    Botones.LimpiarConPlaceholder(MTB_Pventa)
                 End If
 
             Catch ex As Exception

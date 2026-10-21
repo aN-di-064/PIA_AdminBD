@@ -167,6 +167,8 @@ Partial Class UC_C_Nuevo
         ' 
         ' Panel1
         ' 
+        Panel1.Anchor = AnchorStyles.None
+        Panel1.AutoScroll = True
         Panel1.BackColor = Color.Transparent
         Panel1.Controls.Add(Label2)
         Panel1.Controls.Add(Button1)
@@ -181,7 +183,6 @@ Partial Class UC_C_Nuevo
         Panel1.Controls.Add(MTB_Codigo)
         Panel1.Controls.Add(MTB_Nombre)
         Panel1.Controls.Add(Label6)
-        Panel1.Dock = DockStyle.Fill
         Panel1.Font = New Font("Segoe UI", 12F)
         Panel1.Location = New Point(3, 3)
         Panel1.Name = "Panel1"

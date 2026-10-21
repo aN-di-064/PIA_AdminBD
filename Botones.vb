@@ -35,8 +35,44 @@ Public Class Botones
         End If
     End Sub
 
+    Public Shared Sub EstiloDataGrid(dgv As DataGridView)
+        With dgv
+            .BackgroundColor = Color.White
+            .BorderStyle = BorderStyle.FixedSingle
+            .CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal
+            .GridColor = Color.FromArgb(230, 230, 230)
+            .RowTemplate.Height = 35 ' Filas más espaciosas y cómodas
+            .AllowUserToAddRows = False
+            .SelectionMode = DataGridViewSelectionMode.FullRowSelect
+            .MultiSelect = False
+            .RowHeadersVisible = False
+            .ReadOnly = True
+
+            ' Estilo de los encabezados de la tabla
+            .EnableHeadersVisualStyles = False
+            .ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(245, 247, 250)
+            .ColumnHeadersDefaultCellStyle.ForeColor = Color.FromArgb(40, 40, 40)
+            .ColumnHeadersDefaultCellStyle.Font = New Font("Segoe UI", 10.0F, FontStyle.Bold)
+            .ColumnHeadersHeight = 40
+
+            ' Estilo de las celdas
+            .DefaultCellStyle.Font = New Font("Segoe UI", 9.5F, FontStyle.Regular)
+            .DefaultCellStyle.ForeColor = Color.FromArgb(50, 50, 50)
+            .DefaultCellStyle.BackColor = Color.White
+            .DefaultCellStyle.SelectionBackColor = Color.FromArgb(232, 240, 254) ' Azul muy claro suave
+            .DefaultCellStyle.SelectionForeColor = Color.FromArgb(30, 30, 30)
+            .DefaultCellStyle.Padding = New Padding(8, 0, 8, 0)
+
+            ' Filas alternadas
+            .AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(248, 249, 250)
+            .AlternatingRowsDefaultCellStyle.SelectionBackColor = Color.FromArgb(232, 240, 254)
+        End With
+    End Sub
+
     ' Configuracion del comportamiento de Placeholder en las cajas de texto
     Public Shared Sub ConfigurarPlaceholder(txt As TextBoxBase, placeholderText As String, esPassword As Boolean)
+
+        txt.Tag = placeholderText  ' Guardamos el texto del placeholder en la propiedad Tag del TextBoxBase
         ' Configuración inicial
         If String.IsNullOrWhiteSpace(txt.Text) OrElse txt.Text = placeholderText Then
             txt.Text = placeholderText
@@ -68,6 +104,31 @@ Public Class Botones
                                   End If
                               End Sub
     End Sub
+
+    Public Shared Sub LimpiarConPlaceholder(txt As TextBoxBase)
+        Dim phText As String = If(txt.Tag IsNot Nothing, txt.Tag.ToString(), "")
+        txt.Text = phText
+        txt.ForeColor = Color.DarkGray
+        If TypeOf txt Is TextBox Then
+            DirectCast(txt, TextBox).UseSystemPasswordChar = False
+        End If
+    End Sub
+    Public Shared Sub AsignarOpcionPlaceholder(txt As TextBoxBase, valor As String)
+        If String.IsNullOrEmpty(valor) Then
+            LimpiarConPlaceholder(txt)
+        Else
+            AsignarTexto(txt, valor)
+        End If
+    End Sub
+    Public Shared Function ObtenerValorLimpio(txt As TextBoxBase) As Object
+        Dim phText As String = If(txt.Tag IsNot Nothing, txt.Tag.ToString(), "")
+
+        If String.IsNullOrWhiteSpace(txt.Text) OrElse txt.Text = phText Then
+            Return DBNull.Value
+        Else
+            Return txt.Text.Trim()
+        End If
+    End Function
 
     ' Funcion para asignar texto a un TextBoxBase y asegurarse de que no sea nulo, además de establecer el color de fuente a negro
     Public Shared Sub AsignarTexto(txt As TextBoxBase, valor As String)

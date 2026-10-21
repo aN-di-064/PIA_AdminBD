@@ -180,6 +180,8 @@ Partial Class UC_C_Eliminar
         ' 
         ' Panel1
         ' 
+        Panel1.Anchor = AnchorStyles.None
+        Panel1.AutoScroll = True
         Panel1.Controls.Add(Label2)
         Panel1.Controls.Add(Button2)
         Panel1.Controls.Add(Button1)
@@ -194,7 +196,6 @@ Partial Class UC_C_Eliminar
         Panel1.Controls.Add(Label3)
         Panel1.Controls.Add(MTB_Telefono)
         Panel1.Controls.Add(Label5)
-        Panel1.Dock = DockStyle.Fill
         Panel1.Location = New Point(3, 3)
         Panel1.Name = "Panel1"
         Panel1.Size = New Size(794, 594)

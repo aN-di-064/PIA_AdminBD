@@ -123,13 +123,16 @@
     End Sub
 
     Private Sub ToolStripButton5_Click(sender As Object, e As EventArgs) Handles ToolStripButton5.Click
+        MostrarVista(New UC_Compras)
     End Sub
 
     Private Sub ToolStripButton6_Click(sender As Object, e As EventArgs) Handles ToolStripButton6.Click
-        MostrarVista(New UC_Consulta_Inventario)
+        MostrarVista(New UC_Consulta)
     End Sub
 
     Private Sub ToolStripButton7_Click(sender As Object, e As EventArgs) Handles ToolStripButton7.Click
+        Botones.LimpiarConPlaceholder(login.TextBox1)
+        Botones.LimpiarConPlaceholder(login.TextBox2)
         login.Show()
         Hide()
     End Sub

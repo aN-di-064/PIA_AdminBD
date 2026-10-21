@@ -5,6 +5,21 @@ Public Class UC_C_Nuevo
 
     Private Sub UC_C_Nuevo_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         CargarSiguienteId()
+        Botones.CentrarTotal(Panel1)
+
+        Botones.Redondear(MTB_Codigo, 10)
+        Botones.Redondear(MTB_Nombre, 10)
+        Botones.Redondear(MTB_Telefono, 10)
+        Botones.Redondear(MTB_Dirección, 10)
+        Botones.Redondear(MTB_Correo, 10)
+        Botones.Redondear(MTB_RFC, 10)
+        Botones.Redondear(Button1, 10)
+
+        Botones.ConfigurarPlaceholder(MTB_Nombre, "Nombre del Cliente", False)
+        Botones.ConfigurarPlaceholder(MTB_Telefono, "Teléfono", False)
+        Botones.ConfigurarPlaceholder(MTB_Dirección, "Dirección (Opcional)", False)
+        Botones.ConfigurarPlaceholder(MTB_Correo, "Correo electrónico (Opcional)", False)
+        Botones.ConfigurarPlaceholder(MTB_RFC, "RFC (Opcional)", False)
     End Sub
 
     ' Método para calcular automáticamente el código mínimo disponible en la tabla Vendedores
@@ -62,9 +77,9 @@ Public Class UC_C_Nuevo
             New SqliteParameter("@id", Convert.ToInt32(MTB_Codigo.Text.Trim())),
             New SqliteParameter("@nom", MTB_Nombre.Text.Trim()),
             New SqliteParameter("@tel", MTB_Telefono.Text.Trim()),
-            New SqliteParameter("@dir", MTB_Dirección.Text.Trim()),
-            New SqliteParameter("@correo", MTB_Correo.Text.Trim()),
-            New SqliteParameter("@rfc", MTB_RFC.Text.Trim())
+            New SqliteParameter("@dir", Botones.ObtenerValorLimpio(MTB_Dirección)),
+            New SqliteParameter("@correo", Botones.ObtenerValorLimpio(MTB_Correo)),
+            New SqliteParameter("@rfc", Botones.ObtenerValorLimpio(MTB_RFC))
         }
 
             ' 4. Ejecutar el comando utilizando tu clase helper centralizada
@@ -72,13 +87,12 @@ Public Class UC_C_Nuevo
 
             If filasAfectadas > 0 Then
                 MessageBox.Show("Cliente registrado exitosamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information)
-
-                ' Limpiar controles de texto y refrescar el siguiente ID disponible
-                MTB_Nombre.Clear()
-                MTB_Telefono.Clear()
-                MTB_Dirección.Clear()
-                MTB_Correo.Clear()
-                MTB_RFC.Clear()
+                Botones.LimpiarConPlaceholder(MTB_Codigo)
+                Botones.LimpiarConPlaceholder(MTB_Nombre)
+                Botones.LimpiarConPlaceholder(MTB_Telefono)
+                Botones.LimpiarConPlaceholder(MTB_Dirección)
+                Botones.LimpiarConPlaceholder(MTB_Correo)
+                Botones.LimpiarConPlaceholder(MTB_RFC)
                 CargarSiguienteId()
             End If
 

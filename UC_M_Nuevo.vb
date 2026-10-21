@@ -51,7 +51,7 @@ Public Class UC_M_Nuevo
         End Try
     End Sub
 
-    Private Sub Button1_Click(sender As Object, e As EventArgs)
+    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
         ' 1. Validar que los campos obligatorios no estén vacíos (incluyendo compra y venta)
         If String.IsNullOrEmpty(MTB_Nombre.Text) OrElse
            String.IsNullOrEmpty(MTB_Pcompra.Text) OrElse
@@ -80,22 +80,17 @@ Public Class UC_M_Nuevo
 
             If filasAfectadas > 0 Then
                 MessageBox.Show("Material registrado exitosamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information)
-
-                ' Limpiar los campos para un nuevo registro y actualizar el siguiente ID disponible
-                MTB_Nombre.Clear()
-                MTB_Tipo.Clear()
-                MTB_Unidad.Clear()
-                MTB_Pcompra.Clear()
-                MTB_Pventa.Clear()
+                Botones.LimpiarConPlaceholder(MTB_Codigo)
+                Botones.LimpiarConPlaceholder(MTB_Nombre)
+                Botones.LimpiarConPlaceholder(MTB_Tipo)
+                Botones.LimpiarConPlaceholder(MTB_Unidad)
+                Botones.LimpiarConPlaceholder(MTB_Pcompra)
+                Botones.LimpiarConPlaceholder(MTB_Pventa)
                 CargarSiguienteId()
             End If
 
         Catch ex As Exception
             MessageBox.Show("Ocurrió un error al guardar el material: " & ex.Message, "Error de Base de Datos", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
-    End Sub
-
-    Private Sub Button1_Click_1(sender As Object, e As EventArgs)
-
     End Sub
 End Class

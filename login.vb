@@ -50,9 +50,10 @@ Public Class login
             ' Si fallan, muestra el mensaje de error
             MessageBox.Show("Los datos de inicio de sesión son incorrectos", "Advertencia",
                             MessageBoxButtons.OK, MessageBoxIcon.Error)
-            TextBox2.Clear()
-            TextBox2.Text = "Contraseña"
-            TextBox2.ForeColor = Color.DarkGray
+
+            Botones.LimpiarConPlaceholder(TextBox1)
+            Botones.LimpiarConPlaceholder(TextBox2)
+
             Button1.Focus()
         End If
     End Sub

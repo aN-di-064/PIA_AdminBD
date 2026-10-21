@@ -65,14 +65,12 @@ Public Class UC_M_Eliminar
 
                 If filas > 0 Then
                     MessageBox.Show("Material eliminado exitosamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information)
-
-                    ' Limpiar los campos después de la eliminación
-                    MTB_Codigo.Clear()
-                    MTB_Nombre.Clear()
-                    MTB_Tipo.Clear()
-                    MTB_Unidad.Clear()
-                    MTB_Pcompra.Clear()
-                    MTB_Pventa.Clear()
+                    Botones.LimpiarConPlaceholder(MTB_Codigo)
+                    Botones.LimpiarConPlaceholder(MTB_Nombre)
+                    Botones.LimpiarConPlaceholder(MTB_Tipo)
+                    Botones.LimpiarConPlaceholder(MTB_Unidad)
+                    Botones.LimpiarConPlaceholder(MTB_Pcompra)
+                    Botones.LimpiarConPlaceholder(MTB_Pventa)
                 End If
 
             Catch ex As Exception
