@@ -18,21 +18,12 @@ Public Class Busqueda_Venta
     Public Property PrecioSeleccionado As Decimal
 
     Private Sub Busqueda_Venta_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        ' Cargar todos los materiales registrados al abrir el formulario
+
+        Botones.EstiloDataGrid(dgvProductos)
+        Botones.Redondear(txtBuscar, 10)
+        Botones.Redondear(Panel1, 20)
+        Botones.CentrarTotal(Panel1)
         CargarProductos("")
-
-        ' Hacer que todo el DataGridView sea de solo lectura
-        dgvProductos.ReadOnly = True
-
-        ' Evitar que el usuario pueda agregar nuevas filas vacías al final de la tabla
-        dgvProductos.AllowUserToAddRows = False
-
-        ' Evitar que el usuario pueda eliminar filas presionando la tecla Supr/Delete
-        dgvProductos.AllowUserToDeleteRows = False
-
-        ' Opcional: Hacer que se seleccione la fila completa al hacer clic
-        dgvProductos.SelectionMode = DataGridViewSelectionMode.FullRowSelect
-        dgvProductos.MultiSelect = False
     End Sub
 
     ' Método para consultar la base de datos y llenar el DataGridView

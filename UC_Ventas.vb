@@ -15,19 +15,19 @@
     End Sub
 
     Private Sub UC_Ventas_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        ' Permitir edición en el DataGridView
+        Botones.EstiloDataGrid(DataGridView1)
         DataGridView1.ReadOnly = False
 
-        ' Proteger todas las columnas excepto la que tenga "Cantidad" en su encabezado
         For Each col As DataGridViewColumn In DataGridView1.Columns
-            If col.HeaderText.Contains("Cantidad") Then
+            If col.HeaderText.IndexOf("Cantidad", StringComparison.OrdinalIgnoreCase) >= 0 Then
                 col.ReadOnly = False
             Else
                 col.ReadOnly = True
             End If
         Next
+        Botones.CentrarTotal(Panel1)
+        Botones.Redondear(Panel1, 20)
 
-        ' Cargar folio de salida y calcular total inicial
         ObtenerSiguienteIdVenta()
         CalcularTotalVenta()
     End Sub
@@ -237,9 +237,5 @@
 
         ' Muestra el total en la etiqueta con formato de dos decimales
         LBL_TOTAL.Text = "$ " & total.ToString("N2")
-    End Sub
-
-    Private Sub LBL_IDVENTA_Click(sender As Object, e As EventArgs) Handles LBL_IDVENTA.Click
-
     End Sub
 End Class

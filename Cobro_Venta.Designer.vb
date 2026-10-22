@@ -22,6 +22,7 @@ Partial Class Cobro_Venta
     'No lo modifique con el editor de código.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Cobro_Venta))
         Label1 = New Label()
         TXT_TOTAL = New TextBox()
         Label2 = New Label()
@@ -30,6 +31,10 @@ Partial Class Cobro_Venta
         TXT_DR = New TextBox()
         Label4 = New Label()
         TXT_CAMBIO = New TextBox()
+        TableLayoutPanel1 = New TableLayoutPanel()
+        Panel1 = New Panel()
+        TableLayoutPanel1.SuspendLayout()
+        Panel1.SuspendLayout()
         SuspendLayout()
         ' 
         ' Label1
@@ -37,31 +42,37 @@ Partial Class Cobro_Venta
         Label1.AutoSize = True
         Label1.Location = New Point(0, 0)
         Label1.Name = "Label1"
-        Label1.Size = New Size(0, 15)
+        Label1.Size = New Size(0, 20)
         Label1.TabIndex = 0
         ' 
         ' TXT_TOTAL
         ' 
-        TXT_TOTAL.Location = New Point(224, 99)
+        TXT_TOTAL.BackColor = Color.White
+        TXT_TOTAL.Font = New Font("Segoe UI", 12F)
+        TXT_TOTAL.Location = New Point(204, 80)
+        TXT_TOTAL.Margin = New Padding(3, 4, 3, 4)
         TXT_TOTAL.Name = "TXT_TOTAL"
         TXT_TOTAL.ReadOnly = True
-        TXT_TOTAL.Size = New Size(150, 23)
+        TXT_TOTAL.Size = New Size(171, 34)
         TXT_TOTAL.TabIndex = 1
         ' 
         ' Label2
         ' 
         Label2.AutoSize = True
-        Label2.Location = New Point(89, 99)
+        Label2.Font = New Font("Segoe UI", 12F)
+        Label2.Location = New Point(34, 80)
         Label2.Name = "Label2"
-        Label2.Size = New Size(35, 15)
+        Label2.Size = New Size(58, 28)
         Label2.TabIndex = 2
         Label2.Text = "Total:"
         ' 
         ' Button1
         ' 
-        Button1.Location = New Point(320, 321)
+        Button1.Font = New Font("Segoe UI", 12F)
+        Button1.Location = New Point(134, 260)
+        Button1.Margin = New Padding(3, 4, 3, 4)
         Button1.Name = "Button1"
-        Button1.Size = New Size(135, 23)
+        Button1.Size = New Size(140, 40)
         Button1.TabIndex = 3
         Button1.Text = "Confirmar venta"
         Button1.UseVisualStyleBackColor = True
@@ -69,55 +80,92 @@ Partial Class Cobro_Venta
         ' Label3
         ' 
         Label3.AutoSize = True
-        Label3.Location = New Point(89, 134)
+        Label3.Font = New Font("Segoe UI", 12F)
+        Label3.Location = New Point(34, 140)
         Label3.Name = "Label3"
-        Label3.Size = New Size(91, 15)
+        Label3.Size = New Size(152, 28)
         Label3.TabIndex = 5
         Label3.Text = "Dinero recibido:"
         ' 
         ' TXT_DR
         ' 
-        TXT_DR.Location = New Point(224, 131)
+        TXT_DR.Font = New Font("Segoe UI", 12F)
+        TXT_DR.Location = New Point(204, 140)
+        TXT_DR.Margin = New Padding(3, 4, 3, 4)
         TXT_DR.Name = "TXT_DR"
-        TXT_DR.Size = New Size(150, 23)
+        TXT_DR.Size = New Size(171, 34)
         TXT_DR.TabIndex = 4
         ' 
         ' Label4
         ' 
         Label4.AutoSize = True
-        Label4.Location = New Point(89, 174)
+        Label4.Font = New Font("Segoe UI", 12F)
+        Label4.Location = New Point(34, 200)
         Label4.Name = "Label4"
-        Label4.Size = New Size(49, 15)
+        Label4.Size = New Size(80, 28)
         Label4.TabIndex = 7
         Label4.Text = "Cambio"
         ' 
         ' TXT_CAMBIO
         ' 
-        TXT_CAMBIO.Location = New Point(224, 166)
+        TXT_CAMBIO.BackColor = Color.White
+        TXT_CAMBIO.Font = New Font("Segoe UI", 12F)
+        TXT_CAMBIO.Location = New Point(204, 200)
+        TXT_CAMBIO.Margin = New Padding(3, 4, 3, 4)
         TXT_CAMBIO.Name = "TXT_CAMBIO"
         TXT_CAMBIO.ReadOnly = True
-        TXT_CAMBIO.Size = New Size(150, 23)
+        TXT_CAMBIO.Size = New Size(171, 34)
         TXT_CAMBIO.TabIndex = 6
+        ' 
+        ' TableLayoutPanel1
+        ' 
+        TableLayoutPanel1.ColumnCount = 1
+        TableLayoutPanel1.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 50F))
+        TableLayoutPanel1.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 50F))
+        TableLayoutPanel1.Controls.Add(Panel1, 0, 0)
+        TableLayoutPanel1.Dock = DockStyle.Fill
+        TableLayoutPanel1.Location = New Point(0, 0)
+        TableLayoutPanel1.Name = "TableLayoutPanel1"
+        TableLayoutPanel1.RowCount = 1
+        TableLayoutPanel1.RowStyles.Add(New RowStyle(SizeType.Percent, 50F))
+        TableLayoutPanel1.RowStyles.Add(New RowStyle(SizeType.Percent, 50F))
+        TableLayoutPanel1.Size = New Size(482, 453)
+        TableLayoutPanel1.TabIndex = 8
+        ' 
+        ' Panel1
+        ' 
+        Panel1.Anchor = AnchorStyles.None
+        Panel1.BackColor = Color.White
+        Panel1.Controls.Add(Button1)
+        Panel1.Controls.Add(TXT_CAMBIO)
+        Panel1.Controls.Add(Label4)
+        Panel1.Controls.Add(TXT_DR)
+        Panel1.Controls.Add(Label2)
+        Panel1.Controls.Add(Label3)
+        Panel1.Controls.Add(TXT_TOTAL)
+        Panel1.Location = New Point(41, 26)
+        Panel1.Name = "Panel1"
+        Panel1.Size = New Size(400, 400)
+        Panel1.TabIndex = 0
         ' 
         ' Cobro_Venta
         ' 
-        AutoScaleDimensions = New SizeF(7F, 15F)
+        AutoScaleDimensions = New SizeF(8F, 20F)
         AutoScaleMode = AutoScaleMode.Font
-        ClientSize = New Size(467, 356)
-        Controls.Add(Label4)
-        Controls.Add(TXT_CAMBIO)
-        Controls.Add(Label3)
-        Controls.Add(TXT_DR)
-        Controls.Add(Button1)
-        Controls.Add(Label2)
-        Controls.Add(TXT_TOTAL)
+        ClientSize = New Size(482, 453)
         Controls.Add(Label1)
+        Controls.Add(TableLayoutPanel1)
+        Icon = CType(resources.GetObject("$this.Icon"), Icon)
+        Margin = New Padding(3, 4, 3, 4)
         MaximizeBox = False
-        MaximumSize = New Size(483, 395)
+        MaximumSize = New Size(500, 500)
         MinimizeBox = False
-        MinimumSize = New Size(483, 395)
+        MinimumSize = New Size(500, 500)
         Name = "Cobro_Venta"
-        Text = "Cobro_Venta"
+        Text = "Cobro Venta"
+        TableLayoutPanel1.ResumeLayout(False)
+        Panel1.ResumeLayout(False)
+        Panel1.PerformLayout()
         ResumeLayout(False)
         PerformLayout()
     End Sub
@@ -130,4 +178,6 @@ Partial Class Cobro_Venta
     Friend WithEvents TXT_DR As TextBox
     Friend WithEvents Label4 As Label
     Friend WithEvents TXT_CAMBIO As TextBox
+    Friend WithEvents TableLayoutPanel1 As TableLayoutPanel
+    Friend WithEvents Panel1 As Panel
 End Class

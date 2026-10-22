@@ -12,6 +12,9 @@ Public Class Busqueda_Vendedores
     Public Shared Property VendedorSeleccionado As Boolean = False
     Private Sub Busqueda_Vendedores_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         VendedorSeleccionado = False
+        Botones.Redondear(Panel1, 20)
+        Botones.EstiloDataGrid(dgvVendedores)
+        Botones.ConfigurarPlaceholder(txtBuscar, "Buscar Vendedor...", False)
         CargarVendedores()
         dgvVendedores.AllowUserToAddRows = False
     End Sub

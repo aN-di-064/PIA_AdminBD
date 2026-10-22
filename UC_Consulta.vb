@@ -11,15 +11,24 @@ Public Class UC_Consulta
             ComboBox1.Items.Add("Vendedores")
             ComboBox1.SelectedIndex = 0
         End If
+        Botones.CentrarTotal(Panel1)
+        Botones.Redondear(Panel1, 20)
+        Botones.Redondear(txtBuscar, 10)
 
+        Botones.ConfigurarPlaceholder(txtBuscar, "Buscar...", False)
+        Botones.EstiloDataGrid(dgvProductos)
         CargarDatosTabla(txtBuscar.Text.Trim())
     End Sub
-
+    Private Sub UC_Consulta_Resized(sender As Object, e As EventArgs) Handles MyBase.Resize
+        Botones.CentrarTotal(Panel1)
+    End Sub
     Private Sub CargarDatosTabla(Optional filtro As String = "")
+        If filtro = "Buscar..." Then
+            filtro = ""
+        End If
         Try
             Dim query As String = ""
             Dim parametros As New List(Of SqliteParameter) From {}
-
             If ComboBox1.SelectedIndex = 0 Then
                 query = "SELECT Id_mat AS 'Código', nom_mat AS 'Nombre', tipo AS 'Tipo', unidad_medida AS 'Unidad', Precio_compra AS 'Precio Compra', Precio_Venta AS 'Precio Venta' FROM Materiales"
                 If Not String.IsNullOrEmpty(filtro) Then
@@ -36,7 +45,6 @@ Public Class UC_Consulta
 
             Dim dt As New DataTable()
             Dim db As New ConexionBD()
-
             Using conexion As SqliteConnection = db.ObtenerConexion()
                 If conexion IsNot Nothing AndAlso conexion.State = ConnectionState.Open Then
                     Using comando As New SqliteCommand(query, conexion)
@@ -49,23 +57,18 @@ Public Class UC_Consulta
                     End Using
                 End If
             End Using
-
             dgvProductos.DataSource = dt
             idSeleccionado = 0
-
         Catch ex As Exception
             MessageBox.Show("Error al cargar los datos: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
-
     Private Sub ComboBox1_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ComboBox1.SelectedIndexChanged
         CargarDatosTabla(txtBuscar.Text.Trim())
     End Sub
-
     Private Sub txtBuscar_TextChanged(sender As Object, e As EventArgs) Handles txtBuscar.TextChanged
         CargarDatosTabla(txtBuscar.Text.Trim())
     End Sub
-
     Private Sub dgvProductos_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles dgvProductos.CellClick
         If e.RowIndex >= 0 Then
             Dim fila As DataGridViewRow = dgvProductos.Rows(e.RowIndex)
@@ -73,9 +76,5 @@ Public Class UC_Consulta
                 Integer.TryParse(fila.Cells(0).Value.ToString(), idSeleccionado)
             End If
         End If
-    End Sub
-
-    Private Sub dgvProductos_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles dgvProductos.CellContentClick
-
     End Sub
 End Class

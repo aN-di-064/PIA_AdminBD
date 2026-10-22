@@ -42,10 +42,9 @@ Public Class UC_Compras
     End Sub
 
     Private Sub UC_Compras_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        ' Permitir edición en el DataGridView
+        Botones.EstiloDataGrid(DataGridView1)
         DataGridView1.ReadOnly = False
 
-        ' Proteger todas las columnas excepto la que contenga "Cantidad" en su encabezado
         For Each col As DataGridViewColumn In DataGridView1.Columns
             If col.HeaderText.IndexOf("Cantidad", StringComparison.OrdinalIgnoreCase) >= 0 Then
                 col.ReadOnly = False
@@ -53,11 +52,15 @@ Public Class UC_Compras
                 col.ReadOnly = True
             End If
         Next
+        Botones.CentrarTotal(Panel1)
+        Botones.Redondear(Panel1, 20)
 
-        ' Cargar catálogo de vendedores, consecutivo de compra y total inicial
         CargarVendedores()
         ObtenerSiguienteIdCompra()
         CalcularTotalCompra()
+    End Sub
+    Private Sub UC_Compras_Resized(sender As Object, e As EventArgs) Handles MyBase.Resize
+        Botones.CentrarTotal(Panel1)
     End Sub
 
     ' Función auxiliar flexible para obtener el valor de una celda buscando por coincidencia parcial de encabezado
@@ -312,10 +315,10 @@ Public Class UC_Compras
     ' Botón Borrar producto seleccionado
     Private Sub BTN_BORRAR_Click(sender As Object, e As EventArgs) Handles BTN_BORRAR.Click
         If DataGridView1.SelectedRows.Count > 0 Then
-            Dim filaSeleccionada As DataGridViewRow = DataGridView1.SelectedRows(0)
+            Dim filaSeleccionada = DataGridView1.SelectedRows(0)
 
             If Not filaSeleccionada.IsNewRow Then
-                Dim respuesta As DialogResult = MessageBox.Show("¿Estás seguro de eliminar este producto de la lista de compra?", "Confirmar eliminación", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+                Dim respuesta = MessageBox.Show("¿Estás seguro de eliminar este producto de la lista de compra?", "Confirmar eliminación", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
 
                 If respuesta = DialogResult.Yes Then
                     DataGridView1.Rows.Remove(filaSeleccionada)
@@ -357,4 +360,7 @@ Public Class UC_Compras
         LBL_TOTAL.Text = "$ " & total.ToString("N2")
     End Sub
 
+    Private Sub Button3_Click(sender As Object, e As EventArgs)
+
+    End Sub
 End Class

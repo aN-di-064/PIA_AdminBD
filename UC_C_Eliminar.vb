@@ -33,27 +33,29 @@ Public Class UC_C_Eliminar
             Botones.AsignarTexto(MTB_Codigo, Busqueda_Vendedores.IdSeleccionado)
             Botones.AsignarTexto(MTB_Nombre, Busqueda_Vendedores.NombreSeleccionado)
             Botones.AsignarTexto(MTB_Telefono, Busqueda_Vendedores.TelefonoSeleccionado)
-            Botones.AsignarTexto(MTB_Dirección, Busqueda_Vendedores.DireccionSeleccionada)
-            Botones.AsignarTexto(MTB_Correo, Busqueda_Vendedores.CorreoSeleccionado)
-            Botones.AsignarTexto(MTB_RFC, Busqueda_Vendedores.RFCSeleccionado)
+            Botones.AsignarOpcionPlaceholder(MTB_Dirección, Busqueda_Vendedores.DireccionSeleccionada)
+            Botones.AsignarOpcionPlaceholder(MTB_Correo, Busqueda_Vendedores.CorreoSeleccionado)
+            Botones.AsignarOpcionPlaceholder(MTB_RFC, Busqueda_Vendedores.RFCSeleccionado)
         End If
     End Sub
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
         If String.IsNullOrEmpty(MTB_Codigo.Text) Then
-            MessageBox.Show("Por favor, seleccione un producto primero utilizando el botón de búsqueda.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            MessageBox.Show("Por favor, seleccione un vendedor primero utilizando el botón de búsqueda.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning)
             Return
         End If
         If MessageBox.Show("¿Está seguro de que desea eliminar este registro?", "Confirmar eliminación", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) = DialogResult.Yes Then
             Try
-                Dim query As String = "DELETE FROM Materiales WHERE Id_mat = @id"
+                Dim query As String = "DELETE FROM Vendedores WHERE Id_v = @id"
 
                 Dim parametros As New List(Of SqliteParameter) From {
                     New SqliteParameter("@id", Convert.ToInt32(MTB_Codigo.Text.Trim()))
                 }
+
+                ' 4. Ejecutar el comando mediante la clase helper
                 Dim filas As Integer = ConexionBD.EjecutarComando(query, parametros)
 
                 If filas > 0 Then
-                    MessageBox.Show("Material eliminado exitosamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                    MessageBox.Show("Vendedor eliminado exitosamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information)
                     Botones.LimpiarConPlaceholder(MTB_Codigo)
                     Botones.LimpiarConPlaceholder(MTB_Nombre)
                     Botones.LimpiarConPlaceholder(MTB_Telefono)
@@ -61,8 +63,9 @@ Public Class UC_C_Eliminar
                     Botones.LimpiarConPlaceholder(MTB_Correo)
                     Botones.LimpiarConPlaceholder(MTB_RFC)
                 End If
+
             Catch ex As Exception
-                MessageBox.Show("Error al eliminar el material: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                MessageBox.Show("Error al eliminar el vendedor: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
             End Try
         End If
     End Sub

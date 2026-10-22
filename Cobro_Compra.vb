@@ -18,7 +18,14 @@ Public Class Cobro_Compra
         TXT_DR.Text = ""
         TXT_CAMBIO.Text = "$ 0.00"
 
-        ' Colocar el foco directamente en el campo de dinero recibido
+        Botones.CentrarTotal(Panel1)
+        Botones.Redondear(TXT_CAMBIO, 10)
+        Botones.Redondear(TXT_DR, 10)
+        Botones.Redondear(TXT_TOTAL, 10)
+        Botones.Redondear(BTN_CONFIRMAR, 10)
+
+        Botones.ConfigurarPlaceholder(TXT_DR, "Dinero recibido", False)
+
         TXT_DR.Focus()
     End Sub
 
@@ -65,5 +72,4 @@ Public Class Cobro_Compra
             e.SuppressKeyPress = True
         End If
     End Sub
-
 End Class

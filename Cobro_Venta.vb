@@ -13,9 +13,18 @@
         TXT_CAMBIO.ReadOnly = True
         TXT_CAMBIO.Text = "0.00"
 
+        Botones.CentrarTotal(Panel1)
+        Botones.Redondear(TXT_CAMBIO, 10)
+        Botones.Redondear(TXT_DR, 10)
+        Botones.Redondear(TXT_TOTAL, 10)
+        Botones.Redondear(Button1, 10)
+
+        Botones.ConfigurarPlaceholder(TXT_DR, "Dinero recibido", False)
         TXT_DR.Focus()
     End Sub
-
+    Private Sub Cobro_Venta_Resize(sender As Object, e As EventArgs) Handles MyBase.Resize
+        Botones.CentrarTotal(Panel1)
+    End Sub
     Private Sub TXT_DR_TextChanged(sender As Object, e As EventArgs) Handles TXT_DR.TextChanged
         Dim dineroRecibido As Decimal = 0
         If Decimal.TryParse(TXT_DR.Text, dineroRecibido) Then

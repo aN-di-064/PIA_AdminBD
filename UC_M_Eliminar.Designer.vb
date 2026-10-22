@@ -181,6 +181,7 @@ Partial Class UC_M_Eliminar
         ' Panel_Form
         ' 
         Panel_Form.Anchor = AnchorStyles.None
+        Panel_Form.AutoScroll = True
         Panel_Form.Controls.Add(Button2)
         Panel_Form.Controls.Add(MTB_Pventa)
         Panel_Form.Controls.Add(Label7)

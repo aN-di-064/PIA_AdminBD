@@ -2,52 +2,42 @@
 Imports System.Globalization
 
 Public Class UC_ReporteDia
-
     Public FechaInicio As DateTime
     Public FechaFin As DateTime
     Public TipoConsulta As String = "Ventas"
-
     Public Sub New()
         InitializeComponent()
     End Sub
-
     Public Sub New(fInicio As DateTime, fFin As DateTime)
         InitializeComponent()
         FechaInicio = fInicio
         FechaFin = fFin
         TipoConsulta = "Ventas"
     End Sub
-
     Public Sub New(fInicio As DateTime, fFin As DateTime, tipo As String)
         InitializeComponent()
         FechaInicio = fInicio
         FechaFin = fFin
         TipoConsulta = tipo
     End Sub
-
     Private Sub UC_ReporteDia_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         If FechaInicio = Nothing Then FechaInicio = DateTime.Today
         If FechaFin = Nothing Then FechaFin = DateTime.Today
-
         Label2.Text = $"{FechaInicio.ToString("dd/MM/yyyy")} al {FechaFin.ToString("dd/MM/yyyy")}"
 
-        ' Configurar el DataGridView para solo lectura en el reporte general
-        DataGridView1.ReadOnly = True
-        DataGridView1.AllowUserToAddRows = False
-        DataGridView1.AllowUserToDeleteRows = False
-        DataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect
-        DataGridView1.MultiSelect = False
-
+        Botones.CentrarTotal(Panel1)
+        Botones.Redondear(Panel1, 20)
+        Botones.EstiloDataGrid(DataGridView1)
         CargarReporte(FechaInicio, FechaFin, TipoConsulta)
     End Sub
-
+    Private Sub UC_ReporteDia_Resized(sender As Object, e As EventArgs) Handles MyBase.Resize
+        Botones.CentrarTotal(Panel1)
+    End Sub
     Public Sub CargarReporte(fInicio As DateTime, fFin As DateTime, tipo As String)
         Dim strInicio As String = fInicio.ToString("yyyy-MM-dd") & " 00:00:00"
         Dim strFin As String = fFin.ToString("yyyy-MM-dd") & " 23:59:59"
 
         Dim tipoConsultaLimpio As String = If(tipo IsNot Nothing, tipo.Trim(), "Ventas")
-
-        ' Actualizar títulos de interfaz
         If tipoConsultaLimpio.Equals("Compras", StringComparison.OrdinalIgnoreCase) Then
             Label1.Text = "Compras del periodo:"
             If LBL_ETIQUETA_TOTAL IsNot Nothing Then LBL_ETIQUETA_TOTAL.Text = "Total de compras:"
@@ -57,8 +47,6 @@ Public Class UC_ReporteDia
         End If
 
         Dim querySQL As String = ""
-
-        ' Consulta a nivel de Cabecera (Maestro) para mostrar solo los datos generales del ticket
         If tipoConsultaLimpio.Equals("Compras", StringComparison.OrdinalIgnoreCase) Then
             querySQL = "SELECT " &
                        "  c.Id_com AS [ID Compra], " &
@@ -81,7 +69,6 @@ Public Class UC_ReporteDia
                        "WHERE s.fecha_s BETWEEN @fInicio AND @fFin " &
                        "ORDER BY s.Id_s DESC"
         End If
-
         Try
             Dim parametros As New List(Of SqliteParameter) From {
                 New SqliteParameter("@fInicio", strInicio),
@@ -90,13 +77,11 @@ Public Class UC_ReporteDia
 
             Dim dt As DataTable = ConexionBD.ObtenerDatos(querySQL, parametros)
 
-            ' Limpiar DataGridView y evitar columnas duplicadas
             DataGridView1.DataSource = Nothing
             DataGridView1.Columns.Clear()
             DataGridView1.AutoGenerateColumns = True
             DataGridView1.DataSource = dt
 
-            ' Calcular el total general sumando la columna de Total de todos los tickets listados
             Dim totalGeneral As Decimal = 0
             If dt IsNot Nothing AndAlso dt.Rows.Count > 0 Then
                 For Each row As DataRow In dt.Rows
@@ -112,18 +97,15 @@ Public Class UC_ReporteDia
             MessageBox.Show("Error al consultar el reporte de " & tipoConsultaLimpio & ": " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
-
-    ' Evento de Doble Clic para mostrar el detalle de los materiales del ticket seleccionado
     Private Sub DataGridView1_CellDoubleClick(sender As Object, e As DataGridViewCellEventArgs) Handles DataGridView1.CellDoubleClick
         If e.RowIndex >= 0 Then
             Dim filaSeleccionada As DataGridViewRow = DataGridView1.Rows(e.RowIndex)
             Dim idTransaccion As Integer = Convert.ToInt32(filaSeleccionada.Cells(0).Value)
             Dim tipoActual As String = If(TipoConsulta IsNot Nothing, TipoConsulta.Trim(), "Ventas")
 
-            ' Crear una ventana emergente limpia para mostrar el detalle
             Dim formDetalle As New Form()
             formDetalle.Text = If(tipoActual.Equals("Compras", StringComparison.OrdinalIgnoreCase), "Detalle de Compra #" & idTransaccion, "Detalle de Venta #" & idTransaccion)
-            formDetalle.Size = New Size(600, 350)
+            formDetalle.Size = New Size(800, 600)
             formDetalle.StartPosition = FormStartPosition.CenterParent
             formDetalle.FormBorderStyle = FormBorderStyle.FixedDialog
             formDetalle.MaximizeBox = False
@@ -135,6 +117,10 @@ Public Class UC_ReporteDia
             dgvDetalle.AllowUserToAddRows = False
             dgvDetalle.AllowUserToDeleteRows = False
             dgvDetalle.SelectionMode = DataGridViewSelectionMode.FullRowSelect
+            dgvDetalle.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill
+            dgvDetalle.RowHeadersVisible = False
+
+            Botones.EstiloDataGrid(dgvDetalle)
             formDetalle.Controls.Add(dgvDetalle)
 
             Dim queryDetalle As String = ""
@@ -166,9 +152,7 @@ Public Class UC_ReporteDia
 
             Dim dtDetalle As DataTable = ConexionBD.ObtenerDatos(queryDetalle, parametrosDetalle)
             dgvDetalle.DataSource = dtDetalle
-
             formDetalle.ShowDialog()
         End If
     End Sub
-
 End Class

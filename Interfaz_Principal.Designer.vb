@@ -166,7 +166,7 @@ Partial Class Interfaz_Principal
         Margin = New Padding(3, 4, 3, 4)
         MinimumSize = New Size(930, 634)
         Name = "Interfaz_Principal"
-        Text = "Interfaz_Principal"
+        Text = "Centro de Acopio"
         WindowState = FormWindowState.Maximized
         ToolStrip1.ResumeLayout(False)
         ToolStrip1.PerformLayout()

@@ -6,22 +6,14 @@ Imports Microsoft.Data.Sqlite
 Public Class login
 
     Private Sub login_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-
-        ' Las siguientes Funciones son sobre el control de los botones dentro de la interfaz generados por el
-        ' archivo Botones.vb, que es un modulo que contiene funciones para centrar, redondear y configurar placeholders
-        ' en los controles.
-
         Botones.CentrarTotal(Panel1)
         Botones.CentrarHorizontal(TextBox1)
         Botones.CentrarHorizontal(TextBox2)
         Botones.CentrarHorizontal(Button1)
 
-        ' TextBox1 es de usuario normal (esPassword = False)
         Botones.ConfigurarPlaceholder(TextBox1, "Usuario", False)
-        ' TextBox2 es de contraseña, por lo que ocultará los caracteres (esPassword = True)
         Botones.ConfigurarPlaceholder(TextBox2, "Contraseña", True)
 
-        ' Entre mas grande el numero mas redondeado
         Botones.Redondear(Panel1, 20)
         Botones.Redondear(TextBox1, 10)
         Botones.Redondear(TextBox2, 10)
@@ -31,23 +23,18 @@ Public Class login
         Dim usuarioText As String = TextBox1.Text.Trim()
         Dim contrasenaText As String = TextBox2.Text.Trim()
 
-        ' Validar que los campos no estén vacíos
         If String.IsNullOrEmpty(usuarioText) OrElse String.IsNullOrEmpty(contrasenaText) Then
             MessageBox.Show("Por favor, ingresa el usuario y la contraseña.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning)
             Return
         End If
 
-        ' Verificar credenciales en la base de datos
         If ValidarUsuario(usuarioText, contrasenaText) Then
-            ' Si los datos son correctos, abre la interfaz principal
             Interfaz_Principal.Show()
             Me.Hide()
 
-            ' Limpiar los campos
             TextBox1.Text = ""
             TextBox2.Text = ""
         Else
-            ' Si fallan, muestra el mensaje de error
             MessageBox.Show("Los datos de inicio de sesión son incorrectos", "Advertencia",
                             MessageBoxButtons.OK, MessageBoxIcon.Error)
 
@@ -58,11 +45,9 @@ Public Class login
         End If
     End Sub
 
-    ' Función para consultar la base de datos SQLite 
     Private Function ValidarUsuario(user As String, pass As String) As Boolean
         Dim accesoValido As Boolean = False
         Dim db As New ConexionBD()
-
         Using conexion As SqliteConnection = db.ObtenerConexion()
             If conexion IsNot Nothing AndAlso conexion.State = ConnectionState.Open Then
 
@@ -79,8 +64,6 @@ Public Class login
                 End Using
             End If
         End Using
-
         Return accesoValido
     End Function
-
 End Class

@@ -25,6 +25,7 @@ Partial Class Busqueda_Materiales
         Dim DataGridViewCellStyle1 As DataGridViewCellStyle = New DataGridViewCellStyle()
         Dim DataGridViewCellStyle2 As DataGridViewCellStyle = New DataGridViewCellStyle()
         Dim DataGridViewCellStyle3 As DataGridViewCellStyle = New DataGridViewCellStyle()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Busqueda_Materiales))
         Label1 = New Label()
         txtBuscar = New TextBox()
         dgvMateriales = New DataGridView()
@@ -39,7 +40,7 @@ Partial Class Busqueda_Materiales
         ' 
         Label1.AutoSize = True
         Label1.Font = New Font("Segoe UI", 12F)
-        Label1.Location = New Point(33, 45)
+        Label1.Location = New Point(30, 45)
         Label1.Name = "Label1"
         Label1.Size = New Size(198, 28)
         Label1.TabIndex = 6
@@ -48,7 +49,7 @@ Partial Class Busqueda_Materiales
         ' txtBuscar
         ' 
         txtBuscar.Font = New Font("Segoe UI", 12F)
-        txtBuscar.Location = New Point(233, 45)
+        txtBuscar.Location = New Point(230, 45)
         txtBuscar.Margin = New Padding(3, 4, 3, 4)
         txtBuscar.Name = "txtBuscar"
         txtBuscar.Size = New Size(327, 34)
@@ -83,7 +84,7 @@ Partial Class Busqueda_Materiales
         dgvMateriales.DefaultCellStyle = DataGridViewCellStyle2
         dgvMateriales.EnableHeadersVisualStyles = False
         dgvMateriales.GridColor = Color.WhiteSmoke
-        dgvMateriales.Location = New Point(33, 95)
+        dgvMateriales.Location = New Point(30, 90)
         dgvMateriales.Margin = New Padding(3, 4, 3, 4)
         dgvMateriales.MultiSelect = False
         dgvMateriales.Name = "dgvMateriales"
@@ -110,9 +111,9 @@ Partial Class Busqueda_Materiales
         Panel1.Controls.Add(Label1)
         Panel1.Controls.Add(txtBuscar)
         Panel1.Controls.Add(dgvMateriales)
-        Panel1.Location = New Point(12, 13)
+        Panel1.Location = New Point(11, 11)
         Panel1.Name = "Panel1"
-        Panel1.Size = New Size(758, 527)
+        Panel1.Size = New Size(760, 530)
         Panel1.TabIndex = 7
         ' 
         ' TableLayoutPanel1
@@ -137,9 +138,10 @@ Partial Class Busqueda_Materiales
         AutoScaleMode = AutoScaleMode.Font
         ClientSize = New Size(782, 553)
         Controls.Add(TableLayoutPanel1)
+        Icon = CType(resources.GetObject("$this.Icon"), Icon)
         Margin = New Padding(3, 4, 3, 4)
         Name = "Busqueda_Materiales"
-        Text = "Busqueda_Materiales"
+        Text = "Busqueda Materiales"
         CType(dgvMateriales, ComponentModel.ISupportInitialize).EndInit()
         Panel1.ResumeLayout(False)
         Panel1.PerformLayout()
