@@ -37,19 +37,18 @@ Partial Class Busqueda_Vendedores
         Label1.AutoSize = True
         Label1.BackColor = Color.White
         Label1.Font = New Font("Segoe UI", 12F)
-        Label1.Location = New Point(30, 45)
+        Label1.Location = New Point(26, 34)
         Label1.Name = "Label1"
-        Label1.Size = New Size(211, 28)
+        Label1.Size = New Size(167, 21)
         Label1.TabIndex = 6
         Label1.Text = "Nombre del Vendedor:"
         ' 
         ' txtBuscar
         ' 
         txtBuscar.Font = New Font("Segoe UI", 12F)
-        txtBuscar.Location = New Point(255, 45)
-        txtBuscar.Margin = New Padding(3, 4, 3, 4)
+        txtBuscar.Location = New Point(223, 34)
         txtBuscar.Name = "txtBuscar"
-        txtBuscar.Size = New Size(327, 34)
+        txtBuscar.Size = New Size(287, 29)
         txtBuscar.TabIndex = 5
         ' 
         ' dgvVendedores
@@ -57,13 +56,12 @@ Partial Class Busqueda_Vendedores
         dgvVendedores.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill
         dgvVendedores.BackgroundColor = Color.White
         dgvVendedores.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        dgvVendedores.Location = New Point(30, 90)
-        dgvVendedores.Margin = New Padding(3, 4, 3, 4)
+        dgvVendedores.Location = New Point(26, 68)
         dgvVendedores.MultiSelect = False
         dgvVendedores.Name = "dgvVendedores"
         dgvVendedores.RowHeadersWidth = 51
         dgvVendedores.SelectionMode = DataGridViewSelectionMode.FullRowSelect
-        dgvVendedores.Size = New Size(700, 400)
+        dgvVendedores.Size = New Size(612, 300)
         dgvVendedores.TabIndex = 4
         ' 
         ' TableLayoutPanel1
@@ -74,33 +72,38 @@ Partial Class Busqueda_Vendedores
         TableLayoutPanel1.Controls.Add(Panel1, 0, 0)
         TableLayoutPanel1.Dock = DockStyle.Fill
         TableLayoutPanel1.Location = New Point(0, 0)
+        TableLayoutPanel1.Margin = New Padding(3, 2, 3, 2)
         TableLayoutPanel1.Name = "TableLayoutPanel1"
         TableLayoutPanel1.RowCount = 1
         TableLayoutPanel1.RowStyles.Add(New RowStyle(SizeType.Percent, 50F))
         TableLayoutPanel1.RowStyles.Add(New RowStyle(SizeType.Percent, 50F))
-        TableLayoutPanel1.Size = New Size(782, 553)
+        TableLayoutPanel1.Size = New Size(684, 415)
         TableLayoutPanel1.TabIndex = 7
         ' 
         ' Panel1
         ' 
         Panel1.Anchor = AnchorStyles.None
         Panel1.BackColor = Color.White
-        Panel1.Location = New Point(11, 11)
+        Panel1.Location = New Point(9, 8)
+        Panel1.Margin = New Padding(3, 2, 3, 2)
         Panel1.Name = "Panel1"
-        Panel1.Size = New Size(760, 530)
+        Panel1.Size = New Size(665, 398)
         Panel1.TabIndex = 0
         ' 
         ' Busqueda_Vendedores
         ' 
-        AutoScaleDimensions = New SizeF(8F, 20F)
+        AutoScaleDimensions = New SizeF(7F, 15F)
         AutoScaleMode = AutoScaleMode.Font
-        ClientSize = New Size(782, 553)
+        ClientSize = New Size(684, 415)
         Controls.Add(Label1)
         Controls.Add(txtBuscar)
         Controls.Add(dgvVendedores)
         Controls.Add(TableLayoutPanel1)
         Icon = CType(resources.GetObject("$this.Icon"), Icon)
-        Margin = New Padding(3, 4, 3, 4)
+        MaximizeBox = False
+        MaximumSize = New Size(700, 454)
+        MinimizeBox = False
+        MinimumSize = New Size(700, 454)
         Name = "Busqueda_Vendedores"
         Text = "Busqueda Vendedores"
         CType(dgvVendedores, ComponentModel.ISupportInitialize).EndInit()
